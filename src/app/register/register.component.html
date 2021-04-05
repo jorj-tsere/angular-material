@@ -1,0 +1,30 @@
+<div style="text-align: center;margin-top:200px;">
+<form [formGroup]="form">
+<p>
+    <mat-form-field appearance="standard">
+      <mat-label>fullname</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="name">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>email</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="email">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>password</mat-label>
+      <input matInput placeholder="Placeholder" formControlName="password">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </p>
+  <button mat-raised-button color="primary">register</button>
+
+</form>
+</div>
