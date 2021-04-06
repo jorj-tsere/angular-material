@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/material-demo/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
@@ -21,9 +22,15 @@
     "@angular/platform-browser": "~11.2.6",
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
+    "@ngrx/effects": "^11.1.0",
+    "@ngrx/entity": "^11.1.0",
+    "@ngrx/store": "^11.1.0",
+    "@ngrx/store-devtools": "^11.1.0",
+    "@ngx-translate/core": "^13.0.0",
     "moment": "^2.29.1",
     "rxjs": "~6.6.6",
     "tslib": "^2.1.0",
+    "webpack-bundle-analyzer": "^4.4.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
