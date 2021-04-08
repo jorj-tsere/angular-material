@@ -1,0 +1,5 @@
+But why are the services I created not provided in the module?
+If you open one of the services we created, you’ll notice they are set to providedIn: 'root' .
+This is new in Angular 6, and officially called “Tree-shakable providers”.
+Instead of the module providing all its services, it is now the service itself declaring where it should be provided.
+There is no need to add it to the providers array in the @NgModule , the Angular team even discourages this.

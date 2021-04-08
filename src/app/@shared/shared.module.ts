@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule } from '@ngx-translate/core';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+// import { TranslateModule } from '@ngx-translate/core';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent, FooterComponent],
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule,
     BrowserAnimationsModule,
   ],
   exports: [
-    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule

@@ -13,15 +13,12 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "baseUrl": "./",
+    "baseUrl": "src",
     "paths": {
+      "@env": ["environments/environment"], 
       "@app/*": ["src/app/*"],
-      "@core": ["src/app/@core"],
       "@core/*": ["src/app/@core/*"],
-      "@shared": ["src/app/@shared"],
       "@shared/*": ["src/app/@shared/*"],
-      "@env/*": ["src/environments/*"]
-
     },
     "lib": [
       "es2018",
