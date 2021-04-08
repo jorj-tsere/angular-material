@@ -19,7 +19,7 @@ export class JokeStoreEffects {
             mergeMap(() =>
                 this.jokeService.getJokes().pipe(
                     map(jokes => {
-                        console.log('jokes', jokes);
+                        console.log('[JokeStoreEffects] -> [jokeService.getJokes()] -> [JokeAPIActions.loadAllSucceeded]', jokes);
                         return JokeAPIActions.loadAllSucceeded({ jokes })
                     }),
                     catchError(error =>

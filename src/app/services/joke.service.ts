@@ -14,7 +14,7 @@ export class JokeService {
     return this.http
       .get<JokeResult>(`${this.API_BASE_URL}/jokes`)
       .pipe(map(result => {
-        console.log(result);
+        console.log('[JokeService] -> getJokes() returns result');
         return result.value
       }));
   }

@@ -1,8 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromJoke from './joke.reducer';
+import { State } from './jokes-state';
 
 // Lookup the 'Joke' feature state managed by NgRx
-const getJokeState = createFeatureSelector<fromJoke.State>(
+const getJokeState = createFeatureSelector<State>(
   fromJoke.jokeFeatureKey
 );
 
