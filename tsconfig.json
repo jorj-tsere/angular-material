@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -14,6 +13,13 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "baseUrl": "src",
+    "paths": {
+      "@env": ["environments/environment"], 
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/@core/*"],
+      "@shared/*": ["src/app/@shared/*"],
+    },
     "lib": [
       "es2018",
       "dom"
