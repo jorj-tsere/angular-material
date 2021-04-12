@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { PostUIActions, selectAppComponentViewModel } from 'app/root-store/post';
+import { PostUIActions } from 'app/root-store/post';
+import { selectAppComponentViewModel } from 'app/root-store/post/post.selectors';
 
 @Component({
   selector: 'app-test2',

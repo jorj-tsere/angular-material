@@ -2,21 +2,17 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../auth.interceptor';
-
-
-
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'app/@shared/material/material.module';
 import { SharedModule } from 'app/@shared/shared.module';
 import { LoginComponent } from 'app/login/login.component';
 import { RegisterComponent } from 'app/register/register.component';
 import { TestComponent } from 'app/test/test.component';
-import { JokeCardItemComponent } from 'app/components/joke-card-item/joke-card-item.component';
-import { JokeCardListComponent } from 'app/components/joke-card-list/joke-card-list.component';
 import { Test2Component } from 'app/test2/test2.component';
 import { PostCardItemComponent } from 'app/components/post-card-item/post-card-item.component';
 import { PostCardListComponent } from 'app/components/post-card-list/post-card-list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { JokeModule } from 'app/components/joke/joke.module';
 
 
 
@@ -26,8 +22,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     RegisterComponent,
     TestComponent,
     Test2Component,
-    JokeCardItemComponent,
-    JokeCardListComponent,
     PostCardItemComponent,
     PostCardListComponent,
     PageNotFoundComponent
@@ -37,7 +31,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     SharedModule,
     HttpClientModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    JokeModule
   ],
   exports: [
     SharedModule,
@@ -48,10 +43,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     Test2Component,
     MaterialModule,
     RouterModule,
-    JokeCardItemComponent,
-    JokeCardListComponent,
     PostCardItemComponent,
-    PostCardListComponent
+    PostCardListComponent,
+    JokeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
