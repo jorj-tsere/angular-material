@@ -13,6 +13,10 @@ import { RegisterComponent } from 'app/register/register.component';
 import { TestComponent } from 'app/test/test.component';
 import { JokeCardItemComponent } from 'app/components/joke-card-item/joke-card-item.component';
 import { JokeCardListComponent } from 'app/components/joke-card-list/joke-card-list.component';
+import { Test2Component } from 'app/test2/test2.component';
+import { PostCardItemComponent } from 'app/components/post-card-item/post-card-item.component';
+import { PostCardListComponent } from 'app/components/post-card-list/post-card-list.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
@@ -21,8 +25,12 @@ import { JokeCardListComponent } from 'app/components/joke-card-list/joke-card-l
     LoginComponent,
     RegisterComponent,
     TestComponent,
+    Test2Component,
     JokeCardItemComponent,
-    JokeCardListComponent
+    JokeCardListComponent,
+    PostCardItemComponent,
+    PostCardListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -37,10 +45,13 @@ import { JokeCardListComponent } from 'app/components/joke-card-list/joke-card-l
     LoginComponent,
     RegisterComponent,
     TestComponent,
+    Test2Component,
     MaterialModule,
     RouterModule,
     JokeCardItemComponent,
-    JokeCardListComponent
+    JokeCardListComponent,
+    PostCardItemComponent,
+    PostCardListComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

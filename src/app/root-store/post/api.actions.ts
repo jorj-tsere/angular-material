@@ -1,24 +1,24 @@
 import { createAction, props } from '@ngrx/store';
-import { Joke } from 'app/models';
+import { Post } from 'app/models';
 
 
 
 export const loadAllSucceeded = createAction(
-  '[Jokes API] Load All Succeeded',
-  props<{ jokes: Joke[] }>()
+  '[Posts API] Load All Succeeded',
+  props<{ posts: Post[] }>()
 );
 
 export const loadAllFailed = createAction(
-  '[Jokes API] Load All Failed',
+  '[Posts API] Load All Failed',
   props<{ error: string }>()
 );
 
 export const loadCategorySucceeded = createAction(
-  '[Jokes API] Load Category Succeeded',
-  props<{ jokes: Joke[] }>()
+  '[Posts API] Load Category Succeeded',
+  props<{ posts: Post[] }>()
 );
 
 export const loadCategoryFailed = createAction(
-  '[Jokes API] Load Category Failed',
+  '[Posts API] Load Category Failed',
   props<{ error: string }>()
 );

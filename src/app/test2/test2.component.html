@@ -1,11 +1,12 @@
   
-<h1>Chuck Norris Jokes</h1>
+<h1>Chuck Norris POSTS</h1>
 
-<app-joke-card-list
+<app-post-card-list
   *ngIf="appComponentViewModel$ | async as vm"
-  [jokes]="vm.jokes"
+  [posts]="vm.posts"
   [loading]="vm.loading"
   [error]="vm.error"
   (loadAllRequested)="onLoadAllRequested()"
   (loadCategoryRequested)="onLoadCategoryRequested($event)"
-></app-joke-card-list>
+></app-post-card-list>
+<!-- <p> {{ appComponentViewModel$ | async | json }} </p> -->

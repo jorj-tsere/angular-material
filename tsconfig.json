@@ -19,6 +19,7 @@
       "@app/*": ["src/app/*"],
       "@core/*": ["src/app/@core/*"],
       "@shared/*": ["src/app/@shared/*"],
+      "@models/*": ["src/app/models/*"],
     },
     "lib": [
       "es2018",

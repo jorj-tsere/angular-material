@@ -22,7 +22,7 @@ export const selectJokeIsLoading = createSelector(
   state => state.isLoading
 );
 
-export const selectAppComponentViewModel = createSelector(
+export const selectAppComponentJokeViewModel = createSelector(
   selectJokeList,
   selectJokeError,
   selectJokeIsLoading,
