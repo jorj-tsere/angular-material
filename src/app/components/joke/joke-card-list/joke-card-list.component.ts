@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Joke } from '../../models';
+import { Joke } from 'app/models/joke';
+
 
 @Component({
   selector: 'app-joke-card-list',

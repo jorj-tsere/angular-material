@@ -14,8 +14,6 @@ import { PostCardListComponent } from 'app/components/post-card-list/post-card-l
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { JokeModule } from 'app/components/joke/joke.module';
 
-
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -27,14 +25,15 @@ import { JokeModule } from 'app/components/joke/joke.module';
     PageNotFoundComponent
   ],
   imports: [
+    JokeModule,
     CommonModule,
     SharedModule,
     HttpClientModule,
     MaterialModule,
     RouterModule,
-    JokeModule
   ],
   exports: [
+    JokeModule,
     SharedModule,
     HttpClientModule,
     LoginComponent,
@@ -45,7 +44,6 @@ import { JokeModule } from 'app/components/joke/joke.module';
     RouterModule,
     PostCardItemComponent,
     PostCardListComponent,
-    JokeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
