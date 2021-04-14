@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './@core/core.module';
 import { RootStoreModule } from './root-store';
 
-
 // import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -16,7 +15,7 @@ import { RootStoreModule } from './root-store';
     BrowserModule,
     CoreModule,
     AppRoutingModule,
-    RootStoreModule
+    RootStoreModule,
     // RootStoreModule // must be imported as the last module as it contains the fallback route
   ],
   bootstrap: [AppComponent]
