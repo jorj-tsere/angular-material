@@ -1,7 +1,7 @@
-import { Joke } from 'app/models';
+import { Post } from 'app/models';
 
 export interface State {
-    jokes: Joke[];
+    posts: Post[];
     isLoading: boolean;
     error: string;
 }

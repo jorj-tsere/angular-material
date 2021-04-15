@@ -80,7 +80,9 @@
             }
           },
           "stylePreprocessorOptions": {
-            "includePaths": ["src/styles"]
+            "includePaths": [
+              "src/styles"
+            ]
           }
         },
         "extract-i18n": {
@@ -142,6 +144,7 @@
   },
   "defaultProject": "material-demo",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@ngrx/schematics"
   }
 }

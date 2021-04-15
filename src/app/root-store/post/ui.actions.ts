@@ -1,14 +1,14 @@
 import { createAction, props } from '@ngrx/store';
 
-export const appComponentInitialized = createAction(
-  '[App Component] Initialized'
+export const appComponent2Initialized = createAction(
+  '[App POST Component] Initialized'
 );
 
-export const loadAllRequested = createAction(
-  '[App Component] Load All Requested'
+export const loadAll2Requested = createAction(
+  '[App POST Component] Load All Requested'
 );
 
-export const loadCategoryRequested = createAction(
-  '[App Component] Load Category Requested',
+export const loadCategory2Requested = createAction(
+  '[App POST Component] Load Category Requested',
   props<{ category: string }>()
 );

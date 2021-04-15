@@ -18,10 +18,7 @@ export class JokeStoreEffects {
             ),
             mergeMap(() =>
                 this.jokeService.getJokes().pipe(
-                    map(jokes => {
-                        console.log('[JokeStoreEffects] -> [jokeService.getJokes()] -> [JokeAPIActions.loadAllSucceeded]', jokes);
-                        return JokeAPIActions.loadAllSucceeded({ jokes })
-                    }),
+                    map(jokes => JokeAPIActions.loadAllSucceeded({ jokes })),
                     catchError(error =>
                         of(JokeAPIActions.loadAllFailed({ error: error.message }))
                     )
@@ -46,12 +43,11 @@ export class JokeStoreEffects {
     );
 
     // showAlertOnFailure
-    showAlertOnFailure$ = createEffect(
-        () =>
-            this.actions$.pipe(
-                ofType(JokeAPIActions.loadAllFailed),
-                tap(({ error }) => window.alert(error))
-            ),
+    showAlertOnFailure$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(JokeAPIActions.loadAllFailed),
+            tap(({ error }) => window.alert(error))
+        ),
         { dispatch: false }
     );
 }

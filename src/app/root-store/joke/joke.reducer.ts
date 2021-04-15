@@ -17,38 +17,25 @@ const jokeReducer = createReducer(
   on(
     JokeUIActions.appComponentInitialized,
     JokeUIActions.loadAllRequested,
-    state => {
-      console.log('[[reducer]] JokeUIActions.appComponentInitialized | JokeUIActions.loadAllRequested,', state);
-      return ({ ...state, isLoading: true, error: '' });
-    }
+    state => ({ ...state, isLoading: true, error: '' })
   ),
   on(
     JokeAPIActions.loadAllSucceeded,
     JokeAPIActions.loadCategorySucceeded,
-    (state, { jokes }) => {
-
-      console.log('[[reducer]] JokeAPIActions.loadAllSucceeded | JokeAPIActions.loadCategorySucceeded', jokes);
-
-      return ({
-        ...state,
-        jokes,
-        isLoading: false,
-      });
-    }
+    (state, { jokes }) => ({
+      ...state,
+      jokes,
+      isLoading: false,
+    })
   ),
   on(
     JokeAPIActions.loadAllFailed,
     JokeAPIActions.loadCategoryFailed,
-    (state, { error }) =>  {
-
-      console.log('[[reducer]] JokeAPIActions.loadAllFailed | JokeAPIActions.loadCategoryFailed,', error);
-
-      return  ({
-        ...state,
-        error,
-        isLoading: false
-      });
-    }
+    (state, { error }) => ({
+      ...state,
+      error,
+      isLoading: false
+    })
   )
 );
 

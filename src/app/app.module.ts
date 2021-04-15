@@ -3,14 +3,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './@core/core.module';
-// import { RootStoreModule } from './root-store/root-store.module';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { JokeStateModule } from './root-store/joke-state';
+import { RootStoreModule } from './root-store';
+
 // import { TranslateModule } from '@ngx-translate/core';
-
-
 
 @NgModule({
   declarations: [
@@ -20,12 +15,7 @@ import { JokeStateModule } from './root-store/joke-state';
     BrowserModule,
     CoreModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25 // Retains last 25 states
-    }),
-    JokeStateModule,
+    RootStoreModule,
     // RootStoreModule // must be imported as the last module as it contains the fallback route
   ],
   bootstrap: [AppComponent]

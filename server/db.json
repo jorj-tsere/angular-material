@@ -101,5 +101,29 @@
         "categories": ["nerdy"]
       }
     ]
+  },
+  "posts": {
+    "value": [
+      {
+        "id": 492,
+        "joke": "There is no Esc key on Chuck Norris' keyboard, because no one escapes Chuck Norris.",
+        "categories": ["nerdy"]
+      },
+      {
+        "id": 509,
+        "joke": "Chuck Norris's OSI network model has only one layer - Physical.",
+        "categories": ["nerdy"]
+      },
+      {
+        "id": 510,
+        "joke": "Chuck Norris's OSI network model has only one layer - Physical.",
+        "categories": ["nerdy"]
+      },
+      {
+        "id": 511,
+        "joke": "Chuck Norris's OSI network model has only one layer - Physical.",
+        "categories": ["nerdy"]
+      }
+    ]
   }
 }

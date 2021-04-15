@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Joke } from '../../models';
+import { Post } from 'app/models';
 
 @Component({
-  selector: 'app-joke-card-list',
-  templateUrl: './joke-card-list.component.html',
-  styleUrls: ['./joke-card-list.component.scss']
+  selector: 'app-post-card-list',
+  templateUrl: './post-card-list.component.html',
+  styleUrls: ['./post-card-list.component.scss']
 })
-export class JokeCardListComponent implements OnInit {
-  @Input() jokes: Joke[];
+export class PostCardListComponent implements OnInit {
+
+  @Input() posts: Post[];
   @Input() loading: boolean;
   @Input() error: any;
 
@@ -17,4 +18,5 @@ export class JokeCardListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
 }
