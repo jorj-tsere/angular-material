@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Email, User } from '../../../../pages/auth/models';
 
-import { IUser } from 'app/modules/auth/modals/user';
+import { IUser } from 'app/modules/auth/models/user';
 import { routes } from 'app/consts/routes';
 import { AuthService } from 'app/modules/auth/services/auth.service';
 import { EmailService } from 'app/modules/auth/services/email.service';

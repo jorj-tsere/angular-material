@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { ILoginCredentials } from '../modals/login-credentials';
-import { IUser } from '../modals/user';
+import { ILoginCredentials } from '../models/login-credentials';
+import { IUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

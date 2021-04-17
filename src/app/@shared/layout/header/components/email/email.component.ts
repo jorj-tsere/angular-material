@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IEmail } from 'app/modules/auth/modals';
+import { IEmail } from 'app/modules/auth/models';
 
 @Component({
   selector: 'app-email',

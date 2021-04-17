@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { IUser } from '../../modals/user';
+import { IUser } from '../../models/user';
 import * as AuthActions from '../actions/auth.actions';
 
 export const authFeatureKey = 'auth';

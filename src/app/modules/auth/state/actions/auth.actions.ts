@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { ILoginCredentials } from '../../modals/login-credentials';
-import { IUser } from '../../modals/user';
+import { ILoginCredentials } from '../../models/login-credentials';
+import { IUser } from '../../models/user';
 
 export const LoginPage = createAction(
   '[Auth Component] Login User',

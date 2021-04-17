@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IEmail } from '../modals';
+import { IEmail } from '../models';
 
 @Injectable({
   providedIn: 'root',
