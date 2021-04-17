@@ -35,4 +35,30 @@ export class AuthService {
       })
     );
   }
+
+
+
+  /// temp
+  // public login(): void {
+  //   localStorage.setItem('token', 'token');
+  // }
+
+  public sign(): void {
+    localStorage.setItem('token', 'token');
+  }
+
+  public signOut(): void {
+    localStorage.removeItem('token');
+  }
+
+  public getUser(): Observable<IUser> {
+    return of({
+      id: 123123,
+      username: 'jogn',
+      email: 'jorj.tsere@gmail.com',
+      is_admin: true,
+      name: 'John',
+      lastName: 'Smith'
+    });
+  }
 }

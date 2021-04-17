@@ -15,7 +15,7 @@ for (var i = 1; i <= 200; i++) {
     description: faker.lorem.sentences(),
     price: faker.commerce.price(100, 999, 2),
     imageUrl: "https://source.unsplash.com/1600x900/?product",
-    quantity: faker.random.number(),
+    quantity: faker.datatype.number,
   });
 }
 

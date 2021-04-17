@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { MaterialModule } from './material/material.module';
-// import { TranslateModule } from '@ngx-translate/core';
-
-
+import { HeaderModule } from './layout/header/header.module';
+import { LayoutComponent } from './layout/layout.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { DateMenuComponent, SettingsMenuComponent } from './ui-elements';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MaterialModule
+  declarations: [
+    FooterComponent,
+    LayoutComponent,
+    SidebarComponent,
+    DateMenuComponent,
+    SettingsMenuComponent,
   ],
-  exports: [
-    FormsModule,
-    MaterialModule,
-    ReactiveFormsModule,
-  ]
+  imports: [CommonModule, FormsModule, MaterialModule, HeaderModule],
+  exports: [FormsModule, MaterialModule, ReactiveFormsModule],
 })
-export class SharedModule { }
+export class SharedModule {}
