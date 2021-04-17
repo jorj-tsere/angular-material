@@ -1,1 +1,32 @@
-<p>customer-support works!</p>
+<div style="text-align: center;margin-top:200px;">
+  <form [formGroup]="customerSupportForm" >
+  <p>
+      <mat-form-field appearance="standard">
+        <mat-label>fullname</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="name">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>email</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="email">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>message</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="message">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" (click)="onSubmit()">register</button>
+
+  </form>
+
+  <p style="padding: 100px 0;"> vm$ =  {{ vm$ | async | json }}  </p>
+  </div>
