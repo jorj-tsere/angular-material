@@ -7,25 +7,15 @@ import { MaterialModule } from 'app/@shared/material/material.module';
 import { SharedModule } from 'app/@shared/shared.module';
 import { LoginComponent } from 'app/login/login.component';
 import { RegisterComponent } from 'app/register/register.component';
-import { TestComponent } from 'app/test/test.component';
-import { Test2Component } from 'app/test2/test2.component';
-import { PostCardItemComponent } from 'app/components/post-card-item/post-card-item.component';
-import { PostCardListComponent } from 'app/components/post-card-list/post-card-list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { JokeModule } from 'app/components/joke/joke.module';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent,
-    TestComponent,
-    Test2Component,
-    PostCardItemComponent,
-    PostCardListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RegisterComponent
   ],
   imports: [
-    JokeModule,
     CommonModule,
     SharedModule,
     HttpClientModule,
@@ -33,17 +23,12 @@ import { JokeModule } from 'app/components/joke/joke.module';
     RouterModule,
   ],
   exports: [
-    JokeModule,
     SharedModule,
     HttpClientModule,
     LoginComponent,
     RegisterComponent,
-    TestComponent,
-    Test2Component,
     MaterialModule,
     RouterModule,
-    PostCardItemComponent,
-    PostCardListComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
