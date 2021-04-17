@@ -5,28 +5,26 @@ import { AuthInterceptor } from '../auth.interceptor';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'app/@shared/material/material.module';
 import { SharedModule } from 'app/@shared/shared.module';
-import { LoginComponent } from 'app/login/login.component';
-import { RegisterComponent } from 'app/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+/* Angular Flex Layout */
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
-    LoginComponent,
     PageNotFoundComponent,
-    RegisterComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    FlexLayoutModule,
     HttpClientModule,
     MaterialModule,
     RouterModule,
   ],
   exports: [
     SharedModule,
+    FlexLayoutModule,
     HttpClientModule,
-    LoginComponent,
-    RegisterComponent,
     MaterialModule,
     RouterModule,
   ],

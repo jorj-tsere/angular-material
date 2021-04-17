@@ -1,15 +1,18 @@
 import { createAction, props } from '@ngrx/store';
+import { ILoginCredentials } from '../../modals/login-credentials';
+import { IUser } from '../../modals/user';
 
-export const loadAuths = createAction(
-  '[Auth] Load Auths'
+export const LoginPage = createAction(
+  '[Auth Component] Login User',
+  props<{ credentials: ILoginCredentials }>()
 );
 
-export const loadAuthsSuccess = createAction(
-  '[Auth] Load Auths Success',
-  props<{ data: any }>()
+export const LoginSuccess = createAction(
+  '[Auth Effect] Login User Success',
+  props<{ user: IUser }>()
 );
 
-export const loadAuthsFailure = createAction(
-  '[Auth] Load Auths Failure',
+export const LoginFailure = createAction(
+  '[Auth Fail Effect] Login User Failure',
   props<{ error: any }>()
 );

@@ -6,7 +6,7 @@ import { AppState } from 'app/store';
 import * as customerSupportActions from 'app/store/actions/customer-support.actions'
 import * as fromSupportSelectors from 'app/store/selectors/customer-support.selectors';
 import { selectName } from 'app/store/selectors/customer-support.selectors';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-customer-support',
