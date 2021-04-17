@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'app/store';
-import { ILoginCredentials } from '../models/login-credentials';
-import * as fromAuthActions from '../state/actions/auth.actions';
+import { ILoginCredentials } from '../../models/login-credentials';
+import * as fromAuthActions from '../../state/actions/auth.actions';
 
 @Component({
-  selector: 'app-log-in',
-  templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.scss'],
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss'],
 })
-export class LogInComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
   form: FormGroup;
   error: any = null;
   constructor(private fb: FormBuilder, private store: Store<AppState>) {

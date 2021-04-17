@@ -7,17 +7,11 @@ import { AuthEffects } from './state/effects/auth.effects';
 import { StoreModule } from '@ngrx/store';
 
 import * as fromAuth from './state/reducers/auth.reducer';
-import { LogInComponent } from './log-in/log-in.component';
 import { SharedModule } from 'app/@shared/shared.module';
-import { RegisterComponent } from './register/register.component';
-
-
+import { LoginFormComponent, RegisterComponent } from './components';
 
 @NgModule({
-  declarations: [
-    LogInComponent,
-    RegisterComponent
-  ],
+  declarations: [LoginFormComponent, RegisterComponent],
   imports: [
     CommonModule,
     SharedModule,

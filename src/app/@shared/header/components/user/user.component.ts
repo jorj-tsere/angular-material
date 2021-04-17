@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { routes } from 'app/consts';
-import { IUser } from 'app/modules/auth/models';
+import { IUser } from 'app/pages/auth/models';
 
 @Component({
   selector: 'app-user',

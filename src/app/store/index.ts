@@ -7,7 +7,7 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import * as fromCustomerSupport from './reducers/customer-support.reducer';
-import * as fromAuth from '../modules/auth/state/reducers/auth.reducer';
+import * as fromAuth from '../pages/auth/state/reducers/auth.reducer';
 
 
 export interface AppState {
