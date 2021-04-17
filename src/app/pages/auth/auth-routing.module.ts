@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent, RegisterComponent } from './components';
+import { AuthPageComponent } from './containers';
+
+// const routes: Routes = [
+//   { path: 'login-form', component: LoginFormComponent },
+//   { path: 'register', component: RegisterComponent },
+//   { path: '', pathMatch: 'full', redirectTo: 'login-form' },
+// ];
+
 
 const routes: Routes = [
-  { path: 'login-form', component: LoginFormComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'log-in' },
+  {
+    path: '',
+    component: AuthPageComponent
+  }
 ];
 
 @NgModule({
