@@ -8,17 +8,21 @@ import { StoreModule } from '@ngrx/store';
 
 import * as fromAuth from './state/reducers/auth.reducer';
 import { SharedModule } from 'app/@shared/shared.module';
-import { RegisterComponent, LoginFormComponent} from './components';
-import { AuthPageComponent } from './containers/auth-page/auth-page.component';
-
+import { RegisterComponent, LoginFormComponent } from './components';
 
 import { YearPipe } from './pipes';
 import { AuthGuard } from './guards';
 import { AuthService } from './services/auth.service';
 import { EmailService } from './services/email.service';
+import { AuthPageComponent } from './containers';
 
 @NgModule({
-  declarations: [LoginFormComponent, RegisterComponent, AuthPageComponent, YearPipe],
+  declarations: [
+    LoginFormComponent,
+    RegisterComponent,
+    AuthPageComponent,
+    YearPipe,
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -26,10 +30,6 @@ import { EmailService } from './services/email.service';
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
-  providers: [
-    AuthService,
-    EmailService,
-    AuthGuard
-  ]
+  providers: [AuthService, EmailService, AuthGuard],
 })
 export class AuthModule {}

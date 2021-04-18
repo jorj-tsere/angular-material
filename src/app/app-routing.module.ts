@@ -12,12 +12,19 @@ const routes: Routes = [
       import('./pages/tables/tables.module').then((m) => m.TablesModule),
   },
   {
+    path: 'dashboard',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/tables/tables.module').then((m) => m.TablesModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'tables',
   },
   {
-    path: 'auth',
+    path: 'login',
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },

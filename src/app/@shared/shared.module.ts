@@ -7,6 +7,7 @@ import { HeaderModule } from './header/header.module';
 import { LayoutComponent } from './layout/layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DateMenuComponent, SettingsMenuComponent } from './ui-elements';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { DateMenuComponent, SettingsMenuComponent } from './ui-elements';
     DateMenuComponent,
     SettingsMenuComponent,
   ],
-  imports: [CommonModule, FormsModule, MaterialModule, HeaderModule],
+  imports: [CommonModule, FormsModule, MaterialModule, HeaderModule, RouterModule],
   exports: [
     FormsModule,
     MaterialModule,
