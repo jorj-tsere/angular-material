@@ -19,6 +19,5 @@ const routes: Routes = [
 
 export class TablesRoutingModule {
   constructor(){
-    console.log('TablesRoutingModule')
   }
 }

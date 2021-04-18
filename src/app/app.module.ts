@@ -12,6 +12,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { CustomerSupportEffects } from './store/effects/customer-support.effects';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthGuard } from './pages/auth/guards';
+import { SpinnerEffects } from './store/effects/spinner.effects';
+import { AlertEffects } from './store/effects/alert.effects';
+import { RouteEffects } from './store/effects/route.effects';
+import { AppEffects } from './store/effects/app.effects';
 
 // import { TranslateModule } from '@ngx-translate/core';
 
@@ -36,7 +40,7 @@ import { AuthGuard } from './pages/auth/guards';
       }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([CustomerSupportEffects]),
+    EffectsModule.forRoot([CustomerSupportEffects, SpinnerEffects, AlertEffects, RouteEffects, AppEffects]),
   ],
   providers: [
     AuthGuard

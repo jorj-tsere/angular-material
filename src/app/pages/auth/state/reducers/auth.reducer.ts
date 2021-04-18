@@ -22,10 +22,18 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(AuthActions.LoginSuccess, (state, action) => {
+  on(AuthActions.LoginSuccess,AuthActions.BrowserReload,  (state, action) => {
+
+    const userTest = {
+      id: 45,
+      username: 'jorj',
+      email: 'jorj.tsere@gmail.com',
+      is_admin: true,
+    };
+
     return {
       ...state,
-      user: action.user,
+      user: userTest,
       error: null,
     };
   }),
@@ -39,6 +47,18 @@ export const reducer = createReducer(
         is_admin: null,
       },
       error: action.error,
+    };
+  }),
+  on(AuthActions.Logout, (state, action) => {
+    return {
+      ...state,
+      user: {
+        id: null,
+        username: null,
+        email: null,
+        is_admin: null,
+      },
+      error: null,
     };
   })
 );

@@ -1,6 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { routes } from 'app/consts';
 import { IUser } from 'app/pages/auth/models';
+import { AppState } from 'app/store';
+
+import * as fromAuthActions from 'app/pages/auth/state/actions/auth.actions';
 
 @Component({
   selector: 'app-user',
@@ -9,15 +13,12 @@ import { IUser } from 'app/pages/auth/models';
 })
 export class UserComponent implements OnInit {
   @Input() user: IUser;
-  @Output() signOut: EventEmitter<void> = new EventEmitter<void>();
   public routes: typeof routes = routes;
-  // tslint:disable-next-line:no-inferrable-types
-  public flatlogicEmail: string = 'https://flatlogic.com';
 
   public signOutEmit(): void {
-    this.signOut.emit();
+    this.store.dispatch(fromAuthActions.Logout());
   }
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 }

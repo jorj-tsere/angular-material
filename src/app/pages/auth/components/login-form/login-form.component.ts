@@ -23,7 +23,6 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    console.log('sads');
     const credentials: ILoginCredentials = this.form.getRawValue();
     this.store.dispatch(fromAuthActions.LoginPage({ credentials }));
   }

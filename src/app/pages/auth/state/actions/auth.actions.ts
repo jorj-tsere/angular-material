@@ -16,3 +16,10 @@ export const LoginFailure = createAction(
   '[Auth Fail Effect] Login User Failure',
   props<{ error: any }>()
 );
+
+export const Logout = createAction('[user Component] Logout User');
+
+export const BrowserReload = createAction(
+  '[Core Component] Browser Reload',
+  props<{ user: IUser }>()
+);

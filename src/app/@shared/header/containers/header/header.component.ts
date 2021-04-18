@@ -1,13 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
-
-
 import { IUser } from 'app/pages/auth/models/user';
-import { routes } from 'app/consts/routes';
-import { AuthService } from 'app/pages/auth/services/auth.service';
 import { EmailService } from 'app/pages/auth/services/email.service';
 import { IEmail } from 'app/pages/auth/models';
+import { AppState } from 'app/store';
+import { select, Store } from '@ngrx/store';
+import * as fromAuthSelectors from 'app/pages/auth/state/selectors/auth.selectors';
 
 @Component({
   selector: 'app-header',
@@ -17,31 +15,21 @@ import { IEmail } from 'app/pages/auth/models';
 export class HeaderComponent implements OnInit {
   @Input() isMenuOpened: boolean;
   @Output() isShowSidebar = new EventEmitter<boolean>();
-  public user$: Observable<IUser>;
-  public emails$: Observable<IEmail[]>;
-  public routers: typeof routes = routes;
+  user$: Observable<IUser>;
+  emails$: Observable<IEmail[]>;
 
   constructor(
-    private authService: AuthService,
     private emailService: EmailService,
-    private router: Router
+    private store: Store<AppState>
   ) {
-    this.user$ = this.authService.getUser();
+    this.user$ = this.store.pipe(select(fromAuthSelectors.selectLoggedUser));
     this.emails$ = this.emailService.loadEmails();
   }
 
   ngOnInit(): void {}
 
-  public openMenu(): void {
+  openMenu(): void {
     this.isMenuOpened = !this.isMenuOpened;
-
     this.isShowSidebar.emit(this.isMenuOpened);
-  }
-
-  public signOut(): void {
-    console.log('signOut');
-    // this.userService.signOut();
-
-    // this.router.navigate([this.routers.LOGIN]);
   }
 }

@@ -18,39 +18,29 @@ export class AuthService {
     is_admin: false,
   });
 
-
   user = this.userSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
   login(credentials: ILoginCredentials): Observable<any> {
-    return this.http.get(this.baseUrl + '?username=' + credentials.username).pipe(
-      switchMap((users) => {
-        const user = users[0];
-        this.sign();
-        if (user) {
-          return of(user);
-        } else {
-          return throwError('Unable to login');
-        }
-      })
-    );
+    return this.http
+      .get(this.baseUrl + '?username=' + credentials.username)
+      .pipe(
+        switchMap((users) => {
+          const user = users[0];
+          if (user) {
+            return of(user);
+          } else {
+            return throwError('Unable to login');
+          }
+        })
+      );
   }
-
-
 
   /// temp
   // public login(): void {
   //   localStorage.setItem('token', 'token');
   // }
-
-  public sign(): void {
-    localStorage.setItem('token', 'token');
-  }
-
-  public signOut(): void {
-    localStorage.removeItem('token');
-  }
 
   public getUser(): Observable<IUser> {
     return of({
@@ -59,7 +49,7 @@ export class AuthService {
       email: 'jorj.tsere@gmail.com',
       is_admin: true,
       name: 'John',
-      lastName: 'Smith'
+      lastName: 'Smith',
     });
   }
 }
