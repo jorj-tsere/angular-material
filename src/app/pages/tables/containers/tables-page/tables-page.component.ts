@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee, Customer } from '../../models';
-import { TablesService } from '../../services/table.service';
+
+import { TablesService } from '../../services';
+import { Customer, Employee } from '../../models';
 
 @Component({
   selector: 'app-tables-page',
   templateUrl: './tables-page.component.html',
   styleUrls: ['./tables-page.component.scss']
 })
-export class TablesPageComponent implements OnInit {
-
+export class TablesPageComponent {
   public employeeTableData$: Observable<Employee[]>
   public materialTableData$: Observable<Customer[]>
 
   constructor(private tableService: TablesService) {
     this.employeeTableData$ = tableService.loadEmployeeTableData();
     this.materialTableData$ = tableService.loadMaterialTableData();
-  }
 
-  ngOnInit(): void {
-  }
 
+    console.log('private service: TablesService');
+  }
 }

@@ -27,6 +27,7 @@ export class AuthService {
     return this.http.get(this.baseUrl + '?username=' + credentials.username).pipe(
       switchMap((users) => {
         const user = users[0];
+        this.sign();
         if (user) {
           return of(user);
         } else {

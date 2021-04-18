@@ -1,32 +1,26 @@
-import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Employee } from '../../models';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatPaginator } from '@angular/material/paginator';
+
+import { Employee } from '../../models/employee';
 
 @Component({
   selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
-  styleUrls: ['./employee-table.component.scss'],
+  styleUrls: ['./employee-table.component.scss']
 })
 export class EmployeeTableComponent implements OnInit {
   @Input() employeeTableData: Employee[];
-  public displayedColumns: string[] = [
-    'select',
-    'name',
-    'company',
-    'city',
-    'state',
-  ];
+  public displayedColumns: string[] = ['select', 'name', 'company', 'city', 'state'];
   public dataSource: MatTableDataSource<Employee>;
   public selection = new SelectionModel<Employee>(true, []);
 
   public isShowFilterInput = false;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor() {}
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Employee>(this.employeeTableData);
 
     this.dataSource.paginator = this.paginator;
@@ -41,9 +35,9 @@ export class EmployeeTableComponent implements OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   public masterToggle(): void {
-    this.isAllSelected()
-      ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => this.selection.select(row));
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   /** The label for the checkbox on the passed row */
@@ -51,9 +45,7 @@ export class EmployeeTableComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.position + 1
-    }`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
   public applyFilter(event: Event): void {

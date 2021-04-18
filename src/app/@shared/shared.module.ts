@@ -17,6 +17,13 @@ import { DateMenuComponent, SettingsMenuComponent } from './ui-elements';
     SettingsMenuComponent,
   ],
   imports: [CommonModule, FormsModule, MaterialModule, HeaderModule],
-  exports: [FormsModule, MaterialModule, ReactiveFormsModule],
+  exports: [
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    SettingsMenuComponent,
+    FooterComponent,
+    LayoutComponent,
+  ],
 })
 export class SharedModule {}

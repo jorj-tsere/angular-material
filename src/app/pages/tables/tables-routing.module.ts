@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 import { TablesPageComponent } from './containers';
 
@@ -11,7 +11,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule]
 })
-export class TablesRoutingModule { }
+
+export class TablesRoutingModule {
+  constructor(){
+    console.log('TablesRoutingModule')
+  }
+}

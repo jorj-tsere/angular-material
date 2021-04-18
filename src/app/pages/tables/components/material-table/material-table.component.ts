@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Customer } from '../../models';
 
 @Component({
   selector: 'app-material-table',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./material-table.component.scss']
 })
 export class MaterialTableComponent implements OnInit {
+  @Input() materialTableDate: Customer[];
+  public displayedColumns: string[] = ['name', 'email', 'product', 'price', 'date', 'city', 'status'];
+  public dataSource: Customer[];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  public ngOnInit() {
+    this.dataSource = this.materialTableDate;
   }
-
 }

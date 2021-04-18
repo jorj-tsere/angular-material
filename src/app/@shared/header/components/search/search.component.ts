@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  public isShowInput = false;
+
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  public showInput(): void {
+    this.isShowInput = true;
   }
 
 }
