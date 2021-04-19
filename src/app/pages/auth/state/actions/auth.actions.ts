@@ -11,7 +11,7 @@ export const LoginPage = createAction(
 
 export const LoginSuccess = createAction(
   '[Auth Effect] Login User Success',
-  props<{ user: IUser }>()
+  props<{ response: any }>()
 );
 
 export const LoginFailure = createAction(

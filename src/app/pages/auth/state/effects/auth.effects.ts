@@ -13,12 +13,11 @@ export class AuthEffects {
       ofType(fromAuthActions.LoginPage),
       concatMap((action) =>
         this.authService.login(action.credentials).pipe(
-          map((_user) => {
-            const user = _user[0];
-            if(!user || typeof user === 'undefined') {
+          map((response) => {
+            if(!response) {
               return fromAuthActions.LoginFailure({ error: 'user not found' });
             }
-            return fromAuthActions.LoginSuccess({ user })
+            return fromAuthActions.LoginSuccess({ response })
           }),
           catchError((error) => {
             console.error(' login$ = createEffect(() error', error)

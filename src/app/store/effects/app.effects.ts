@@ -19,7 +19,7 @@ export class AppEffects {
       this.actions$.pipe(
         ofType(fromAuthActions.LoginSuccess),
         tap((action) =>
-          localStorage.setItem('user', JSON.stringify(action.user))
+          localStorage.setItem('ml_token', JSON.stringify(action))
         )
       ),
     { dispatch: false }
