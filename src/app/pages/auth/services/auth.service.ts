@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { ILoginCredentials } from '../models/login-credentials';
+import { IRegisterRequest } from '../models/register-request';
 import { IUser } from '../models/user';
 
 @Injectable({
@@ -10,37 +11,20 @@ import { IUser } from '../models/user';
 })
 export class AuthService {
   // tslint:disable-next-line:no-inferrable-types
-  baseUrl: string = 'http://localhost:3000/users/';
-  private userSource = new BehaviorSubject<IUser>({
-    id: null,
-    username: null,
-    email: null,
-    is_admin: false,
-  });
+  baseUrl: string = 'http://localhost:3000';
 
-  user = this.userSource.asObservable();
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(credentials: ILoginCredentials): Observable<any> {
     return this.http
-      .get(this.baseUrl + '?username=' + credentials.username)
-      .pipe(
-        switchMap((users) => {
-          const user = users[0];
-          if (user) {
-            return of(user);
-          } else {
-            return throwError('Unable to login');
-          }
-        })
-      );
+      .get(this.baseUrl + '/users/?username=' + credentials.username);
   }
 
-  /// temp
-  // public login(): void {
-  //   localStorage.setItem('token', 'token');
-  // }
+
+  register(registerPayload: IRegisterRequest): Observable<any> {
+    return this.http
+      .post(this.baseUrl + '/register', registerPayload);
+  }
 
   public getUser(): Observable<IUser> {
     return of({
