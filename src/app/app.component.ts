@@ -2,14 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IUser } from './pages/auth/models';
 import { BrowserReload } from './pages/auth/state/actions/auth.actions';
+import { LocalStorageService } from './services';
 import { AppState } from './store';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
 @Component({
   selector: 'app-root',
@@ -18,8 +12,11 @@ export interface PeriodicElement {
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    const user: IUser = JSON.parse(localStorage.getItem('user'));
+    const user: IUser = this.localStorageService.getObject('ml_token') as any;
     this.store.dispatch(BrowserReload({ user }));
   }
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private store: Store<AppState>,
+    private localStorageService: LocalStorageService
+  ) {}
 }

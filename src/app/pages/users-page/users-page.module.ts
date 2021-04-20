@@ -9,14 +9,14 @@ import { StoreModule } from '@ngrx/store';
 import * as fromUsersPage from './state/reducers/users-page.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersPageEffects } from './state/effects/users-page.effects';
-
-
+import { UserDetailsComponent } from './pages';
 
 @NgModule({
   declarations: [
     UsersPageComponent,
     EmployeeTableComponent,
-    MaterialTableComponent
+    MaterialTableComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,

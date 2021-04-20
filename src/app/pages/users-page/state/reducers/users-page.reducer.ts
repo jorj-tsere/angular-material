@@ -30,7 +30,6 @@ export const reducer = createReducer(
     }
   }),
   on(UsersPageActions.loadUsersPageSuccess, (state, action: any) => {
-    console.log(state, action)
     return {
       ...state,
       users: action.data,

@@ -25,8 +25,6 @@ export class UsersPageComponent implements OnInit {
     this.vm$ = this.store.pipe(select(fromUsersPageSelectors.selectUsersPageViewModel));
     // this.employeeTableData$ = tableService.loadEmployeeTableData();
     // this.materialTableData$ = tableService.loadMaterialTableData();
-
-    console.log('private service: TablesService');
   }
 
   ngOnInit(): void {}

@@ -6,16 +6,17 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from 'app/services';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private localStorageService: LocalStorageService) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const menulabToken = localStorage.getItem('ml_token');
+    const menulabToken = this.localStorageService.getObject('ml_token');
 
     if (menulabToken) {
       const cloned = req.clone({

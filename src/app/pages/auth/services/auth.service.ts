@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { buildQueryString } from 'app/@shared/helpers/functions';
+import { LocalStorageService } from 'app/services';
 import axios from 'axios';
 import * as moment from 'moment';
 import { Observable, of } from 'rxjs';
@@ -20,20 +21,12 @@ export class AuthService {
   // tslint:disable-next-line:no-inferrable-types
   // baseUrl: string = 'http://68.183.115.254:8081';
 
-  constructor(private http: HttpClient) {}
-
-  // login(credentials: IAuthRequest): Observable<IAuthResponse> {
-
-  //   return this.getUser();
-
-  //   // return this.http.post<IAuthResponse>(
-  //   //   this.baseUrl + '/api/auth/getAccessToken',
-  //   //   credentials
-  //   // );
-  // }
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   login(credentials: IAuthRequest): Observable<any> {
-
     return this.getUser();
 
     // return this.http.post<IAuthResponse>(
@@ -50,7 +43,7 @@ export class AuthService {
   }
 
   validateAcceessToken(): Observable<IValidateAccessTokenResponse> {
-    const accessToken = JSON.parse(localStorage.getItem('ml_token'));
+    const accessToken = this.localStorageService.getObject('ml_token');
     const queryString = buildQueryString({ accessToken });
     return this.http.get<IValidateAccessTokenResponse>(
       `${this.baseUrl}/api/auth/validateAccessToken?${queryString}}`
@@ -69,25 +62,17 @@ export class AuthService {
   }
 
   // not working
-  private setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
-    console.log(moment(expiresAt).format());
+  // private setSession(authResult) {
+  //   const expiresAt = moment().add(authResult.expiresIn, 'second');
+  //   console.log(moment(expiresAt).format());
 
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-  }
-  // not working
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
-  }
+  //   local_Storage.setItem('id_token', authResult.idToken);
+  //   local_Storage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+  // }
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
-  }
-
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
-  }
+  // getExpiration() {
+  //   const expiration = local_Storage.getItem('expires_at');
+  //   const expiresAt = JSON.parse(expiration);
+  //   return moment(expiresAt);
+  // }
 }
