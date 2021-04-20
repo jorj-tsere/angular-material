@@ -79,7 +79,7 @@
       <ng-container matColumnDef="actions">
         <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> actions</th>
         <td class="employee-table__table-body" mat-cell *matCellDef="let element">
-          <a mat-icon-button color="primary" aria-label="edit employee"  routerLink="/edit/1">
+          <a mat-icon-button color="primary" aria-label="edit employee"  [routerLink]="['../edit/', element.id]">
             <mat-icon>edit</mat-icon>
           </a>
         </td>
@@ -87,7 +87,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-          (click)="selection.toggle(row)">
+          >
       </tr>
     </table>
   </mat-card-content>
@@ -96,7 +96,7 @@
   </div>
 </mat-card>
 
-
+<!--
 <div>
   selection = {{ selection |  json }}
-</div>
+</div> -->

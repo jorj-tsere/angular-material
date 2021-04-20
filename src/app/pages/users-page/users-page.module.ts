@@ -10,13 +10,15 @@ import * as fromUsersPage from './state/reducers/users-page.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersPageEffects } from './state/effects/users-page.effects';
 import { UserDetailsComponent } from './pages';
+import { UserListComponent } from './pages/user-list/user-list.component';
 
 @NgModule({
   declarations: [
     UsersPageComponent,
     EmployeeTableComponent,
     MaterialTableComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,

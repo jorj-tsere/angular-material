@@ -1,0 +1,23 @@
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as fromUsersPageSelectors from '../../state/selectors/users-page.selectors';
+import * as fromUsersPageActions from '../../state/actions/users-page.actions';
+import { AppState } from 'app/store';
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
+})
+export class UserListComponent implements OnInit {
+  public vm$: Observable<any>;
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(fromUsersPageActions.loadUsersPage());
+    this.vm$ = this.store.pipe(select(fromUsersPageSelectors.selectUsersPageViewModel));
+  }
+
+  ngOnInit(): void {
+  }
+
+}

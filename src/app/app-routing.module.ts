@@ -4,9 +4,9 @@ import { AuthGuard } from './@core/guards';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
+
   {
     path: 'users',
-    pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/users-page/users-page.module').then(
@@ -23,16 +23,19 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },
-
   {
     path: '404',
     component: NotFoundComponent,
   },
-  {
+
+];
+
+/*
+ {
     path: '**',
     redirectTo: '404',
   },
-];
+*/
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

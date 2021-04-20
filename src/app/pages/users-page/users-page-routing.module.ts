@@ -2,25 +2,31 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersPageComponent } from './containers';
 import { UserDetailsComponent } from './pages';
+import { UserListComponent } from './pages/user-list/user-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: UsersPageComponent
+    component: UsersPageComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'list',
+      },
+      {
+        path: 'list',
+        component: UserListComponent
+      },
+      {
+        path: 'edit/:user_id',
+        component: UserDetailsComponent
+      },
+    ],
   },
-  {
-    path: 'edit/:user_id',
-    pathMatch: 'full',
-    component: UserDetailsComponent
-  },
-  {
-    path: '**',
-    redirectTo: ''
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UsersPageRoutingModule { }
+export class UsersPageRoutingModule {}

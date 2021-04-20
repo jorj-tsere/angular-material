@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IUser } from './pages/auth/models';
 import { BrowserReload } from './pages/auth/state/actions/auth.actions';
@@ -19,4 +20,9 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>,
     private localStorageService: LocalStorageService
   ) {}
+
+  prepareRoute(outlet: RouterOutlet) {
+    // tslint:disable-next-line:no-string-literal
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
 }
