@@ -17,7 +17,13 @@ import { RouterModule } from '@angular/router';
     DateMenuComponent,
     SettingsMenuComponent,
   ],
-  imports: [CommonModule, FormsModule, MaterialModule, HeaderModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MaterialModule,
+    HeaderModule,
+    RouterModule,
+  ],
   exports: [
     FormsModule,
     MaterialModule,

@@ -1,4 +1,4 @@
-export interface ILoginCredentials {
+export interface IAuthRequest {
   username: string;
   password: string;
 }

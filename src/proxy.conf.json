@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "http://68.183.115.254:8081/api",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": false,
+    "logLevel": "debug"
+  }
+}

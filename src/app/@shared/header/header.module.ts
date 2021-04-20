@@ -9,12 +9,11 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { UserComponent, EmailComponent } from './components';
+import { UserComponent } from './components';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { ShortNamePipe } from './pipes';
 import { HeaderComponent } from './containers';
-
 
 export const MaterialModules = [
   MatIconModule,
@@ -23,9 +22,8 @@ export const MaterialModules = [
   MatInputModule,
   MatBadgeModule,
   MatToolbarModule,
-  MatFormFieldModule
-]
-
+  MatFormFieldModule,
+];
 
 @NgModule({
   declarations: [
@@ -33,15 +31,9 @@ export const MaterialModules = [
     UserComponent,
     SearchComponent,
     NotificationsComponent,
-    EmailComponent,
-    ShortNamePipe
+    ShortNamePipe,
   ],
-  exports: [
-    HeaderComponent
-  ],
-  imports: [
-    CommonModule,
-    ...MaterialModules,
-  ]
+  exports: [HeaderComponent],
+  imports: [CommonModule, ...MaterialModules],
 })
-export class HeaderModule { }
+export class HeaderModule {}

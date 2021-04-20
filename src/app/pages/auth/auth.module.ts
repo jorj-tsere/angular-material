@@ -12,10 +12,8 @@ import * as fromRegister from './state/reducers/register.reducer';
 import { SharedModule } from 'app/@shared/shared.module';
 import { LoginFormComponent, RegisterFormComponent } from './components';
 
-import { YearPipe } from './pipes';
-import { AuthGuard } from './guards';
+import { AuthGuard } from '../../@core/guards';
 import { AuthService } from './services/auth.service';
-import { EmailService } from './services/email.service';
 import { AuthPageComponent } from './containers';
 
 @NgModule({
@@ -23,7 +21,6 @@ import { AuthPageComponent } from './containers';
     LoginFormComponent,
     RegisterFormComponent,
     AuthPageComponent,
-    YearPipe,
   ],
   imports: [
     CommonModule,
@@ -33,6 +30,6 @@ import { AuthPageComponent } from './containers';
     StoreModule.forFeature(fromRegister.RegisterFeatureKey, fromRegister.reducer),
     EffectsModule.forFeature([AuthEffects, RegisterEffects]),
   ],
-  providers: [AuthService, EmailService, AuthGuard],
+  providers: [AuthService],
 })
 export class AuthModule {}

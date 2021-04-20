@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ILoginCredentials } from '../../models/login-credentials';
+import { IAuthRequest } from '../../models/auth-request';
 import { IRegisterRequest } from '../../models/register-request';
 import { IUser } from '../../models/user';
 

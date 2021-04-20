@@ -8,6 +8,7 @@ import { SharedModule } from 'app/@shared/shared.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 /* Angular Flex Layout */
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthGuard } from './guards';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RouterModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthGuard
   ],
 })
 export class CoreModule {
