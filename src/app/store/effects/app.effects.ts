@@ -9,7 +9,7 @@ export class AppEffects {
     () =>
       this.actions$.pipe(
         ofType(fromAuthActions.Logout),
-        tap(() => localStorage.removeItem('user'))
+        tap(() => localStorage.removeItem('ml_token'))
       ),
     { dispatch: false }
   );

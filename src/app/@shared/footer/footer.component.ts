@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
@@ -12,11 +12,7 @@ export class FooterComponent implements OnInit {
   public flatlogicAbout: string = 'https://flatlogic.com/about';
   // tslint:disable-next-line:no-inferrable-types
   public flatlogicBlog: string = 'https://flatlogic.com/blog';
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
-
-
+  ngOnInit(): void {}
 }

@@ -7,5 +7,6 @@ export enum routes {
   UI_ELEMENTS_CHARTS = '/ui/charts',
   UI_ELEMENTS_MAP = '/ui/map',
   LOGIN = '/login',
-  REGISTER = '/register'
+  REGISTER = '/register',
+  USERS = '/users',
 }

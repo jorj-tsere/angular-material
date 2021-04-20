@@ -8,6 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DateMenuComponent, SettingsMenuComponent } from './ui-elements';
 import { RouterModule } from '@angular/router';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     SidebarComponent,
     DateMenuComponent,
     SettingsMenuComponent,
+    SafePipe,
   ],
   imports: [
     CommonModule,

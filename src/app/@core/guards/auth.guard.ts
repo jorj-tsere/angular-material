@@ -18,10 +18,16 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const user = localStorage.getItem('user');
-
+    const user = localStorage.getItem('ml_token');
+    // , state: RouterStateSnapshot
     if (!user) {
       this.router.navigate([this.routers.LOGIN]);
+      /*
+      , {
+        queryParams: { redirect: state.url },
+        replaceUrl: true,
+      }
+      */
       return false;
     }
     return true;

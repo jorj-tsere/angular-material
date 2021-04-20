@@ -1,19 +1,16 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from '../auth.interceptor';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'app/@shared/material/material.module';
 import { SharedModule } from 'app/@shared/shared.module';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 /* Angular Flex Layout */
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthGuard } from './guards';
+import { AuthInterceptor, ErrorHandlerInterceptor } from './interceptors';
 
 @NgModule({
-  declarations: [
-    PageNotFoundComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     SharedModule,
@@ -30,12 +27,20 @@ import { AuthGuard } from './guards';
     RouterModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    AuthGuard
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
+      multi: true,
+    },
   ],
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() core:CoreModule ){
+  constructor(@Optional() @SkipSelf() core: CoreModule) {
     /*
      The @SkipSelf annotation ensures that a parent module of the module consuming CoreModule
      gets injected by Angular DI into the constructor of the CoreModule while

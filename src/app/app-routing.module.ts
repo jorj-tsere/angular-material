@@ -5,23 +5,18 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: 'tables',
+    path: 'users',
     pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./pages/tables/tables.module').then((m) => m.TablesModule),
-  },
-  {
-    path: 'dashboard',
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./pages/tables/tables.module').then((m) => m.TablesModule),
+      import('./pages/users-page/users-page.module').then(
+        (m) => m.UsersPageModule
+      ),
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'tables',
+    redirectTo: 'users',
   },
   {
     path: 'login',

@@ -1,2 +1,2 @@
-export * from './joke.service';
-export * from './post.service';
+export * from './logger.service'
+export * from './local-storage.service'

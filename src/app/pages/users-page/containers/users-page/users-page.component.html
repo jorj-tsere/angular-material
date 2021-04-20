@@ -1,0 +1,12 @@
+<app-layout>
+  <mat-toolbar class="page-header" role="heading">
+    <h1>Company Users</h1>
+  </mat-toolbar>
+
+  <div class="tables-wrapper" *ngIf="vm$ | async as vm">
+    <app-employee-table [employeeTableData]="vm.users"></app-employee-table>
+    <!-- <app-material-table [materialTableDate]="materialTableData$ | async"></app-material-table> -->
+  </div>
+
+  <!-- <app-footer></app-footer> -->
+</app-layout>
