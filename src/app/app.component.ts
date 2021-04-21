@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { IUser } from '@auth-module-models-barrel';
+import { LocalStorageService } from '@core-services';
 import { Store } from '@ngrx/store';
-import { IUser } from './pages/auth/models';
-import { BrowserReload } from './pages/auth/state/actions/auth.actions';
-import { LocalStorageService } from './services';
-import { AppState } from './store';
+import { AppState } from '@store-barrel';
+import { BrowserReload } from 'auth-page/state/actions/auth.actions';
 
 @Component({
   selector: 'app-root',

@@ -7,8 +7,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { environment } from 'environments/environment';
-import { Logger } from 'app/services';
+import { Logger } from '@core-services';
+import { environment } from '@env';
 
 const log = new Logger('ErrorHandlerInterceptor');
 

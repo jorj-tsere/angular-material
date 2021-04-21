@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { select, State, Store } from '@ngrx/store';
+import { Component, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
 import { mailValidator } from 'app/@shared/helpers';
 import { AppState } from 'app/store';
+import { RegisterPage } from 'auth-page/state/actions/register.actions';
+import { selectRegistarPageResponse } from 'auth-page/state/selectors/register.selectors';
 import { Observable } from 'rxjs';
-import * as fromRegisterActions from '../../state/actions/register.actions';
-import * as fromRegisterSelectors from '../../state/selectors/register.selectors';
 
 @Component({
   selector: 'app-register-form',
@@ -13,18 +13,12 @@ import * as fromRegisterSelectors from '../../state/selectors/register.selectors
   styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
-  
-  // @Output() sendSignForm = new EventEmitter<void>();
-
   vm$: Observable<any>;
 
   public form: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store<AppState>
-  ) {
-    this.vm$ = this.store.pipe(select(fromRegisterSelectors.selectRegistarPageResponse))
+  constructor(private fb: FormBuilder, private store: Store<AppState>) {
+    this.vm$ = this.store.pipe(select(selectRegistarPageResponse));
   }
 
   ngOnInit(): void {
@@ -38,7 +32,7 @@ export class RegisterFormComponent implements OnInit {
   register(): void {
     if (this.form.valid) {
       const registerRequestPayload = this.form.getRawValue();
-      this.store.dispatch(fromRegisterActions.RegisterPage({ registerRequestPayload }))
+      this.store.dispatch(RegisterPage({ registerRequestPayload }));
     }
   }
 }

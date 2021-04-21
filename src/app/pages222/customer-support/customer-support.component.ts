@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { CustomerMessage } from 'app/@shared/models/customer-message';
-import { AppState } from 'app/store';
-import * as customerSupportActions from 'app/store/actions/customer-support.actions'
-import * as fromSupportSelectors from 'app/store/selectors/customer-support.selectors';
-import { selectName } from 'app/store/selectors/customer-support.selectors';
+import { CustomerMessage } from '@shared/models/customer-message';
+import { AppState } from '@store-barrel';
+import * as fromCustomerSupportActions from '@store/actions';
+import {
+  CustomerSupportViewModel,
+  selectCustomerSupportModel,
+} from '@store/selectors';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,7 +17,7 @@ import { Observable } from 'rxjs';
 })
 export class CustomerSupportComponent implements OnInit {
   customerSupportForm: FormGroup;
-  vm$: Observable<fromSupportSelectors.CustomerSupportViewModel>;
+  vm$: Observable<CustomerSupportViewModel>;
   name$: Observable<string>;
   isSendSuccess: boolean | null = null;
 
@@ -23,7 +25,7 @@ export class CustomerSupportComponent implements OnInit {
     private formBuilder: FormBuilder,
     private store: Store<AppState>
   ) {
-    this.customerSupportForm = formBuilder.group({
+    this.customerSupportForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
       message: ['', Validators.required],
@@ -35,12 +37,12 @@ export class CustomerSupportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vm$ = this.store.pipe(select(fromSupportSelectors.selectCustomerSupportModel));
+    this.vm$ = this.store.pipe(select(selectCustomerSupportModel));
   }
 
   onSubmit() {
     this.store.dispatch(
-      customerSupportActions.sendingCustomerSupportMessage({
+      fromCustomerSupportActions.sendingCustomerSupportMessage({
         data: this.getFormValue(),
       })
     );

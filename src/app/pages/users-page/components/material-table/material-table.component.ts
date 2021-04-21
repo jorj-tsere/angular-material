@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Customer } from 'users-page/models';
 
-import { Customer } from '../../models';
 
 @Component({
   selector: 'app-material-table',

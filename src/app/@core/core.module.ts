@@ -6,8 +6,8 @@ import { MaterialModule } from 'app/@shared/material/material.module';
 import { SharedModule } from 'app/@shared/shared.module';
 /* Angular Flex Layout */
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AuthGuard } from './guards';
 import { AuthInterceptor, ErrorHandlerInterceptor } from './interceptors';
+import { AuthGuard } from './guards';
 
 @NgModule({
   declarations: [],
@@ -37,6 +37,7 @@ import { AuthInterceptor, ErrorHandlerInterceptor } from './interceptors';
       useClass: ErrorHandlerInterceptor,
       multi: true,
     },
+    AuthGuard
   ],
 })
 export class CoreModule {

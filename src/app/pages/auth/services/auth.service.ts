@@ -1,14 +1,15 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { buildQueryString } from 'app/@shared/helpers/functions';
-import { LocalStorageService } from 'app/services';
-import axios from 'axios';
+import {
+  IAuthRequest,
+  IRegisterRequest,
+  IUser,
+  IValidateAccessTokenResponse,
+} from '@auth-module-models-barrel';
+import { LocalStorageService } from '@core-services';
+import { buildQueryString } from '@shared/helpers/functions';
 import * as moment from 'moment';
 import { Observable, of } from 'rxjs';
-import { IAuthResponse, IValidateAccessTokenResponse } from '../models';
-import { IAuthRequest } from '../models/auth-request';
-import { IRegisterRequest } from '../models/register-request';
-import { IUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

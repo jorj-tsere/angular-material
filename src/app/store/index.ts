@@ -16,7 +16,8 @@ export interface AppState {
 
   [fromCustomerSupport.customerSupportFeatureKey]: fromCustomerSupport.State;
   [fromAuth.authFeatureKey]: fromAuth.State;
-  [fromRegister.RegisterFeatureKey]: fromRegister.State;  [fromUsersPage.usersPageFeatureKey]: fromUsersPage.State;
+  [fromRegister.RegisterFeatureKey]: fromRegister.State;
+  [fromUsersPage.usersPageFeatureKey]: fromUsersPage.State;
 
 }
 
