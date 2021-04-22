@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { UsersPageEffects } from './state/effects/users-page.effects';
 import { UserDetailsComponent } from './pages';
 import { UserListComponent } from './pages/user-list/user-list.component';
+import { RegisterUserComponent } from './pages/register-user/register-user.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserListComponent } from './pages/user-list/user-list.component';
     EmployeeTableComponent,
     MaterialTableComponent,
     UserDetailsComponent,
-    UserListComponent
+    UserListComponent,
+    RegisterUserComponent
   ],
   imports: [
     CommonModule,

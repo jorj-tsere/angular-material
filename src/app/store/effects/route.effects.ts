@@ -12,7 +12,7 @@ export class RouteEffects {
   goToAdminDashboard$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.LoginSuccess),
+        ofType(fromAuthActions.loginSuccess),
         tap(() => {
           console.warn(
             '[[ navigation from route effects]] to:',
@@ -27,7 +27,7 @@ export class RouteEffects {
   goToLoginPage$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.Logout),
+        ofType(fromAuthActions.logout),
         tap(() => {
           console.warn(
             '[[ navigation from route effects]] to:',

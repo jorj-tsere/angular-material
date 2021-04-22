@@ -2,11 +2,11 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   IAuthRequest,
-  IRegisterRequest,
   IUser,
   IValidateAccessTokenResponse,
 } from '@auth-module-models-barrel';
 import { LocalStorageService } from '@core-services';
+import { IRegisterRequest } from '@pages/users-page/models/register-request';
 import { buildQueryString } from '@shared/helpers/functions';
 import * as moment from 'moment';
 import { Observable, of } from 'rxjs';

@@ -3,6 +3,11 @@
 </mat-toolbar>
 
 <div class="tables-wrapper" *ngIf="vm$ | async as vm">
+  <br />
+  <button mat-raised-button [routerLink]="['../register/']">
+    create new user <mat-icon>plus</mat-icon>
+  </button>
+  <br />
   <app-employee-table [employeeTableData]="vm.users"></app-employee-table>
 </div>
 <!-- <app-material-table [materialTableDate]="materialTableData$ | async"></app-material-table> -->

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 // import { NgxSpinnerService } from 'ngx-spinner';
 import * as fromAuthActions from '../../pages/auth/state/actions/auth.actions';
-import * as fromRegisterActions from '../../pages/auth/state/actions/register.actions';
+import * as fromRegisterActions from '../../pages/users-page/state/actions/register.actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class SpinnerEffects {
   spinneron$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.LoginPage),
+        ofType(fromAuthActions.loginPage),
         tap(() => {
           this.fakeSpinnerService('fromAuthActions.LoginPage, SHOW');
           }
@@ -23,8 +23,8 @@ export class SpinnerEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          fromAuthActions.LoginSuccess,
-          fromAuthActions.LoginFailure),
+          fromAuthActions.loginSuccess,
+          fromAuthActions.loginFailure),
         tap(() => {
           setTimeout(() => {
             this.fakeSpinnerService('fromAuthActions.LoginSuccess, fromAuthActions.LoginFailure, HIDE');
@@ -40,7 +40,7 @@ export class SpinnerEffects {
   RegisterSpinnerOn$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromRegisterActions.RegisterPage),
+        ofType(fromRegisterActions.registerPage),
         tap(() => {
           this.fakeSpinnerService('RegisterSpinnerOn, SHOW');
           }
@@ -53,8 +53,8 @@ export class SpinnerEffects {
     () =>
       this.actions$.pipe(
         ofType(
-          fromRegisterActions.RegisterSuccess,
-          fromRegisterActions.RegisterFailure),
+          fromRegisterActions.registerSuccess,
+          fromRegisterActions.registerFailure),
         tap(() => {
           setTimeout(() => {
             this.fakeSpinnerService('RegisterSpinnerOff, HIDE');

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IAuthLinksViewModel, IUser } from '../../models';
+import { IAuthLinksViewModel, IUser } from '@pages/auth/models';
 import * as fromAuth from '../reducers/auth.reducer';
 
 export const selectAuthState = createFeatureSelector<fromAuth.State>(

@@ -18,6 +18,8 @@ import {
   RouteEffects,
   AppEffects,
 } from '@store/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from '@store/custom-route-serializer';
 // import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -47,6 +49,9 @@ import {
       RouteEffects,
       AppEffects,
     ]),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,7 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { IUser } from '../../models/user';
-import * as fromRegisterActions from '../actions/register.actions';
+import * as fromRegisterActions from '@pages/users-page/state/actions';
 
+
+
+
+// fromRegisterActions.
 export const RegisterFeatureKey = 'register';
 
 export interface State {
@@ -17,14 +20,14 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(fromRegisterActions.RegisterSuccess,  (state, action) => {
+  on(fromRegisterActions.registerSuccess,  (state, action) => {
     return {
       ...state,
       response: action.registerResponse,
       error: null,
     };
   }),
-  on(fromRegisterActions.RegisterFailure, (state, action) => {
+  on(fromRegisterActions.registerFailure, (state, action) => {
     return {
       ...state,
       response: null,

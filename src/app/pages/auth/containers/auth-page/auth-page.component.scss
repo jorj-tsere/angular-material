@@ -13,7 +13,7 @@
   }
 
   &__content-block {
-    width: 37%;
+    width: 40%;
     height: 100%;
     background-color: $white;
     display: flex;
@@ -31,7 +31,7 @@
     height: 100%;
     padding: 16px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
 
     @media (max-width: $small) {
@@ -50,7 +50,7 @@
   &__group-title {
     font-size: 32px;
     font-weight: $fw-normal;
-    margin-top: 37px;
+    // margin-top: 37px;
     letter-spacing: -0.7px;
     text-align: center;
     line-height: 37px;
@@ -110,7 +110,7 @@
   }
 
   &__logo {
-    width: 63%;
+    width: 60%;
     height: 100%;
     background-color: $blue;
     display: flex;

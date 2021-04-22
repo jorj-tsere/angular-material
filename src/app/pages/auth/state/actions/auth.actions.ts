@@ -4,24 +4,24 @@ import { IUser } from '../../models/user';
 
 
 
-export const LoginPage = createAction(
+export const loginPage = createAction(
   '[Auth Component] Login User',
   props<{ credentials: IAuthRequest }>()
 );
 
-export const LoginSuccess = createAction(
+export const loginSuccess = createAction(
   '[Auth Effect] Login User Success',
   props<{ response: any }>()
 );
 
-export const LoginFailure = createAction(
+export const loginFailure = createAction(
   '[Auth Fail Effect] Login User Failure',
   props<{ error: any }>()
 );
 
-export const Logout = createAction('[user Component] Logout User');
+export const logout = createAction('[user Component] Logout User');
 
-export const BrowserReload = createAction(
+export const browserReload = createAction(
   '[Core Component] Browser Reload',
   props<{ user: IUser }>()
 );

@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   public routes: typeof routes = routes;
 
   public signOutEmit(): void {
-    this.store.dispatch(fromAuthActions.Logout());
+    this.store.dispatch(fromAuthActions.logout());
   }
   constructor(private store: Store<AppState>) {}
 

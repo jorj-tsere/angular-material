@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 // import { AlertService } from 'ngx-alerts';
 import * as fromAuthActions from '../../pages/auth/state/actions/auth.actions';
-import * as fromRegisterActions from '../../pages/auth/state/actions/register.actions';
 import { tap } from 'rxjs/operators';
+import { registerFailure, registerPage, registerSuccess } from '@pages/users-page/state/actions';
 
 @Injectable()
 export class AlertEffects {
   checkingYourInformation$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.LoginPage),
+        ofType(fromAuthActions.loginPage),
         tap(() => this.fakeAlertService('Checking your information'))
       ),
     { dispatch: false }
@@ -19,7 +19,7 @@ export class AlertEffects {
   welcomeBack$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.LoginSuccess),
+        ofType(fromAuthActions.loginSuccess),
         tap((action) =>
          this.fakeAlertService(
             'Welcome Back ' + JSON.stringify(action) + '!'
@@ -32,7 +32,7 @@ export class AlertEffects {
   unableToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.LoginFailure),
+        ofType(fromAuthActions.loginFailure),
         tap(() => this.fakeAlertService('Unable to login'))
       ),
     { dispatch: false }
@@ -41,7 +41,7 @@ export class AlertEffects {
   youAreLoggedOut$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.Logout),
+        ofType(fromAuthActions.logout),
         tap(() => this.fakeAlertService('You are logged out'))
       ),
     { dispatch: false }
@@ -50,7 +50,7 @@ export class AlertEffects {
   RegisterCheckingSubmitRequest$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromRegisterActions.RegisterPage),
+        ofType(registerPage),
         tap(() => this.fakeAlertService('Checking RegisterCheckingSubmitRequest information'))
       ),
     { dispatch: false }
@@ -59,7 +59,7 @@ export class AlertEffects {
   RegisterCheckingSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromRegisterActions.RegisterSuccess),
+        ofType(registerSuccess),
         tap(() => this.fakeAlertService('RegisterCheckingSuccess Success'))
       ),
     { dispatch: false }
@@ -68,7 +68,7 @@ export class AlertEffects {
   RegisterCheckingFailure$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromRegisterActions.RegisterFailure),
+        ofType(registerFailure),
         tap(() => this.fakeAlertService('RegisterCheckingFailure Failed: Unable to Register'))
       ),
     { dispatch: false }

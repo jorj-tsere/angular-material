@@ -7,6 +7,8 @@ import {
 import { Injectable } from '@angular/core';
 import { routes } from '@core-constants';
 import { LocalStorageService } from '@core-services';
+import { AppState } from '@store-barrel';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -21,6 +23,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+
     const user = this.localStorageService.getObject('ml_token');
     if (!user) {
       this.router.navigate([this.routers.LOGIN]);

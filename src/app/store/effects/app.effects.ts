@@ -9,7 +9,7 @@ export class AppEffects {
   removeUserFromLocalStorage$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.Logout),
+        ofType(fromAuthActions.logout),
         tap(() => {
           try {
             this.localStorageService.removeItem('ml_token');
@@ -24,7 +24,7 @@ export class AppEffects {
   addUserToLocalStorage$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.LoginSuccess),
+        ofType(fromAuthActions.loginSuccess),
         tap((action) => {
           try {
             this.localStorageService.setObjectItem('ml_token', action);

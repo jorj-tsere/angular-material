@@ -11,13 +11,13 @@ import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './state/reducers/auth.reducer';
 import * as fromRegister from './state/reducers/register.reducer';
 import { SharedModule } from 'app/@shared/shared.module';
-import { LoginFormComponent, RegisterFormComponent } from './components';
+import { LoginFormComponent } from './components';
 
 import { AuthPageComponent } from './containers';
 import { AuthService } from './services';
 
 @NgModule({
-  declarations: [LoginFormComponent, RegisterFormComponent, AuthPageComponent],
+  declarations: [LoginFormComponent, AuthPageComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -1,21 +1,17 @@
 import { createAction, props } from '@ngrx/store';
-import { IAuthRequest } from '../../models/auth-request';
-import { IRegisterRequest } from '../../models/register-request';
-import { IUser } from '../../models/user';
+import { IRegisterRequest } from '@pages/users-page/models/register-request';
 
-
-
-export const RegisterPage = createAction(
+export const registerPage = createAction(
   '[Register-form Component] Register User',
   props<{ registerRequestPayload: IRegisterRequest }>()
 );
 
-export const RegisterSuccess = createAction(
+export const registerSuccess = createAction(
   '[Register Effect] Register User Success',
   props<{ registerResponse: any }>()
 );
 
-export const RegisterFailure = createAction(
+export const registerFailure = createAction(
   '[Register Fail Effect] Register User Failure',
   props<{ error: any }>()
 );

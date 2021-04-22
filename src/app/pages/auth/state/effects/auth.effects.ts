@@ -10,18 +10,18 @@ import { AuthService } from '../../services/auth.service';
 export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(fromAuthActions.LoginPage),
+      ofType(fromAuthActions.loginPage),
       concatMap((action) =>
         this.authService.login(action.credentials).pipe(
           map((response) => {
             if(!response) {
-              return fromAuthActions.LoginFailure({ error: 'user not found' });
+              return fromAuthActions.loginFailure({ error: 'user not found' });
             }
-            return fromAuthActions.LoginSuccess({ response })
+            return fromAuthActions.loginSuccess({ response })
           }),
           catchError((error) => {
             console.error(' login$ = createEffect(() error', error)
-            return of(fromAuthActions.LoginFailure({ error }));
+            return of(fromAuthActions.loginFailure({ error }));
           })
         )
       )

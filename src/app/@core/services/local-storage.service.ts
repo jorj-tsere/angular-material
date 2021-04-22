@@ -11,8 +11,6 @@ export class LocalStorageService {
   getItem(localStorageKey: string): string {
     if(typeof localStorageKey !== 'string') {
       throw new Error('[LocalStorageService getObject] parameter localStorageKey must be string type');
-    } else if(localStorage.getItem(localStorageKey) === null || localStorage.getItem(localStorageKey) === 'undefiend') {
-      throw new Error(`[LocalStorageService getObject] parameter ${localStorageKey} not found`);
     }
     return localStorage.getItem(localStorageKey);
   }
@@ -20,8 +18,6 @@ export class LocalStorageService {
   getObject(localStorageKey: string): object {
     if(typeof localStorageKey !== 'string') {
       throw new Error('[LocalStorageService getObject] parameter localStorageKey must be string type');
-    } else if(localStorage.getItem(localStorageKey) === null || localStorage.getItem(localStorageKey) === 'undefiend') {
-      throw new Error(`[LocalStorageService getObject] parameter ${localStorageKey} not found`);
     }
     return JSON.parse(localStorage.getItem(localStorageKey));
   }
