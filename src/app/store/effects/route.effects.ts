@@ -16,9 +16,9 @@ export class RouteEffects {
         tap(() => {
           console.warn(
             '[[ navigation from route effects]] to:',
-            routes.USERS
+            routes.USERS_LIST
           );
-          this.route.navigate([routes.USERS]);
+          this.route.navigate([routes.USERS_LIST]);
         })
       ),
     { dispatch: false }

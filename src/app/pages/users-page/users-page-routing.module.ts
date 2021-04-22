@@ -15,11 +15,13 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        component: UserListComponent
+        component: UserListComponent,
+        data: { animation: 'UserList' }
       },
       {
         path: 'edit/:user_id',
-        component: UserDetailsComponent
+        component: UserDetailsComponent,
+        data: { animation: 'UserDetails' }
       },
       {
         path: 'register',
