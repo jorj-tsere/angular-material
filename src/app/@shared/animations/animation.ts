@@ -49,10 +49,10 @@ import {
 // ]);
 
 export const fader = trigger('routeAnimations', [
-  transition('UserList <=> UserDetails', [
+  transition('UserList <=> UserDetails, UserList <=> registerPage', [
     query(':enter, :leave', [
       animate(
-        '400ms ease',
+        '100ms ease',
         style({
           position: 'absolute',
           left: 0,
@@ -64,7 +64,7 @@ export const fader = trigger('routeAnimations', [
     ]),
     query(':enter', [
       animate(
-        '400ms 0.5s ease',
+        '100ms ease',
         style({
           opacity: 0,
           transform: 'scale(1) translateY(0)',

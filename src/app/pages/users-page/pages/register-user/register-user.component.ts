@@ -6,6 +6,7 @@ import { selectRegistarPageResponse } from '@pages/users-page/state/selectors/re
 import { mailValidator } from '@shared/helpers';
 import { AppState } from '@store-barrel';
 import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register-user',
@@ -17,7 +18,7 @@ export class RegisterUserComponent implements OnInit {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private location: Location) {
     this.vm$ = this.store.pipe(select(selectRegistarPageResponse));
   }
 
@@ -32,6 +33,11 @@ export class RegisterUserComponent implements OnInit {
       email: ['jorj.tsere@gmail.com', [Validators.required, mailValidator]],
     });
   }
+
+  navigate_back(){
+    this.location.back();
+  }
+
 
   register(): void {
     if (this.form.valid) {

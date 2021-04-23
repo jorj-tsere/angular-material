@@ -8,16 +8,16 @@ import { AppState } from 'app/store';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
   public vm$: Observable<any>;
   constructor(private store: Store<AppState>) {
+    this.vm$ = this.store.pipe(
+      select(fromUsersPageSelectors.selectUsersPageViewModel)
+    );
     this.store.dispatch(fromUsersPageActions.loadUsersPage());
-    this.vm$ = this.store.pipe(select(fromUsersPageSelectors.selectUsersPageViewModel));
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

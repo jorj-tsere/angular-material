@@ -26,7 +26,7 @@ export class UsersService {
   //   ]);
   // }
 
-  public getUSerList(): Observable<Employee[]> {
+  public getUserList(): Observable<Employee[]> {
     return this.http.get<Employee[]>(`${userApiEndPint}/getuserlist`);
   }
 

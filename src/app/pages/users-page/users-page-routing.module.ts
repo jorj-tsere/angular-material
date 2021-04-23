@@ -25,7 +25,8 @@ const routes: Routes = [
       },
       {
         path: 'register',
-        component: RegisterUserComponent
+        component: RegisterUserComponent,
+        data: { animation: 'registerPage' }
       },
     ],
   },
