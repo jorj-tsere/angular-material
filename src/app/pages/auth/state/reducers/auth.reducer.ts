@@ -52,7 +52,7 @@ export const reducer = createReducer(
       error: action.error,
     };
   }),
-  on(fromAuthActions.logout, (state, action) => {
+  on(fromAuthActions.logoutSuccess, (state, action) => {
     return {
       ...state,
       user: {

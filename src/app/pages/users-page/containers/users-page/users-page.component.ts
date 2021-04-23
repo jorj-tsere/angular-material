@@ -15,7 +15,7 @@ export class UsersPageComponent implements OnInit {
 
   prepareRoute(outlet: RouterOutlet){
       // tslint:disable-next-line:no-string-literal
-      console.log(outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'])
+      // console.log(outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'])
       // tslint:disable-next-line:no-string-literal
       return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }

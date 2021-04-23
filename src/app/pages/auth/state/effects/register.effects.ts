@@ -3,20 +3,24 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import * as fromRegisterActions from '../../../users-page/state/actions/register.actions';
 import { AuthService } from '../../services/auth.service';
+import { registerFailure, registerPage, registerSuccess } from '@pages/users-page/state/actions';
 
 @Injectable()
 export class RegisterEffects {
-  login$ = createEffect(() => {
+  register$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(fromRegisterActions.registerPage),
-      concatMap((action) =>
-        this.authService.register(action.registerRequestPayload).pipe(
-          map((registerResponse) => fromRegisterActions.registerSuccess({ registerResponse })),
-          catchError((error) => of(fromRegisterActions.registerFailure({ error: error.message })))
-        )
-      )
+      ofType(registerPage),
+      concatMap((action) => {
+        return this.authService.register(action.registerRequestPayload).pipe(
+          map((registerResponse) =>
+            registerSuccess({ registerResponse })
+          ),
+          catchError((error) =>
+            of(registerFailure({ error: error.message }))
+          )
+        );
+      })
     );
   });
 

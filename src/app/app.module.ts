@@ -20,6 +20,8 @@ import {
 } from '@store/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from '@store/custom-route-serializer';
+import * as fromLookup from './store/reducers/lookup.reducer';
+import { LookupEffects } from './store/effects/lookup.effects';
 // import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -52,6 +54,8 @@ import { CustomSerializer } from '@store/custom-route-serializer';
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer,
     }),
+    StoreModule.forFeature(fromLookup.lookupFeatureKey, fromLookup.reducer),
+    EffectsModule.forFeature([LookupEffects]),
   ],
   bootstrap: [AppComponent],
 })

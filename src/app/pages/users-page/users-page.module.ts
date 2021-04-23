@@ -12,6 +12,8 @@ import { UsersPageEffects } from './state/effects/users-page.effects';
 import { UserDetailsComponent } from './pages';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
+import * as fromRegister from '@pages/auth/state/reducers/register.reducer';
+import { RegisterEffects } from '@pages/auth/state/effects/register.effects';
 
 @NgModule({
   declarations: [
@@ -20,14 +22,21 @@ import { RegisterUserComponent } from './pages/register-user/register-user.compo
     MaterialTableComponent,
     UserDetailsComponent,
     UserListComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     UsersPageRoutingModule,
-    StoreModule.forFeature(fromUsersPage.usersPageFeatureKey, fromUsersPage.reducer),
-    EffectsModule.forFeature([UsersPageEffects])
-  ]
+    StoreModule.forFeature(
+      fromUsersPage.usersPageFeatureKey,
+      fromUsersPage.reducer
+    ),
+    StoreModule.forFeature(
+      fromRegister.RegisterFeatureKey,
+      fromRegister.reducer
+    ),
+    EffectsModule.forFeature([UsersPageEffects, RegisterEffects]),
+  ],
 })
-export class UsersPageModule { }
+export class UsersPageModule {}

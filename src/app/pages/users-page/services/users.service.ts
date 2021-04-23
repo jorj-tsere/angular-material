@@ -1,27 +1,36 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { Customer, Employee } from '../models';
 
+const userApiEndPint = '/api/user';
+
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  public loadEmployeeTableData(): Observable<Employee[]> {
-    return of([
-      {
-        id: 1,
-        name: 'giorgi',
-        surname: 'tsereteli',
-        mail: 'jorj.tsere@gmail.com',
-        role: 'admin',
-        status: 'active',
-        registrationDate: '2021-01-01',
-      },
-    ]);
+  // public loadEmployeeTableData(): Observable<Employee[]> {
+  //   return of([
+  //     {
+  //       id: 1,
+  //       name: 'giorgi',
+  //       surname: 'tsereteli',
+  //       mail: 'jorj.tsere@gmail.com',
+  //       role: 'admin',
+  //       status: 'active',
+  //       registrationDate: '2021-01-01',
+  //     },
+  //   ]);
+  // }
+
+  public getUSerList(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${userApiEndPint}/getuserlist`);
   }
+
+
 
   public loadMaterialTableData(): Observable<Customer[]> {
     return of([
@@ -64,7 +73,7 @@ export class UsersService {
       {
         name: 'Peter Horadnia',
         email: 'horadnia@wxample.com',
-        product: "Let's Dance",
+        product: 'Let\'s Dance',
         price: '$43 594.7',
         date: '1 Mar 2018',
         city: 'Hanoverton',
@@ -72,4 +81,16 @@ export class UsersService {
       },
     ]);
   }
+
+  // return of([
+  //   {
+  //     id: 1,
+  //     name: 'giorgi',
+  //     surname: 'tsereteli',
+  //     mail: 'jorj.tsere@gmail.com',
+  //     role: 'admin',
+  //     status: 'active',
+  //     registrationDate: '2021-01-01',
+  //   },
+  // ]);
 }

@@ -5,6 +5,7 @@ import { of, throwError } from 'rxjs';
 
 import * as fromAuthActions from '../actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
+import { ICredentials } from '@pages/auth/models';
 
 @Injectable()
 export class AuthEffects {
@@ -13,20 +14,34 @@ export class AuthEffects {
       ofType(fromAuthActions.loginPage),
       concatMap((action) =>
         this.authService.login(action.credentials).pipe(
-          map((response) => {
-            if(!response) {
-              return fromAuthActions.loginFailure({ error: 'user not found' });
-            }
+          map((response: ICredentials) => {
             return fromAuthActions.loginSuccess({ response })
           }),
-          catchError((error) => {
-            console.error(' login$ = createEffect(() error', error)
-            return of(fromAuthActions.loginFailure({ error }));
+          catchError((error: any) => {
+            return of(fromAuthActions.loginFailure({ error: error.error }));
           })
         )
       )
     );
   });
+
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(fromAuthActions.logout),
+      concatMap(() =>
+        this.authService.logout().pipe(
+          map((message: any) => {
+            return fromAuthActions.logoutSuccess({ message })
+          }),
+          catchError((error: any) => {
+            return of(fromAuthActions.logoutFailure({ error }));
+          })
+        )
+      )
+    );
+  })
+
+
 
   constructor(private actions$: Actions, private authService: AuthService) {}
 }

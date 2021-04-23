@@ -2,8 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { IAuthRequest } from '../../models/auth-request';
 import { IUser } from '../../models/user';
 
-
-
 export const loginPage = createAction(
   '[Auth Component] Login User',
   props<{ credentials: IAuthRequest }>()
@@ -20,6 +18,16 @@ export const loginFailure = createAction(
 );
 
 export const logout = createAction('[user Component] Logout User');
+
+export const logoutSuccess = createAction(
+  '[auth effect Component] Logout User Success',
+  props<{ message: string }>()
+);
+
+export const logoutFailure = createAction(
+  '[auth effect Component] Logout User Failure',
+  props<{ error: string }>()
+);
 
 export const browserReload = createAction(
   '[Core Component] Browser Reload',

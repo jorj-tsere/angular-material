@@ -12,7 +12,7 @@ export class UsersPageEffects {
     return this.actions$.pipe(
       ofType(UsersPageActions.loadUsersPage),
       concatMap(() =>
-        this.userService.loadEmployeeTableData().pipe(
+        this.userService.getUSerList().pipe(
           map((data) => {
             // console.log(data)
             return UsersPageActions.loadUsersPageSuccess({ data })

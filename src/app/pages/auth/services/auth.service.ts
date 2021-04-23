@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   IAuthRequest,
+  ICredentials,
   IUser,
   IValidateAccessTokenResponse,
 } from '@auth-module-models-barrel';
@@ -27,20 +28,24 @@ export class AuthService {
     private localStorageService: LocalStorageService
   ) {}
 
-  login(credentials: IAuthRequest): Observable<any> {
-    return this.getUser();
+  login(credentials: IAuthRequest): Observable<ICredentials> {
+    // return this.getUser();
 
-    // return this.http.post<IAuthResponse>(
-    //   this.baseUrl + '/api/auth/getAccessToken',
-    //   credentials
-    // );
+    return this.http.post<ICredentials>(
+      this.baseUrl + '/api/auth/getAccessToken',
+      credentials
+    );
   }
 
-  register(registerPayload: IRegisterRequest): Observable<any> {
+  register(registerPayload: any): Observable<any> {
     return this.http.post(
       this.baseUrl + '/api/adminRegistration/register',
       registerPayload
     );
+  }
+
+  logout(): Observable<any> {
+    return this.http.get(`/api/auth/logout`);
   }
 
   validateAcceessToken(): Observable<IValidateAccessTokenResponse> {

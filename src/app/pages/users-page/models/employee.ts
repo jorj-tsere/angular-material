@@ -1,9 +1,9 @@
 export interface Employee {
-  id: number
-  name: string;
-  surname: string;
-  mail: string;
-  role: string;
-  status: string;
-  registrationDate: string;
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  roleID: number;
+  isActive: number;
+  createDate: string;
 }

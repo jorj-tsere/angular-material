@@ -1,16 +1,44 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { Employee } from 'users-page/models';
+import { Observable } from 'rxjs';
+import { AppState } from '@store-barrel';
+import { select, Store } from '@ngrx/store';
+import { selectLookupViewModel } from '@store/selectors/lookup.selectors';
+import { loadAdminRoles } from '@store/actions/lookup.actions';
+
+export interface AdminRole {
+  id: number;
+  name: string;
+}
+
+export interface Lookups {
+  adminRoles: AdminRole[];
+}
+
+
+
+
 
 @Component({
   selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
   styleUrls: ['./employee-table.component.scss'],
 })
-export class EmployeeTableComponent implements OnInit {
+export class EmployeeTableComponent implements OnInit, OnChanges {
+  constructor(private store: Store<AppState>) {}
+
   @Input() employeeTableData: Employee[];
+  lookupViewModel$: Observable<any>;
   public displayedColumns: string[] = [
     'select',
     'name',
@@ -24,24 +52,37 @@ export class EmployeeTableComponent implements OnInit {
   public dataSource: MatTableDataSource<Employee>;
   public selection = new SelectionModel<Employee>(true, []);
 
+
+
+  public lookups: any = [];
+
   public isShowFilterInput = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<Employee>(this.employeeTableData);
-
-    this.dataSource.paginator = this.paginator;
+  ngOnInit(): void {
+    this.store.dispatch(loadAdminRoles());
+    this.lookupViewModel$ = this.store.pipe(select(selectLookupViewModel));
   }
 
-  editEmployee(employeeId: number) {
-    alert('employeeId' + employeeId);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.employeeTableData.currentValue) {
+      this.dataSource = new MatTableDataSource<Employee>(
+        changes.employeeTableData.currentValue
+      );
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
   public get isAllSelected(): boolean {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    // console.log();
+    const numSelected =
+      this.selection && this.selection.selected
+        ? this.selection.selected.length
+        : 0;
+    const numRows =
+      this.dataSource && this.dataSource.data ? this.dataSource.data.length : 0;
     return numSelected === numRows;
   }
 

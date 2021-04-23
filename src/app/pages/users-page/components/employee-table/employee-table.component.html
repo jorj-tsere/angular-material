@@ -1,4 +1,13 @@
-<mat-card class="employee-table-wrapper">
+<!-- <p>
+  this.employeeTableData = {{ employeeTableData | json }}
+</p> -->
+
+<!-- <p>
+
+  {{ lookupViewModel$ | async | json  }}
+</p> -->
+
+<mat-card *ngIf="lookupViewModel$ | async as lookups" class="employee-table-wrapper">
   <mat-card-title class="employee-table-wrapper__header">
     <p *ngIf="!isShowFilterInput" class="employee-table-wrapper__title">Employee List</p>
     <div *ngIf="isShowFilterInput" class="employee-table-wrapper__search">
@@ -16,7 +25,6 @@
   </mat-card-title>
   <mat-card-content class="employee-table__content">
     <table class="employee-table__table" mat-table [dataSource]="dataSource">
-
       <!-- Checkbox Column -->
       <ng-container matColumnDef="select">
         <th class="employee-table__table-checkbox" mat-header-cell *matHeaderCellDef>
@@ -41,38 +49,38 @@
 
       <!-- name Column -->
       <ng-container matColumnDef="name" >
-        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef > Name </th>
-        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef > First Name </th>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.firstName}} </td>
       </ng-container>
 
       <!-- surname Column -->
       <ng-container matColumnDef="surname">
-        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> surname </th>
-        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.surname}} </td>
+        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.lastName}} </td>
       </ng-container>
 
       <!-- mail Column -->
       <ng-container matColumnDef="mail">
-        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> mail </th>
-        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.mail}} </td>
+        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> email </th>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.email}} </td>
       </ng-container>
 
       <!-- role Column -->
       <ng-container matColumnDef="role">
-        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> role </th>
-        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.role}} </td>
+        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> roleID </th>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.roleID}} </td>
       </ng-container>
 
       <!-- status Column -->
       <ng-container matColumnDef="status">
         <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> status </th>
-        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.status}} </td>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.isActive}} </td>
       </ng-container>
 
        <!-- registration date Column -->
        <ng-container matColumnDef="registration date">
         <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> registration date </th>
-        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.registrationDate}} </td>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.createDate}} </td>
       </ng-container>
 
       <!-- registration date Column -->
@@ -95,7 +103,6 @@
     <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>
   </div>
 </mat-card>
-
 <!--
 <div>
   selection = {{ selection |  json }}

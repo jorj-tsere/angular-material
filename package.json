@@ -1,5 +1,5 @@
 {
-  "name": "material-demo",
+  "name": "menu_admin",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/material-demo/stats.json",
+    "analyze": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/menu_admin/stats.json",
     "generate": "node ./server/generate.js > ./server/database.json",
     "server": "json-server --watch ./server/database.json",
     "dev": "concurrently \"npm run server\" \"npm run start\""

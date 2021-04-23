@@ -3,7 +3,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 // import { AlertService } from 'ngx-alerts';
 import * as fromAuthActions from '../../pages/auth/state/actions/auth.actions';
 import { tap } from 'rxjs/operators';
-import { registerFailure, registerPage, registerSuccess } from '@pages/users-page/state/actions';
+import {
+  registerFailure,
+  registerPage,
+  registerSuccess,
+} from '@pages/users-page/state/actions';
 
 @Injectable()
 export class AlertEffects {
@@ -21,9 +25,7 @@ export class AlertEffects {
       this.actions$.pipe(
         ofType(fromAuthActions.loginSuccess),
         tap((action) =>
-         this.fakeAlertService(
-            'Welcome Back ' + JSON.stringify(action) + '!'
-          )
+          this.fakeAlertService('Welcome Back ' + JSON.stringify(action) + '!')
         )
       ),
     { dispatch: false }
@@ -41,8 +43,17 @@ export class AlertEffects {
   youAreLoggedOut$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.logout),
+        ofType(fromAuthActions.logoutSuccess),
         tap(() => this.fakeAlertService('You are logged out'))
+      ),
+    { dispatch: false }
+  );
+
+  unableToLogOut$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromAuthActions.logoutFailure),
+        tap(() => this.fakeAlertService('unable to log out'))
       ),
     { dispatch: false }
   );
@@ -51,7 +62,11 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(registerPage),
-        tap(() => this.fakeAlertService('Checking RegisterCheckingSubmitRequest information'))
+        tap(() =>
+          this.fakeAlertService(
+            'Checking RegisterCheckingSubmitRequest information'
+          )
+        )
       ),
     { dispatch: false }
   );
@@ -69,17 +84,18 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(registerFailure),
-        tap(() => this.fakeAlertService('RegisterCheckingFailure Failed: Unable to Register'))
+        tap(() =>
+          this.fakeAlertService(
+            'RegisterCheckingFailure Failed: Unable to Register'
+          )
+        )
       ),
     { dispatch: false }
   );
 
-
   constructor(private actions$: Actions) {}
-
 
   fakeAlertService(message: string): void {
     console.log('[[ message from fake alert EFFECT ]]', message);
   }
-
 }

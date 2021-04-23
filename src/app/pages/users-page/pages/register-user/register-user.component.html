@@ -1,14 +1,32 @@
+
+<mat-toolbar class="page-header" role="heading">
+  <button mat-raised-button>back</button>
+</mat-toolbar>
+
+<mat-toolbar class="page-header" role="heading">
+  <h1>Create New User</h1>
+</mat-toolbar>
+
+
 <form class="form" [formGroup]="form" (ngSubmit)="register()">
   <mat-form-field class="form__input">
-    <input matInput placeholder="First Name" formControlName="first_name" />
+    <input matInput placeholder="username" formControlName="username" />
   </mat-form-field>
 
   <mat-form-field class="form__input">
     <input
       matInput
+      placeholder="First Name"
+      type="text"
+      formControlName="firstName"
+    />
+  </mat-form-field>
+  <mat-form-field class="form__input">
+    <input
+      matInput
       placeholder="Last Name"
       type="text"
-      formControlName="last_name"
+      formControlName="lastName"
     />
   </mat-form-field>
 
@@ -18,6 +36,28 @@
       placeholder="Email Address"
       type="email"
       formControlName="email"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <input matInput placeholder="Role" type="text" formControlName="roleID" />
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <input
+      matInput
+      placeholder="Password"
+      type="password"
+      formControlName="password"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <input
+      matInput
+      placeholder="Confirm Password"
+      type="password"
+      formControlName="confirmPassword"
     />
   </mat-form-field>
 

@@ -23,15 +23,20 @@ export class RegisterUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', [Validators.required, mailValidator]],
+      username: ['jorj-tsere', Validators.required],
+      firstName: ['giorgi', Validators.required],
+      lastName: ['tsereteli', Validators.required],
+      roleID: ['1', Validators.required],
+      password: ['123456', Validators.required],
+      confirmPassword: ['123456', Validators.required],
+      email: ['jorj.tsere@gmail.com', [Validators.required, mailValidator]],
     });
   }
 
   register(): void {
     if (this.form.valid) {
       const registerRequestPayload = this.form.getRawValue();
+      console.log('register()');
       this.store.dispatch(registerPage({ registerRequestPayload }));
     }
   }
