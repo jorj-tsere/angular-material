@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Router } from '@angular/router';
-import * as fromAuthActions from 'app/pages/auth/state/actions/auth.actions';
 import { tap } from 'rxjs/operators';
 import { routes } from 'app/consts';
+import { loginSuccess, logout } from '@store/actions';
 
 @Injectable()
 export class RouteEffects {
@@ -12,7 +12,7 @@ export class RouteEffects {
   goToAdminDashboard$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.loginSuccess),
+        ofType(loginSuccess),
         tap(() => {
           console.warn(
             '[[ navigation from route effects]] to:',
@@ -27,18 +27,14 @@ export class RouteEffects {
   goToLoginPage$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.logout),
+        ofType(logout),
         tap(() => {
-          console.warn(
-            '[[ navigation from route effects]] to:',
-            routes.LOGIN
-          );
-          this.route.navigate([routes.LOGIN])
+          console.warn('[[ navigation from route effects]] to:', routes.LOGIN);
+          this.route.navigate([routes.LOGIN]);
         })
       ),
     { dispatch: false }
   );
 
-  constructor(private actions$: Actions, private route: Router) {
-  }
+  constructor(private actions$: Actions, private route: Router) {}
 }

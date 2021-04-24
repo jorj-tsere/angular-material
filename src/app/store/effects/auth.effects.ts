@@ -3,22 +3,29 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, throttleTime } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 
-import * as fromAuthActions from '../actions/auth.actions';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../pages/auth/services/auth.service';
 import { ICredentials } from '@pages/auth/models';
+import {
+  loginPage,
+  loginSuccess,
+  loginFailure,
+  logout,
+  logoutSuccess,
+  logoutFailure,
+} from '@store/actions';
 
 @Injectable()
 export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(fromAuthActions.loginPage),
+      ofType(loginPage),
       concatMap((action) =>
         this.authService.login(action.credentials).pipe(
           map((response: ICredentials) => {
-            return fromAuthActions.loginSuccess({ response })
+            return loginSuccess({ response });
           }),
           catchError((error: any) => {
-            return of(fromAuthActions.loginFailure({ error: error.error }));
+            return of(loginFailure({ error: error.error }));
           })
         )
       )
@@ -27,21 +34,19 @@ export class AuthEffects {
 
   logout$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(fromAuthActions.logout),
+      ofType(logout),
       concatMap(() =>
         this.authService.logout().pipe(
           map((message: any) => {
-            return fromAuthActions.logoutSuccess({ message })
+            return logoutSuccess({ message });
           }),
           catchError((error: any) => {
-            return of(fromAuthActions.logoutFailure({ error }));
+            return of(logoutFailure({ error }));
           })
         )
       )
     );
-  })
-
-
+  });
 
   constructor(private actions$: Actions, private authService: AuthService) {}
 }

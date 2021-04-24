@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import {
+  registerFailure,
+  registerPage,
+  registerSuccess,
+} from '@pages/users-page/state/actions';
+import { loginPage, loginSuccess, loginFailure } from '@store/actions';
 // import { NgxSpinnerService } from 'ngx-spinner';
-import * as fromAuthActions from '../../pages/auth/state/actions/auth.actions';
-import * as fromRegisterActions from '../../pages/users-page/state/actions/register.actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
@@ -10,11 +14,10 @@ export class SpinnerEffects {
   spinneron$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.loginPage),
+        ofType(loginPage),
         tap(() => {
-          this.fakeSpinnerService('fromAuthActions.LoginPage, SHOW');
-          }
-        )
+          this.fakeSpinnerService('LoginPage, SHOW');
+        })
       ),
     { dispatch: false }
   );
@@ -22,29 +25,23 @@ export class SpinnerEffects {
   spinneroff$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(
-          fromAuthActions.loginSuccess,
-          fromAuthActions.loginFailure),
+        ofType(loginSuccess, loginFailure),
         tap(() => {
           setTimeout(() => {
-            this.fakeSpinnerService('fromAuthActions.LoginSuccess, fromAuthActions.LoginFailure, HIDE');
+            this.fakeSpinnerService('LoginSuccess, LoginFailure, HIDE');
           }, 1000);
         })
       ),
     { dispatch: false }
   );
 
-
-
-
   RegisterSpinnerOn$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromRegisterActions.registerPage),
+        ofType(registerPage),
         tap(() => {
           this.fakeSpinnerService('RegisterSpinnerOn, SHOW');
-          }
-        )
+        })
       ),
     { dispatch: false }
   );
@@ -52,9 +49,7 @@ export class SpinnerEffects {
   RegisterSpinnerOff$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(
-          fromRegisterActions.registerSuccess,
-          fromRegisterActions.registerFailure),
+        ofType(registerSuccess, registerFailure),
         tap(() => {
           setTimeout(() => {
             this.fakeSpinnerService('RegisterSpinnerOff, HIDE');
@@ -63,7 +58,6 @@ export class SpinnerEffects {
       ),
     { dispatch: false }
   );
-
 
   fakeSpinnerService(message: string): void {
     console.log('[[message from spinner effects]]', message);

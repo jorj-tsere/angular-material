@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../pages/auth/services/auth.service';
 import { registerFailure, registerPage, registerSuccess } from '@pages/users-page/state/actions';
 
 @Injectable()

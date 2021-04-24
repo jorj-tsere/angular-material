@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as fromAuthActions from 'app/pages/auth/state/actions/auth.actions';
+import { logout } from '@store/actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class AppEffects {
   removeUserFromLocalStorage$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.logout),
+        ofType(logout),
         tap(() => {
           // try {
           //   this.localStorageService.removeItem('ml_token');
@@ -20,6 +20,5 @@ export class AppEffects {
     { dispatch: false }
   );
 
-  constructor(private actions$: Actions) {
-  }
+  constructor(private actions$: Actions) {}
 }

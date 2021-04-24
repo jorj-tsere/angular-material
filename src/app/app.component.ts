@@ -4,7 +4,7 @@ import { IUser } from '@auth-module-models-barrel';
 import { LocalStorageService } from '@core-services';
 import { Store } from '@ngrx/store';
 import { AppState } from '@store-barrel';
-import { browserReload } from 'auth-page/state/actions/auth.actions';
+import { browserReload } from '@store/actions';
 
 @Component({
   selector: 'app-root',

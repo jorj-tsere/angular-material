@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { IUser } from 'app/pages/auth/models/user';
 import { AppState } from 'app/store';
 import { select, Store } from '@ngrx/store';
-import * as fromAuthSelectors from 'app/pages/auth/state/selectors/auth.selectors';
+import * as fromAuthSelectors from '@store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-header',

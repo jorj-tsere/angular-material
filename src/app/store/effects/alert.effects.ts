@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-// import { AlertService } from 'ngx-alerts';
-import * as fromAuthActions from '../../pages/auth/state/actions/auth.actions';
 import { tap } from 'rxjs/operators';
 import {
   registerFailure,
   registerPage,
   registerSuccess,
 } from '@pages/users-page/state/actions';
+import {
+  loginFailure,
+  loginPage,
+  loginSuccess,
+  logoutFailure,
+  logoutSuccess,
+} from '@store/actions';
 
 @Injectable()
 export class AlertEffects {
   checkingYourInformation$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.loginPage),
+        ofType(loginPage),
         tap(() => this.fakeAlertService('Checking your information'))
       ),
     { dispatch: false }
@@ -23,7 +28,7 @@ export class AlertEffects {
   welcomeBack$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.loginSuccess),
+        ofType(loginSuccess),
         tap((action) =>
           this.fakeAlertService('Welcome Back ' + JSON.stringify(action) + '!')
         )
@@ -34,7 +39,7 @@ export class AlertEffects {
   unableToLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.loginFailure),
+        ofType(loginFailure),
         tap(() => this.fakeAlertService('Unable to login'))
       ),
     { dispatch: false }
@@ -43,7 +48,7 @@ export class AlertEffects {
   youAreLoggedOut$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.logoutSuccess),
+        ofType(logoutSuccess),
         tap(() => this.fakeAlertService('You are logged out'))
       ),
     { dispatch: false }
@@ -52,7 +57,7 @@ export class AlertEffects {
   unableToLogOut$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.logoutFailure),
+        ofType(logoutFailure),
         tap(() => this.fakeAlertService('unable to log out'))
       ),
     { dispatch: false }

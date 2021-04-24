@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { IAuthRequest } from '../../models/auth-request';
-import { IUser } from '../../models/user';
+import { IAuthRequest } from '../../pages/auth/models/auth-request';
+import { IUser } from '../../pages/auth/models/user';
 
 export const loginPage = createAction(
   '[Auth Component] Login User',

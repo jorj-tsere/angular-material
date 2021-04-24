@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-
 import { environment } from '@env';
 import { CustomerSupportEffects } from '@store/effects/customer-support.effects';
 import { NotFoundComponent } from '@pages/not-found/not-found.component';
@@ -17,11 +16,13 @@ import {
   AlertEffects,
   RouteEffects,
   AppEffects,
+  AuthEffects,
 } from '@store/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from '@store/custom-route-serializer';
 import * as fromLookup from './store/reducers/lookup.reducer';
 import { LookupEffects } from './store/effects/lookup.effects';
+import * as fromAuth  from '@store/reducers/auth.reducer';
 // import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -55,7 +56,8 @@ import { LookupEffects } from './store/effects/lookup.effects';
       serializer: CustomSerializer,
     }),
     StoreModule.forFeature(fromLookup.lookupFeatureKey, fromLookup.reducer),
-    EffectsModule.forFeature([LookupEffects]),
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
+    EffectsModule.forFeature([LookupEffects, AuthEffects]),
   ],
   bootstrap: [AppComponent],
 })

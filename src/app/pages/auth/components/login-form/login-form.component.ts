@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IAuthRequest } from '@pages/auth/models';
-import { loginPage } from '@pages/auth/state/actions/auth.actions';
 import { AppState } from '@store-barrel';
+import { loginPage } from '@store/actions';
 
 @Component({
   selector: 'app-login-form',

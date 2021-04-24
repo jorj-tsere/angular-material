@@ -12,8 +12,8 @@ import { UsersPageEffects } from './state/effects/users-page.effects';
 import { UserDetailsComponent } from './pages';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
-import * as fromRegister from '@pages/auth/state/reducers/register.reducer';
-import { RegisterEffects } from '@pages/auth/state/effects/register.effects';
+import * as fromRegister from '@store/reducers/register.reducer';
+import { RegisterEffects } from '@store/effects';
 
 @NgModule({
   declarations: [

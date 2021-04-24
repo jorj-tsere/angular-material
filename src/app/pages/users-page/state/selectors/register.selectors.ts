@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromRegister from '../../../auth/state/reducers/register.reducer';
+import * as fromRegister from '../../../../store/reducers/register.reducer';
 
 export const selectRegisterState = createFeatureSelector<fromRegister.State>(
   fromRegister.RegisterFeatureKey
