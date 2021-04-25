@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { registerPage } from '@pages/users-page/state/actions';
-import { selectRegistarPageResponse } from '@pages/users-page/state/selectors/register.selectors';
+import { registerPage } from '@store/actions';
+import { selectRegistarPageResponse } from '@store/selectors/register.selectors';
 import { mailValidator } from '@shared/helpers';
 import { AppState } from '@store-barrel';
 import { Observable } from 'rxjs';

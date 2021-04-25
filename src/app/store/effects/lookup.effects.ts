@@ -4,7 +4,7 @@ import { catchError, map, concatMap } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 
 import * as LookupActions from '../actions/lookup.actions';
-import { LookupService } from '@core/services/lookup.service';
+import { LookupService } from 'app/services/lookup.service';
 
 @Injectable()
 export class LookupEffects {

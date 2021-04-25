@@ -17,12 +17,16 @@ import {
   RouteEffects,
   AppEffects,
   AuthEffects,
+  RegisterEffects,
 } from '@store/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from '@store/custom-route-serializer';
 import * as fromLookup from './store/reducers/lookup.reducer';
 import { LookupEffects } from './store/effects/lookup.effects';
 import * as fromAuth  from '@store/reducers/auth.reducer';
+import * as fromUsers  from '@store/reducers/users-page.reducer';
+import * as fromRegister  from '@store/reducers/register.reducer';
+import { UsersPageEffects } from '@store/effects/users-page.effects';
 // import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -57,7 +61,15 @@ import * as fromAuth  from '@store/reducers/auth.reducer';
     }),
     StoreModule.forFeature(fromLookup.lookupFeatureKey, fromLookup.reducer),
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
-    EffectsModule.forFeature([LookupEffects, AuthEffects]),
+    EffectsModule.forFeature([LookupEffects, AuthEffects, UsersPageEffects, RegisterEffects]),
+    StoreModule.forFeature(
+      fromUsers.usersPageFeatureKey,
+      fromUsers.reducer
+    ),
+    StoreModule.forFeature(
+      fromRegister.RegisterFeatureKey,
+      fromUsers.reducer
+    ),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as fromRegisterActions from '@pages/users-page/state/actions';
+import * as fromRegisterActions from '@store/actions';
 
 
 

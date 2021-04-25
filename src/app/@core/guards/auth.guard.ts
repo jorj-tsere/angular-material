@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { routes } from '@core-constants';
-import { LocalStorageService } from '@core-services';
+import { LocalStorageService } from 'app/services';
 import { AppState } from '@store-barrel';
 import { Store } from '@ngrx/store';
 

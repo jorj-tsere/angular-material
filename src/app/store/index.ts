@@ -10,7 +10,7 @@ import * as fromCustomerSupport from './reducers/customer-support.reducer';
 import * as fromShared from './reducers/shared.reducers';
 import * as fromAuth from './reducers/auth.reducer';
 import * as fromRegister from './reducers/register.reducer';
-import * as fromUsersPage from '../pages/users-page/state/reducers/users-page.reducer';
+import * as fromUsersPage from './reducers/users-page.reducer';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromLookup from './reducers/lookup.reducer';
 

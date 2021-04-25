@@ -6,8 +6,7 @@ import {
   IUser,
   IValidateAccessTokenResponse,
 } from '@auth-module-models-barrel';
-import { LocalStorageService } from '@core-services';
-import { IRegisterRequest } from '@pages/users-page/models/register-request';
+import { LocalStorageService } from './local-storage.service';
 import { buildQueryString } from '@shared/helpers/functions';
 import * as moment from 'moment';
 import { Observable, of } from 'rxjs';

@@ -4,8 +4,8 @@ import {
   registerFailure,
   registerPage,
   registerSuccess,
-} from '@pages/users-page/state/actions';
-import { loginPage, loginSuccess, loginFailure } from '@store/actions';
+} from '@store/actions';
+import { loginFailure, loginPage, loginSuccess } from '@store/actions/auth.actions';
 // import { NgxSpinnerService } from 'ngx-spinner';
 import { tap } from 'rxjs/operators';
 

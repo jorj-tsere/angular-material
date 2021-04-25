@@ -4,7 +4,7 @@ import { catchError, map, concatMap } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 
 import * as UsersPageActions from '../actions/users-page.actions';
-import { UsersService } from '../../services/users.service';
+import { UsersService } from 'app/services';
 
 @Injectable()
 export class UsersPageEffects {

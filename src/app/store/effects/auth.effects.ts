@@ -3,16 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, throttleTime } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 
-import { AuthService } from '../../pages/auth/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { ICredentials } from '@pages/auth/models';
-import {
-  loginPage,
-  loginSuccess,
-  loginFailure,
-  logout,
-  logoutSuccess,
-  logoutFailure,
-} from '@store/actions';
+import { loginPage, loginSuccess, loginFailure, logout, logoutSuccess, logoutFailure } from '@store/actions/auth.actions';
 
 @Injectable()
 export class AuthEffects {

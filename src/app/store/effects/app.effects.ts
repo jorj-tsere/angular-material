@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loginSuccess, logoutSuccess } from '@store/actions';
-import { LocalStorageService } from 'app/@core/services';
+import { logoutSuccess, loginSuccess } from '@store/actions/auth.actions';
+import { LocalStorageService } from 'app/services';
 import { tap } from 'rxjs/operators';
 
 @Injectable()

@@ -5,14 +5,9 @@ import {
   registerFailure,
   registerPage,
   registerSuccess,
-} from '@pages/users-page/state/actions';
-import {
-  loginFailure,
-  loginPage,
-  loginSuccess,
-  logoutFailure,
-  logoutSuccess,
 } from '@store/actions';
+import { loginPage, loginSuccess, loginFailure, logoutSuccess, logoutFailure } from '@store/actions/auth.actions';
+
 
 @Injectable()
 export class AlertEffects {

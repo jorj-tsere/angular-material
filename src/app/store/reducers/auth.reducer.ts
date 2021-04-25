@@ -1,11 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { IUser } from '@pages/auth/models';
-import {
-  loginSuccess,
-  browserReload,
-  logoutSuccess,
-  loginFailure,
-} from '@store/actions';
+import { loginSuccess, browserReload, loginFailure, logoutSuccess } from '@store/actions/auth.actions';
+
 
 export const authFeatureKey = 'auth';
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
-import { Customer, Employee } from '../models';
+import { Customer, Employee } from '../pages/users-page/models';
 
 const userApiEndPint = '/api/user';
 

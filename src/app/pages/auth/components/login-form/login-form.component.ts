@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IAuthRequest } from '@pages/auth/models';
 import { AppState } from '@store-barrel';
-import { loginPage } from '@store/actions';
+import { loginPage } from '@store/actions/auth.actions';
 
 @Component({
   selector: 'app-login-form',

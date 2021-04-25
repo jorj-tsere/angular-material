@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { logout } from '@store/actions';
+import { logout } from '@store/actions/auth.actions';
 import { routes } from 'app/consts';
 import { IUser } from 'app/pages/auth/models';
 import { AppState } from 'app/store';

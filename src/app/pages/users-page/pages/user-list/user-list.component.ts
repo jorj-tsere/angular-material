@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromUsersPageSelectors from '../../state/selectors/users-page.selectors';
-import * as fromUsersPageActions from '../../state/actions/users-page.actions';
+import * as fromUsersPageSelectors from '../../../../store/selectors/users-page.selectors';
+import * as fromUsersPageActions from '../../../../store/actions/users-page.actions';
 import { AppState } from 'app/store';
 
 @Component({
