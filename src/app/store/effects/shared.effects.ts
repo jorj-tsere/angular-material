@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { logout } from '@store/actions';
+import { logout } from '@store/actions/auth.actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable()

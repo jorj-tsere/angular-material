@@ -10,18 +10,13 @@ import { LocalStorageService } from './local-storage.service';
 import { buildQueryString } from '@shared/helpers/functions';
 import * as moment from 'moment';
 import { Observable, of } from 'rxjs';
+import { environment } from '@env';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // tslint:disable-next-line:no-inferrable-types
-  // baseUrl: string = 'http://68.183.115.254:8081'; // 'http://127.0.0.1:4200';
-  // tslint:disable-next-line:no-inferrable-types
-  baseUrl: string = '';
-  // tslint:disable-next-line:no-inferrable-types
-  // baseUrl: string = 'http://68.183.115.254:8081';
-
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService
@@ -31,14 +26,14 @@ export class AuthService {
     // return this.getUser();
 
     return this.http.post<ICredentials>(
-      this.baseUrl + '/api/auth/getAccessToken',
+      environment.baseUrl + '/api/auth/getAccessToken',
       credentials
     );
   }
 
   register(registerPayload: any): Observable<any> {
     return this.http.post(
-      this.baseUrl + '/api/adminRegistration/register',
+      environment.baseUrl + '/api/adminRegistration/register',
       registerPayload
     );
   }
@@ -51,7 +46,7 @@ export class AuthService {
     const accessToken = this.localStorageService.getObject('ml_token');
     const queryString = buildQueryString({ accessToken });
     return this.http.get<IValidateAccessTokenResponse>(
-      `${this.baseUrl}/api/auth/validateAccessToken?${queryString}}`
+      `${environment.baseUrl}/api/auth/validateAccessToken?${queryString}}`
     );
   }
 
