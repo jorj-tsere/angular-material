@@ -28,7 +28,7 @@ export class UsersService {
   // }
 
   public getUserList(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${environment.baseUrl}/getuserlist`);
+    return this.http.get<Employee[]>(`${environment.baseUrl}/api/user/getuserlist`);
   }
 
 
