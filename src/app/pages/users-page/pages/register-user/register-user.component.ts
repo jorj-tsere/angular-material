@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { registerPage } from '@store/actions';
-import { selectRegistarPageResponse } from '@store/selectors/register.selectors';
+
 import { mailValidator } from '@shared/helpers';
 import { AppState } from '@store-barrel';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
+import { registerPage } from '@pages/users-page/state/actions/register.actions';
 
 @Component({
   selector: 'app-register-user',
@@ -14,13 +14,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./register-user.component.scss'],
 })
 export class RegisterUserComponent implements OnInit {
-  vm$: Observable<any>;
-
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>, private location: Location) {
-    this.vm$ = this.store.pipe(select(selectRegistarPageResponse));
-  }
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private location: Location) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({

@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
-import {
-  registerFailure,
-  registerPage,
-  registerSuccess,
-} from '@store/actions';
 import { loginPage, loginSuccess, loginFailure, logoutSuccess, logoutFailure } from '@store/actions/auth.actions';
+import { registerPage, registerSuccess, registerFailure } from '@pages/users-page/state/actions/register.actions';
 
 
 @Injectable()

@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  registerFailure,
-  registerPage,
-  registerSuccess,
-} from '@store/actions';
+import { registerFailure, registerPage, registerSuccess } from '@pages/users-page/state/actions/register.actions';
+
 import { loginFailure, loginPage, loginSuccess } from '@store/actions/auth.actions';
 // import { NgxSpinnerService } from 'ngx-spinner';
 import { tap } from 'rxjs/operators';
