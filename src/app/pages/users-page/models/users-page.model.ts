@@ -1,4 +1,4 @@
-export interface Users {
+export interface User {
   id: number;
   firstName: string;
   lastName: string;
@@ -6,5 +6,4 @@ export interface Users {
   roleID: number;
   isActive: number;
   createDate: string;
-
 }

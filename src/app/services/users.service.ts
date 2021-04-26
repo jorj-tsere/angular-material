@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env';
-import { Users } from '@pages/users-page/models/users-page.model';
+import { User } from '@pages/users-page/models/users-page.model';
 import { Observable, throwError } from 'rxjs';
 import { of } from 'rxjs';
 import { Customer, Employee } from '../pages/users-page/models';
@@ -28,8 +28,8 @@ export class UsersService {
   //   ]);
   // }
 
-  public getUserList(): Observable<Users[]> {
-    return this.http.get<Users[]>(`${environment.baseUrl}/api/user/getuserlist`);
+  public getUserList(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.baseUrl}/api/user/getuserlist`);
   }
 
 

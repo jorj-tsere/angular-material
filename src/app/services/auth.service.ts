@@ -43,8 +43,10 @@ export class AuthService {
   }
 
   validateAcceessToken(): Observable<IValidateAccessTokenResponse> {
-    const accessToken = this.localStorageService.getObject('ml_token');
-    const queryString = buildQueryString({ accessToken });
+    const mlToken = this.localStorageService.getObject('ml_token') as any;
+    console.log('accessToken', mlToken)
+    const queryString = buildQueryString({ accessToken: mlToken.accessToken });
+    console.log('queryString', queryString)
     return this.http.get<IValidateAccessTokenResponse>(
       `${environment.baseUrl}/api/auth/validateAccessToken?${queryString}}`
     );

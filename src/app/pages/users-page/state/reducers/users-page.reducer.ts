@@ -1,15 +1,19 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Users } from '../../models/users-page.model';
+import { User } from '../../models/users-page.model';
 import * as UsersPageActions from '../actions/users-page.actions';
 
 export const usersPagesFeatureKey = 'usersPages';
 
-export interface State extends EntityState<Users> {
+export interface State extends EntityState<User> {
   // additional entities state properties
 }
 
-export const adapter: EntityAdapter<Users> = createEntityAdapter<Users>();
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
+  selectId: (user: User) => {
+    return user.lastName + '-' + (new Date().getTime());
+  }
+});
 
 export const initialState: State = adapter.getInitialState({
   selectedUserId: null,

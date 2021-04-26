@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AppState } from 'app/store';
 import * as fromUserPageActions  from '@pages/users-page/state/actions/users-page.actions';
 import * as fromUserPageSelectors  from '@pages/users-page/state/selectors/users-page.selectors';
+import { AuthService } from 'app/services';
 
 
 @Component({
@@ -14,7 +15,7 @@ import * as fromUserPageSelectors  from '@pages/users-page/state/selectors/users
 })
 export class UserListComponent implements OnInit {
   public vm$: Observable<any>;
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private authService: AuthService) {
     this.vm$ = this.store.pipe(
       select(fromUserPageSelectors.selectAllUsers)
     );

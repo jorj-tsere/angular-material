@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { Users } from '../../models/users-page.model';
+import { User } from '../../models/users-page.model';
 
 export const loadUsers = createAction(
   '[User-Page -- User List page] Load Users',
@@ -9,7 +9,7 @@ export const loadUsers = createAction(
 
 export const loadUsersSuccess = createAction(
   '[User-Page Effect] Load Users Success',
-  props<{ users: Users[] }>()
+  props<{ users: User[] }>()
 );
 
 export const loadUsersFailure = createAction(
