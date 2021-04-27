@@ -32,6 +32,10 @@ export class UsersService {
     return this.http.get<User[]>(`${environment.baseUrl}/api/user/getuserlist`);
   }
 
+  public getUserDetails(id: number): Observable<User> {
+    return this.http.get<User>(`${environment.baseUrl}/api/user/getUserDetails?id=${id}`);
+  }
+
 
 
   public loadMaterialTableData(): Observable<Customer[]> {

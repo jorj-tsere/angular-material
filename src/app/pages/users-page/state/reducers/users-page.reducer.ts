@@ -2,6 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { User } from '../../models/users-page.model';
 import * as UsersPageActions from '../actions/users-page.actions';
+import * as fromUserDetailsPage from '../actions/user-details.actions';
 
 export const usersPagesFeatureKey = 'usersPages';
 
@@ -11,7 +12,7 @@ export interface State extends EntityState<User> {
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
   selectId: (user: User) => {
-    return user.lastName + '-' + (new Date().getTime());
+    return user.id;
   }
 });
 
@@ -28,6 +29,18 @@ export const reducer = createReducer(
     (state, action) => adapter.setAll(action.users, state)
   ),
   on(UsersPageActions.loadUsersFailure,
+    (state, action) => {
+      return {
+        ...state,
+        error: action.error
+      }
+    }
+  ),
+
+  on(UsersPageActions.loadUserSuccess,
+    (state, action) => adapter.addOne(action.user, state)
+  ),
+  on(UsersPageActions.loadUserFailure,
     (state, action) => {
       return {
         ...state,

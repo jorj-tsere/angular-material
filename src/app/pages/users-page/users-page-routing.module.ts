@@ -19,7 +19,7 @@ const routes: Routes = [
         data: { animation: 'UserList' }
       },
       {
-        path: 'edit/:user_id',
+        path: 'edit/:id',
         component: UserDetailsComponent,
         data: { animation: 'UserDetails' }
       },
@@ -36,4 +36,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UsersPageRoutingModule {}
+export class UsersPageRoutingModule { }

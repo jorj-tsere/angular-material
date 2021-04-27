@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
+import { User } from '@pages/users-page/models';
 
-import { User } from '../../models/users-page.model';
 
 export const loadUsers = createAction(
   '[User-Page -- User List page] Load Users',
@@ -14,6 +14,24 @@ export const loadUsersSuccess = createAction(
 
 export const loadUsersFailure = createAction(
   '[User-Page Effect] Load Users Failure',
+  props<{ error: any }>()
+);
+
+
+
+
+export const loadUser = createAction(
+  '[User-Details-Page] Load User Details',
+  props<{ id: number }>()
+);
+
+export const loadUserSuccess = createAction(
+  '[User-Details-Page Effect] Load User Success',
+  props<{ user: User }>()
+);
+
+export const loadUserFailure = createAction(
+  '[User-Details-Page Effect] Load User Failure',
   props<{ error: any }>()
 );
 
