@@ -1,9 +1,7 @@
-export interface User {
+export interface UpdateAdminUserRequest {
   id: number;
   firstName: string;
   lastName: string;
-  email: string;
   roleID: number;
   isActive: number;
-  createDate: string;
 }

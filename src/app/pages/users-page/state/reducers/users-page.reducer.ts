@@ -1,53 +1,69 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { User } from '../../models/users-page.model';
+import {
+  EntityState,
+  EntityAdapter,
+  createEntityAdapter,
+  Update,
+} from '@ngrx/entity';
+import { AdminUser } from '../../models/admin-user';
 import * as UsersPageActions from '../actions/users-page.actions';
 import * as fromUserDetailsPage from '../actions/user-details.actions';
+import { UpdateAdminUserRequest } from '@pages/users-page/models/update-admin-user-request';
 
 export const usersPagesFeatureKey = 'usersPages';
 
-export interface State extends EntityState<User> {
-  // additional entities state properties
+export interface State extends EntityState<AdminUser> {
+  selectedUserId: number;
+  loading: boolean;
+  error: any;
 }
 
-export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
-  selectId: (user: User) => {
-    return user.id;
+/*
+   {
+    sortComparer: false,
+    selectId: (user: AdminUser) => {
+      return user.username;
+    },
   }
-});
+*/
+
+export const adapter: EntityAdapter<AdminUser> = createEntityAdapter<AdminUser>();
 
 export const initialState: State = adapter.getInitialState({
   selectedUserId: null,
   loading: null,
-  error: null
+  error: null,
 });
-
 
 export const reducer = createReducer(
   initialState,
-  on(UsersPageActions.loadUsersSuccess,
-    (state, action) => adapter.setAll(action.users, state)
+  on(UsersPageActions.loadUsersSuccess, (state, action) =>
+    adapter.setAll(action.users, state)
   ),
-  on(UsersPageActions.loadUsersFailure,
-    (state, action) => {
-      return {
-        ...state,
-        error: action.error
-      }
-    }
-  ),
+  on(UsersPageActions.loadUsersFailure, (state, action) => {
+    return {
+      ...state,
+      error: action.error,
+    };
+  }),
 
-  on(UsersPageActions.loadUserSuccess,
-    (state, action) => adapter.addOne(action.user, state)
-  ),
-  on(UsersPageActions.loadUserFailure,
-    (state, action) => {
-      return {
-        ...state,
-        error: action.error
-      }
-    }
-  ),
+  on(UsersPageActions.loadUserSuccess, (state, action) => {
+    // console.log('action.user', action.user);
+    return adapter.addOne(action.user, state);
+    // return adapter.setAll([ action.user ], state)
+  }),
+  on(UsersPageActions.loadUserFailure, (state, action) => {
+    return {
+      ...state,
+      error: action.error,
+    };
+  }),
+  on(UsersPageActions.UpdateUserSuccess, (state, action: any) =>
+    adapter.updateOne(
+      { id: action.payload.id, changes: action.payload.changes },
+      state
+    )
+  )
 
   // on(UsersPageActions.,
   //   (state, action) => adapter.upsertOne(action.usersPage, state)
@@ -75,7 +91,6 @@ export const reducer = createReducer(
   //   state => adapter.removeAll(state)
   // ),
 );
-
 
 export const {
   selectIds,

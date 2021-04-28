@@ -9,9 +9,9 @@
 
 
 <form class="form" [formGroup]="form" (ngSubmit)="register()">
-  <mat-form-field class="form__input">
+  <!-- <mat-form-field class="form__input">
     <input matInput placeholder="username" formControlName="username" />
-  </mat-form-field>
+  </mat-form-field> -->
 
   <mat-form-field class="form__input">
     <input
@@ -40,10 +40,20 @@
   </mat-form-field>
 
   <mat-form-field class="form__input">
-    <input matInput placeholder="Role" type="text" formControlName="roleID" />
+    <input
+      matInput
+      placeholder="roleID"
+      type="text"
+
+      formControlName="roleID"
+    />
   </mat-form-field>
 
-  <mat-form-field class="form__input">
+  <!-- <mat-form-field class="form__input">
+    <input matInput placeholder="Role" type="text" formControlName="roleID" />
+  </mat-form-field> -->
+
+  <!-- <mat-form-field class="form__input">
     <input
       matInput
       placeholder="Password"
@@ -59,7 +69,7 @@
       type="password"
       formControlName="confirmPassword"
     />
-  </mat-form-field>
+  </mat-form-field> -->
 
   <div class="form-actions">
     <button

@@ -13,8 +13,10 @@ import { browserReload } from '@store/actions/auth.actions';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    const user: IUser = this.localStorageService.getObject('ml_token') as any;
-    this.store.dispatch(browserReload({ user }));
+    const user: IUser = this.localStorageService.readToken();
+    if (user) {
+      this.store.dispatch(browserReload({ user }));
+    }
   }
   constructor(
     private store: Store<AppState>,
@@ -23,6 +25,10 @@ export class AppComponent implements OnInit {
 
   prepareRoute(outlet: RouterOutlet) {
     // tslint:disable-next-line:no-string-literal
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    return (
+      outlet &&
+      outlet.activatedRouteData &&
+      outlet.activatedRouteData.animation
+    );
   }
 }

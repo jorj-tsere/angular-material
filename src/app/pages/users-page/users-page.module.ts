@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UsersPageRoutingModule } from './users-page-routing.module';
 import { UsersPageComponent } from './containers/users-page/users-page.component';
 import { SharedModule } from 'app/@shared/shared.module';
-import { EmployeeTableComponent, MaterialTableComponent } from './components';
+import { EmployeeTableComponent, MaterialTableComponent, UserDetailsFormComponent } from './components';
 import { UserDetailsComponent } from './pages';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { RegisterUserComponent } from './pages/register-user/register-user.component';
@@ -22,6 +22,7 @@ import { UsersPageEffects } from './state/effects/users-page.effects';
     UserDetailsComponent,
     UserListComponent,
     RegisterUserComponent,
+    UserDetailsFormComponent,
   ],
   imports: [
     CommonModule,

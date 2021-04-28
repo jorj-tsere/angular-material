@@ -25,6 +25,8 @@ export class AuthService {
   login(credentials: IAuthRequest): Observable<ICredentials> {
     // return this.getUser();
 
+    console.log('credentials', credentials);
+
     return this.http.post<ICredentials>(
       environment.baseUrl + '/api/auth/getAccessToken',
       credentials
@@ -52,16 +54,16 @@ export class AuthService {
     );
   }
 
-  public getUser(): Observable<IUser> {
-    return of({
-      id: 123123,
-      username: 'jogn',
-      email: 'jorj.tsere@gmail.com',
-      is_admin: true,
-      name: 'John',
-      lastName: 'Smith',
-    });
-  }
+  // public getUser(): Observable<IUser> {
+  //   return of({
+  //     id: 123123,
+  //     username: 'jogn',
+  //     email: 'jorj.tsere@gmail.com',
+  //     is_admin: true,
+  //     name: 'John',
+  //     lastName: 'Smith',
+  //   });
+  // }
 
   // not working
   // private setSession(authResult) {

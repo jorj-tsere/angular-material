@@ -2,7 +2,7 @@
   <h1>Company Users</h1>
 </mat-toolbar>
 
-
+<p>{{  vm$ | async | json  }}</p>
 
 <div class="tables-wrapper" *ngIf="vm$ | async as users">
   <br />

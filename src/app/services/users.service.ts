@@ -1,10 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env';
-import { User } from '@pages/users-page/models/users-page.model';
+import { AdminUser } from '@pages/users-page/models/admin-user';
+import { UpdateAdminUserRequest } from '@pages/users-page/models/update-admin-user-request';
 import { Observable, throwError } from 'rxjs';
 import { of } from 'rxjs';
-import { Customer, Employee } from '../pages/users-page/models';
+import {
+  Customer,
+  Employee,
+  IRegisterRequest,
+} from '../pages/users-page/models';
 
 const userApiEndPint = '/api/user';
 
@@ -28,15 +33,34 @@ export class UsersService {
   //   ]);
   // }
 
-  public getUserList(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.baseUrl}/api/user/getuserlist`);
+  public getUserList(): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/api/adminUser/getUserList`
+    );
   }
 
-  public getUserDetails(id: number): Observable<User> {
-    return this.http.get<User>(`${environment.baseUrl}/api/user/getUserDetails?id=${id}`);
+  public getUserDetails(id: number): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}/api/adminUser/getUserDetails?id=${id}`
+    );
   }
 
 
+
+  public createAdminUser(newUser: IRegisterRequest): Observable<any> {
+    return this.http.post<any>(
+      `${environment.baseUrl}/api/adminUser/createUser`,
+      newUser
+    );
+  }
+
+  public updateUserDetails(payload: any) {
+    console.log('updateUserDetails', payload);
+    return this.http.post(
+      `${environment.baseUrl}/api/adminUser/updateUserDetails`,
+      payload
+    );
+  }
 
   public loadMaterialTableData(): Observable<Customer[]> {
     return of([
@@ -79,7 +103,7 @@ export class UsersService {
       {
         name: 'Peter Horadnia',
         email: 'horadnia@wxample.com',
-        product: 'Let\'s Dance',
+        product: 'Lets Dance',
         price: '$43 594.7',
         date: '1 Mar 2018',
         city: 'Hanoverton',

@@ -1,9 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
-import { loginPage, loginSuccess, loginFailure, logoutSuccess, logoutFailure } from '@store/actions/auth.actions';
-import { registerPage, registerSuccess, registerFailure } from '@pages/users-page/state/actions/register.actions';
-
+import {
+  loginPage,
+  loginSuccess,
+  loginFailure,
+  logoutSuccess,
+  logoutFailure,
+} from '@store/actions/auth.actions';
+import {
+  registerPage,
+  registerSuccess,
+  registerFailure,
+} from '@pages/users-page/state/actions/register.actions';
+import { NotifierService } from 'angular-notifier';
+import { UpdateUserSuccess } from '@pages/users-page/state/actions/users-page.actions';
+import { AlertService } from 'app/services/alert-service.service';
+import { MessageType } from '@shared/models/message-type.enum';
+import { messageTranslator } from '@shared/helpers';
+import { LocalStorageService } from 'app/services';
 
 @Injectable()
 export class AlertEffects {
@@ -11,7 +26,12 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(loginPage),
-        tap(() => this.fakeAlertService('Checking your information'))
+        tap(() =>
+          this.alertService.showNotification(
+            'Checking your information',
+            messageTranslator(MessageType.info)
+          )
+        )
       ),
     { dispatch: false }
   );
@@ -20,9 +40,13 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(loginSuccess),
-        tap((action) =>
-          this.fakeAlertService('Welcome Back ' + JSON.stringify(action) + '!')
-        )
+        tap((action) => {
+
+          this.alertService.showNotification(
+            'Welcome Back ' + JSON.stringify(action) + '!',
+            messageTranslator(MessageType.success)
+          )
+        })
       ),
     { dispatch: false }
   );
@@ -31,7 +55,12 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(loginFailure),
-        tap(() => this.fakeAlertService('Unable to login'))
+        tap(() =>
+          this.alertService.showNotification(
+            'Unable to login',
+            messageTranslator(MessageType.warning)
+          )
+        )
       ),
     { dispatch: false }
   );
@@ -40,7 +69,7 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(logoutSuccess),
-        tap(() => this.fakeAlertService('You are logged out'))
+        tap(() => this.alertService.showNotification('You are logged out'))
       ),
     { dispatch: false }
   );
@@ -49,7 +78,12 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(logoutFailure),
-        tap(() => this.fakeAlertService('unable to log out'))
+        tap(() =>
+          this.alertService.showNotification(
+            'unable to log out',
+            messageTranslator(MessageType.warning)
+          )
+        )
       ),
     { dispatch: false }
   );
@@ -59,39 +93,18 @@ export class AlertEffects {
       this.actions$.pipe(
         ofType(registerPage),
         tap(() =>
-          this.fakeAlertService(
-            'Checking RegisterCheckingSubmitRequest information'
+          this.alertService.showNotification(
+            'Checking information',
+            messageTranslator(MessageType.warning)
           )
         )
       ),
     { dispatch: false }
   );
 
-  RegisterCheckingSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(registerSuccess),
-        tap(() => this.fakeAlertService('RegisterCheckingSuccess Success'))
-      ),
-    { dispatch: false }
-  );
-
-  RegisterCheckingFailure$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(registerFailure),
-        tap(() =>
-          this.fakeAlertService(
-            'RegisterCheckingFailure Failed: Unable to Register'
-          )
-        )
-      ),
-    { dispatch: false }
-  );
-
-  constructor(private actions$: Actions) {}
-
-  fakeAlertService(message: string): void {
-    console.log('[[ message from fake alert EFFECT ]]', message);
-  }
+  constructor(
+    private actions$: Actions,
+    private alertService: AlertService,
+    private localStorageService: LocalStorageService
+  ) {}
 }

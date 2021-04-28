@@ -1,84 +1,84 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '@store-barrel';
-import { entityExists, selectEntity, selectEntityById } from '@pages/users-page/state/selectors/users-page.selectors';
+import {
+  entityExists,
+  selectEntity,
+  selectEntityById,
+} from '@pages/users-page/state/selectors/users-page.selectors';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '@pages/users-page/models';
-import { concatMap, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { loadAdminRoles } from '@store/actions/lookup.actions';
-import { selectAdminRoles, selectLookupViewModel } from '@store/selectors/lookup.selectors';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { mailValidator } from '@shared/helpers';
-import { AdminRole } from '@pages/users-page/components';
-import { loadUser } from '@pages/users-page/state/actions/users-page.actions';
+import {
+  selectAdminRoles,
+  selectLookupViewModel,
+} from '@store/selectors/lookup.selectors';
+import {
+  loadUser,
+  UpdateUser,
+} from '@pages/users-page/state/actions/users-page.actions';
+import { AdminUser } from '@pages/users-page/models';
+import { UpdateAdminUserRequest } from '@pages/users-page/models/update-admin-user-request';
+import { Update } from '@ngrx/entity';
+import { UpdateStr } from '@ngrx/entity/src/models';
 
 @Component({
   selector: 'app-use-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailsComponent implements OnInit {
-  public form: FormGroup;
-
-  user$: Observable<User>;
+  user$: Observable<AdminUser>;
   userId: string;
   isUserInStore$: Observable<boolean>;
-  adminRoles$: Observable<AdminRole[]>;
+  adminRoles$: Observable<any[]>;
 
-
-  constructor(private fb: FormBuilder, private location: Location, private store: Store<AppState>, private route: ActivatedRoute) {
-    this.form = this.fb.group({
-      username: [null, Validators.required],
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      roleID: [null, Validators.required],
-      password: [null, Validators.required],
-      confirmPassword: [null, Validators.required],
-      email: [null, [Validators.required, mailValidator]],
-    });
-  }
+  constructor(
+    private location: Location,
+    private store: Store<AppState>,
+    private route: ActivatedRoute
+  ) {}
 
   navigate_back() {
     this.location.back();
   }
 
-  update() {
-    console.log('update');
+  submitUpdateAdminUserForm(user: UpdateAdminUserRequest) {
+    const editUser: Update<UpdateAdminUserRequest> = {
+      id: user.id,
+      changes: user,
+    };
+    this.store.dispatch(UpdateUser({ user: editUser }));
   }
 
-
-
   ngOnInit(): void {
-
     this.store.dispatch(loadAdminRoles());
     this.adminRoles$ = this.store.pipe(select(selectAdminRoles));
 
     this.userId = this.route.snapshot.paramMap.get('id');
 
-    console.log('userId', this.userId);
+    // console.log('userId', this.userId);
 
     this.isUserInStore$ = this.store.pipe(
       select(entityExists, { id: this.userId })
-    )
-
-
+    );
 
     this.user$ = this.isUserInStore$.pipe(
       mergeMap((isProductInStore) => {
         console.log('isProductInStore', isProductInStore);
         if (!isProductInStore) {
-          this.store.dispatch(loadUser({ id: +this.userId }))
+          this.store.dispatch(loadUser({ id: +this.userId }));
         }
 
         return this.store.pipe(
-          select(selectEntityById, {
-            id: this.userId
+          select(selectEntity, {
+            id: this.userId,
           })
-        )
+        );
       })
-    )
-
+    );
   }
 }

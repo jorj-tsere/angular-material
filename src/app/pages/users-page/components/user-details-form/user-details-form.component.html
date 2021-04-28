@@ -1,0 +1,77 @@
+<p>user = {{ user | json }}</p>
+<form class="form" *ngIf="form" [formGroup]="form" (ngSubmit)="update()">
+  <mat-form-field class="form__input">
+    <input matInput placeholder="username" [value]="user?.username" readonly />
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <input
+      matInput
+      placeholder="First Name"
+      type="text"
+      formControlName="firstName"
+    />
+  </mat-form-field>
+  <mat-form-field class="form__input">
+    <input
+      matInput
+      placeholder="Last Name"
+      type="text"
+      formControlName="lastName"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <input
+      matInput
+      placeholder="Email Address"
+      [value]="user?.username"
+      readonly
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <mat-label>is active</mat-label>
+    <mat-select formControlName="isActive" [value]="user?.isActive">
+      <mat-option
+        *ngFor="
+          let userStatusObject of [
+            { id: '1', title: 'active' },
+            { id: '2', title: 'blocked' }
+          ]
+        "
+        [value]="userStatusObject.id"
+        >{{ userStatusObject.title }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="form__input">
+    <mat-label>Role</mat-label>
+    <mat-select [value]="user?.roleID">
+      <mat-option *ngFor="let role of adminRoles" [value]="role.id">{{
+        role.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <mat-form-field class="form__input">
+    <input matInput placeholder="Password" type="password" formControlName="password" />
+  </mat-form-field>
+
+
+  <mat-form-field class="form__input">
+    <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword" />
+  </mat-form-field> -->
+
+  <div class="form-actions">
+    <button
+      class="form-actions__update"
+      mat-raised-button
+      color="primary"
+      type="submit"
+    >
+      update User
+    </button>
+  </div>
+</form>
