@@ -5,7 +5,14 @@ import { of, throwError } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
 import { ICredentials } from '@pages/auth/models';
-import { loginPage, loginSuccess, loginFailure, logout, logoutSuccess, logoutFailure } from '@store/actions/auth.actions';
+import {
+  loginPage,
+  loginSuccess,
+  loginFailure,
+  logout,
+  logoutSuccess,
+  logoutFailure,
+} from '@store/actions/auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -18,7 +25,7 @@ export class AuthEffects {
             return loginSuccess({ response });
           }),
           catchError((error: any) => {
-            return of(loginFailure({ error: error.error }));
+            return of(loginFailure({ error }));
           })
         )
       )

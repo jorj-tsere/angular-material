@@ -26,7 +26,6 @@ export class AuthService {
     // return this.getUser();
 
     console.log('credentials', credentials);
-
     return this.http.post<ICredentials>(
       environment.baseUrl + '/api/auth/getAccessToken',
       credentials

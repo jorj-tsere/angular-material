@@ -68,7 +68,8 @@ const customNotifierOptions: NotifierOptions = {
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
-            return JSON.parse((localStorage.getItem('ml_token')) as any).accessToken;
+            const tokenObject = JSON.parse((localStorage.getItem('ml_token')) as any)
+            return tokenObject && tokenObject.accessToken;
         },
       },
     }),

@@ -1,4 +1,5 @@
 <p>user = {{ user | json }}</p>
+
 <form class="form" *ngIf="form" [formGroup]="form" (ngSubmit)="update()">
   <mat-form-field class="form__input">
     <input matInput placeholder="username" [value]="user?.username" readonly />

@@ -1,17 +1,29 @@
 <mat-toolbar class="page-header" role="heading">
   <h1>Users details</h1>
-  <br/>
-  <button mat-raised-button color="primery" (click)="navigate_back()">
+
+  <!-- <button mat-raised-button color="primery" (click)="navigate_back()">
     back
-  </button>
+  </button> -->
 </mat-toolbar>
-
-
 
 <!-- <p>
    user   {{ user$ | async  | json }}
 </p> -->
-
-<app-user-details-form [user]="user$ | async" [adminRoles]="adminRoles$ | async"  (submitForm)="submitUpdateAdminUserForm($event)"></app-user-details-form>
-
+<mat-card class="admin-user--udpdate-form-card">
+  <mat-card-actions>
+    <button mat-raised-button color="primery" (click)="navigate_back()">
+      back
+    </button>
+  </mat-card-actions>
+  <!-- <mat-card-header>
+    <mat-card-title>UPDATE USER</mat-card-title>
+  </mat-card-header> -->
+  <mat-card-content>
+    <app-user-details-form
+      [user]="user$ | async"
+      [adminRoles]="adminRoles$ | async"
+      (submitForm)="submitUpdateAdminUserForm($event)"
+    ></app-user-details-form>
+  </mat-card-content>
+</mat-card>
 <!-- <p> {{ isUserInStore$ | async | json }}</p> -->
