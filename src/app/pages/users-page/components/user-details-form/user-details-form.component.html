@@ -1,4 +1,4 @@
-<p>user = {{ user | json }}</p>
+<!-- <p>user = {{ user | json }}</p> -->
 
 <form class="form" *ngIf="form" [formGroup]="form" (ngSubmit)="update()">
   <mat-form-field class="form__input">
@@ -73,6 +73,15 @@
       type="submit"
     >
       update User
+    </button>
+    <button
+      class="form-actions__reset-password"
+      mat-button
+      color="primary"
+      type="button"
+      (click)="openDialog()"
+    >
+      Reset Password
     </button>
   </div>
 </form>

@@ -1,4 +1,4 @@
-import { MessageType } from './message-type.enum';
+import { MessageType } from '../enums/message-type.enum';
 
 export interface HttpResponseMessage {
   message: HttpResponseBodyMessage,

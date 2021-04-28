@@ -1,84 +1,58 @@
-
 <mat-toolbar class="page-header" role="heading">
-  <button mat-raised-button (click)="navigate_back()">back</button>
-</mat-toolbar>
-
-<mat-toolbar class="page-header" role="heading">
+  <button mat-raised-button (click)="navigate_back()">
+    <mat-icon>arrow_back</mat-icon> back
+  </button>
   <h1>Create New User</h1>
 </mat-toolbar>
 
+<mat-card class="admin-user--register-form-card">
+  <mat-card-content>
+    <form class="form" [formGroup]="form" (ngSubmit)="register()">
+      <mat-form-field class="form__input">
+        <input
+          matInput
+          placeholder="First Name"
+          type="text"
+          formControlName="firstName"
+        />
+      </mat-form-field>
+      <mat-form-field class="form__input">
+        <input
+          matInput
+          placeholder="Last Name"
+          type="text"
+          formControlName="lastName"
+        />
+      </mat-form-field>
 
-<form class="form" [formGroup]="form" (ngSubmit)="register()">
-  <!-- <mat-form-field class="form__input">
-    <input matInput placeholder="username" formControlName="username" />
-  </mat-form-field> -->
+      <mat-form-field class="form__input">
+        <input
+          matInput
+          placeholder="Email Address"
+          type="email"
+          formControlName="email"
+        />
+      </mat-form-field>
 
-  <mat-form-field class="form__input">
-    <input
-      matInput
-      placeholder="First Name"
-      type="text"
-      formControlName="firstName"
-    />
-  </mat-form-field>
-  <mat-form-field class="form__input">
-    <input
-      matInput
-      placeholder="Last Name"
-      type="text"
-      formControlName="lastName"
-    />
-  </mat-form-field>
+      <mat-form-field class="form__input">
+        <input
+          matInput
+          placeholder="roleID"
+          type="text"
+          formControlName="roleID"
+        />
+      </mat-form-field>
 
-  <mat-form-field class="form__input">
-    <input
-      matInput
-      placeholder="Email Address"
-      type="email"
-      formControlName="email"
-    />
-  </mat-form-field>
-
-  <mat-form-field class="form__input">
-    <input
-      matInput
-      placeholder="roleID"
-      type="text"
-
-      formControlName="roleID"
-    />
-  </mat-form-field>
-
-  <!-- <mat-form-field class="form__input">
-    <input matInput placeholder="Role" type="text" formControlName="roleID" />
-  </mat-form-field> -->
-
-  <!-- <mat-form-field class="form__input">
-    <input
-      matInput
-      placeholder="Password"
-      type="password"
-      formControlName="password"
-    />
-  </mat-form-field>
-
-  <mat-form-field class="form__input">
-    <input
-      matInput
-      placeholder="Confirm Password"
-      type="password"
-      formControlName="confirmPassword"
-    />
-  </mat-form-field> -->
-
-  <div class="form-actions">
-    <button
-      class="form-actions__create"
-      mat-raised-button
-      color="primary"
-      type="submit"
-    >
-      Create your account
-    </button>
-  </div>
-</form>
+      <div class="form-actions">
+        <button
+          class="form-actions__create"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Create your account
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

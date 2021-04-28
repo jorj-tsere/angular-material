@@ -9,6 +9,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DateMenuComponent, SettingsMenuComponent } from './ui-elements';
 import { RouterModule } from '@angular/router';
 import { SafePipe } from './pipes/safe.pipe';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SafePipe } from './pipes/safe.pipe';
     DateMenuComponent,
     SettingsMenuComponent,
     SafePipe,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,

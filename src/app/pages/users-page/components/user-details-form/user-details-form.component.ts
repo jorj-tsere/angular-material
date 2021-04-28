@@ -6,11 +6,12 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ɵɵtrustConstantResourceUrl,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { AdminUser } from '@pages/users-page/models';
 import { UpdateAdminUserRequest } from '@pages/users-page/models/update-admin-user-request';
+import { ConfirmComponent } from '@shared/components/confirm/confirm.component';
 import { mailValidator } from '@shared/helpers';
 
 @Component({
@@ -25,7 +26,7 @@ export class UserDetailsFormComponent implements OnInit, OnChanges {
   @Input() user: AdminUser;
   @Input() adminRoles: any;
   @Output() submitForm = new EventEmitter<UpdateAdminUserRequest>();
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -49,6 +50,23 @@ export class UserDetailsFormComponent implements OnInit, OnChanges {
     const userForm = this.form.getRawValue();
     userForm.id = this.user.id;
     this.submitForm.emit(userForm);
+  }
+
+  resetPassword() {
+
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      data: {
+        title: 'title 1',
+        qustion: 'are you sure?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

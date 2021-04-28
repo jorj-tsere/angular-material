@@ -41,7 +41,15 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           }
         }
       }),
-      catchError((error) => this.errorHandler(error))
+      catchError((resposne) => {
+        if (resposne.error && resposne.error.showMessage) {
+          this.alertService.showNotification(
+            resposne.error.error.message,
+            messageTranslator(4)
+          );
+        }
+        return this.errorHandler(resposne);
+      })
     );
   }
 
@@ -51,6 +59,12 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       // Do something with the error
       log.error('Request error', response);
     }
+    // if (response) {
+    //   this.alertService.showNotification(
+    //     myBody.message.text,
+    //     messageTranslator(myBody.message.type)
+    //   );
+    // }
     throw response;
   }
 }

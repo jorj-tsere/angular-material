@@ -16,7 +16,7 @@ import {
 import { NotifierService } from 'angular-notifier';
 import { UpdateUserSuccess } from '@pages/users-page/state/actions/users-page.actions';
 import { AlertService } from 'app/services/alert-service.service';
-import { MessageType } from '@shared/models/message-type.enum';
+import { MessageType } from '@shared/enums/message-type.enum';
 import { messageTranslator } from '@shared/helpers';
 import { LocalStorageService } from 'app/services';
 

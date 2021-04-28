@@ -12,13 +12,18 @@
 
 .form-actions {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-top: 5px;
 
   &__update {
     margin: 0;
-    width: 95%;
+    box-shadow: 0 0 11px 0 $shadow-white, 0 0 0 -2px $shadow-grey,
+      0 1px 8px 0 $shadow-dark-grey;
+  }
+
+  &__reset-password {
+    margin: 0;
     box-shadow: 0 0 11px 0 $shadow-white, 0 0 0 -2px $shadow-grey,
       0 1px 8px 0 $shadow-dark-grey;
   }

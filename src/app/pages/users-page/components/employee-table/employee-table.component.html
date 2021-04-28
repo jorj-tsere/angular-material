@@ -160,7 +160,7 @@
           mat-cell
           *matCellDef="let element"
         >
-          {{ element.isActive ? 'active' : 'blocked' }}
+          {{ element.isActive === '1' ? 'active' : 'blocked' }} {{ element.isActive }}
         </td>
       </ng-container>
 
