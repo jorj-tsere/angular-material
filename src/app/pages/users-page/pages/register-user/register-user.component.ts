@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
 import { mailValidator } from '@shared/helpers';
 import { AppState } from '@store-barrel';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
-import { registerPage } from '@pages/users-page/state/actions/register.actions';
+import * as fromRegisterActions from '@pages/users-page/state/actions/register.actions';
 
 @Component({
   selector: 'app-register-user',
@@ -16,18 +16,40 @@ import { registerPage } from '@pages/users-page/state/actions/register.actions';
 export class RegisterUserComponent implements OnInit {
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>, private location: Location) {}
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private location: Location) {
+    this.initializeForm();
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+
+  initializeForm(): void {
     this.form = this.fb.group({
-      firstName: ['giorgi', Validators.required],
-      lastName: ['tsereteli', Validators.required],
-      roleID: ['1', Validators.required],
-      email: ['jorj.tsere@gmail.com', [Validators.required, mailValidator]],
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      roleID: [null, [Validators.required, Validators.min(1)]],
+      email: [null, [Validators.required, mailValidator]],
     });
   }
 
-  navigate_back(){
+
+  get firstName(): AbstractControl {
+    return this.form.controls.firstName;
+  }
+
+  get lastName(): AbstractControl {
+    return this.form.controls.lastName;
+  }
+
+  get roleID(): AbstractControl {
+    return this.form.controls.roleID;
+  }
+
+  get email(): AbstractControl {
+    return this.form.controls.email;
+  }
+
+  navigate_back() {
     this.location.back();
   }
 
@@ -35,8 +57,7 @@ export class RegisterUserComponent implements OnInit {
   register(): void {
     if (this.form.valid) {
       const registerRequestPayload = this.form.getRawValue();
-      console.log('register()');
-      this.store.dispatch(registerPage({ registerRequestPayload }));
+      this.store.dispatch(fromRegisterActions.registerPage({ registerRequestPayload }));
     }
   }
 }

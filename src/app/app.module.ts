@@ -16,7 +16,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 const customNotifierOptions: NotifierOptions = {
   position: {
 		horizontal: {
-			position: 'right',
+			position: 'middle',
 			distance: 12
 		},
 		vertical: {
@@ -37,12 +37,12 @@ const customNotifierOptions: NotifierOptions = {
     enabled: true,
     show: {
       preset: 'slide',
-      speed: 300,
+      speed: 500,
       easing: 'ease'
     },
     hide: {
       preset: 'fade',
-      speed: 300,
+      speed: 500,
       easing: 'ease',
       offset: 50
     },
