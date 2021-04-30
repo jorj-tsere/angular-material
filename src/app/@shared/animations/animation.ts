@@ -74,6 +74,16 @@ export const fader = trigger('routeAnimations', [
   ]),
 ]);
 
+export const fadeInOut = trigger('fadeInOut', [
+  state(
+    'void',
+    style({
+      opacity: 0,
+    })
+  ),
+  transition('void <=> *', animate(1000)),
+]);
+
 export const openClose = trigger('openClose', [
   // ...
   state(

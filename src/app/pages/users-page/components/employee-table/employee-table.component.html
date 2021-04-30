@@ -1,20 +1,11 @@
-<!-- <p>
-  this.employeeTableData = {{ employeeTableData | json }}
-</p> -->
-
-<!-- <p>
-
-  {{ lookupViewModel$ | async | json  }}
-</p> -->
-
 <mat-card
   *ngIf="lookupViewModel$ | async as lookups"
   class="employee-table-wrapper"
 >
   <mat-card-title class="employee-table-wrapper__header">
-    <p *ngIf="!isShowFilterInput" class="employee-table-wrapper__title">
+    <!-- <p *ngIf="!isShowFilterInput" class="employee-table-wrapper__title">
       Employee List
-    </p>
+    </p> -->
     <div *ngIf="isShowFilterInput" class="employee-table-wrapper__search">
       <div class="employee-table-wrapper__icon-wrapper">
         <mat-icon class="employee-table-wrapper__icon">search</mat-icon>
@@ -160,7 +151,8 @@
           mat-cell
           *matCellDef="let element"
         >
-          {{ element.isActive === '1' ? 'active' : 'blocked' }} {{ element.isActive }}
+          {{ element.isActive === '1' ? 'active' : 'blocked' }}
+          {{ element.isActive }}
         </td>
       </ng-container>
 

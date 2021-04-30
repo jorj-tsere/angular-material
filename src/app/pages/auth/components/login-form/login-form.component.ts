@@ -23,6 +23,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
+
     const credentials: IAuthRequest = this.form.getRawValue();
     this.store.dispatch(loginPage({ credentials }));
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { routes } from 'app/consts';
 import { loginSuccess, logout } from '@store/actions/auth.actions';
@@ -18,7 +18,9 @@ export class RouteEffects {
             '[[ navigation from route effects]] to:',
             routes.USERS_LIST
           );
-          this.route.navigate([routes.USERS_LIST]);
+
+          const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+          this.router.navigate([returnUrl]);
         })
       ),
     { dispatch: false }
@@ -30,11 +32,11 @@ export class RouteEffects {
         ofType(logout),
         tap(() => {
           console.warn('[[ navigation from route effects]] to:', routes.LOGIN);
-          this.route.navigate([routes.LOGIN]);
+          this.router.navigate([routes.LOGIN]);
         })
       ),
     { dispatch: false }
   );
 
-  constructor(private actions$: Actions, private route: Router) {}
+  constructor(private actions$: Actions, private router: Router, private route: ActivatedRoute) {}
 }

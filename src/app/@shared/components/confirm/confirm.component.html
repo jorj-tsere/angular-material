@@ -3,7 +3,7 @@
   {{ data.question }}
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="close()" cdkFocusInitial>close</button>
+  <button mat-button [mat-dialog-close]="false" cdkFocusInitial>close</button>
   <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>
     yes
   </button>

@@ -19,7 +19,7 @@ const routes: Routes = [
     redirectTo: 'users',
   },
   {
-    path: 'login',
+    path: 'user',
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },

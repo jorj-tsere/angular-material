@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { fader, openClose } from '@shared/animations/animation';
+import { fader, openClose, fadeInOut } from '@shared/animations/animation';
 @Component({
   selector: 'app-users-page',
   templateUrl: './users-page.component.html',
   styleUrls: ['./users-page.component.scss'],
   animations: [
     fader,
+    fadeInOut
   ]
 })
 export class UsersPageComponent implements OnInit {

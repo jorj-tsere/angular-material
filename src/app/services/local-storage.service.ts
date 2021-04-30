@@ -27,7 +27,6 @@ export class LocalStorageService {
   }
 
   readToken() {
-
     return this.getObject('ml_token') && this.jwtHelper.decodeToken(this.jwtHelper.tokenGetter());
   }
 

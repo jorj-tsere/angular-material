@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
     this.vm$ = this.store.pipe(select(fromUserPageSelectors.selectAllUsers));
     this.store.dispatch(fromUserPageActions.loadUsers());
 
-    console.log(this.jwtHelper.decodeToken(this.jwtHelper.tokenGetter())); // token
+    console.log(); // token
     // const accTok = mlToken.accessToken;
     // console.log('mlToken', mlToken, mlToken.accessToken)
   }

@@ -26,30 +26,23 @@ export class AlertEffects {
     () =>
       this.actions$.pipe(
         ofType(loginPage),
-        tap(() =>
-          this.alertService.showNotification(
-            'Checking your information',
-            messageTranslator(MessageType.info)
-          )
-        )
+        tap(() => console.log('Checking user information...'))
       ),
     { dispatch: false }
   );
 
-  welcomeBack$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(loginSuccess),
-        tap((action) => {
+  // welcomeBack$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(loginSuccess),
+  //       tap((action) => {
+  //         const token = this.localStorageService.readToken();
+  //         console.log('tokennnn', token);
 
-          this.alertService.showNotification(
-            'Welcome Back ' + JSON.stringify(action) + '!',
-            messageTranslator(MessageType.success)
-          )
-        })
-      ),
-    { dispatch: false }
-  );
+  //       })
+  //     ),
+  //   { dispatch: false }
+  // );
 
   unableToLogin$ = createEffect(
     () =>
