@@ -4,7 +4,6 @@ import { AuthGuard } from '@core/guards';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-
   {
     path: 'users',
     canActivate: [AuthGuard],
@@ -15,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: '',
-  pathMatch: 'full',
+    pathMatch: 'full',
     redirectTo: 'users',
   },
   {
@@ -24,10 +23,14 @@ const routes: Routes = [
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: 'companies',
+    loadChildren: () =>
+      import('./pages/companies/company.module').then((m) => m.CompanyModule),
+  },
+  {
     path: '404',
     component: NotFoundComponent,
   },
-
 ];
 
 /*

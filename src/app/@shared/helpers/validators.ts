@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { HttpResponseMessage } from '@shared/models/http-response-message';
 
 /**
@@ -8,7 +8,7 @@ import { HttpResponseMessage } from '@shared/models/http-response-message';
  */
 export function mailValidator(
   control: AbstractControl
-): { [key: string]: any } | null {
+): ValidationErrors | null {
   const ctonrolValue = control.value || '';
   const mailValidatorRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -17,6 +17,14 @@ export function mailValidator(
     return null;
   }
   return { invalid_format: 'ivalid mail format' };
+}
+
+export function noWhitespaceValidator(
+  control: AbstractControl
+): ValidationErrors | null {
+  const isWhitespace = (control.value || '').trim().length === 0;
+  const isValid = !isWhitespace;
+  return isValid ? null : { required: true };
 }
 
 export function messageTranslator(messageType: number): string {

@@ -7,12 +7,17 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminUser } from '@pages/users-page/models';
 import { UpdateAdminUserRequest } from '@pages/users-page/models/update-admin-user-request';
 import { ConfirmComponent } from '@shared/components/confirm/confirm.component';
-import { mailValidator } from '@shared/helpers';
+import { mailValidator, noWhitespaceValidator } from '@shared/helpers';
 
 @Component({
   selector: 'app-user-details-form',
@@ -22,6 +27,7 @@ import { mailValidator } from '@shared/helpers';
 export class UserDetailsFormComponent implements OnInit, OnChanges {
   public form: FormGroup;
   isInit = false;
+  submitted = false;
 
   @Input() user: AdminUser;
   @Input() adminRoles: any;
@@ -34,37 +40,56 @@ export class UserDetailsFormComponent implements OnInit, OnChanges {
     // username: [this.user ? this.user.username : null, Validators.required],
     // email: [this.user ? this.user.email : null, [Validators.required, mailValidator]],
     this.form = this.fb.group({
-      firstName: [this.user ? this.user.firstName : null, Validators.required],
-      lastName: [this.user ? this.user.lastName : null, Validators.required],
+      firstName: [
+        this.user ? this.user.firstName : null,
+        [Validators.required, noWhitespaceValidator],
+      ],
+      lastName: [
+        this.user ? this.user.lastName : null,
+        [Validators.required, noWhitespaceValidator],
+      ],
       roleID: [this.user ? this.user.roleID : null, Validators.required],
       isActive: [this.user ? this.user.roleID : null, Validators.required],
     });
-    console.log('this.form', this.form.getRawValue());
-    // this.isInit = true;
+  }
+
+  get firstName(): AbstractControl {
+    return this.form.controls.firstName;
+  }
+
+  get lastName(): AbstractControl {
+    return this.form.controls.lastName;
+  }
+
+  get roleID(): AbstractControl {
+    return this.form.controls.roleID;
+  }
+
+  get isActive(): AbstractControl {
+    return this.form.controls.isActive;
   }
 
   //  password: [this.user., Validators.required],
   // confirmPassword: ['', Validators.required],
 
   update() {
+    this.submitted = true;
     const userForm = this.form.getRawValue();
     userForm.id = this.user.id;
     this.submitForm.emit(userForm);
   }
 
-  resetPassword() {
-
-  }
+  resetPassword() {}
 
   openDialog() {
     const dialogRef = this.dialog.open(ConfirmComponent, {
       data: {
         title: 'title 1',
-        qustion: 'are you sure?'
-      }
+        qustion: 'are you sure?',
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }

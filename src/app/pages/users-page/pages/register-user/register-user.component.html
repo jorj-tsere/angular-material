@@ -15,6 +15,13 @@
           type="text"
           formControlName="firstName"
         />
+
+        <mat-error
+          class="form__error-description"
+          *ngIf="(firstName.touched || submitted) && firstName.errors?.required"
+        >
+          First Name Is Required
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="form__input">
         <input
@@ -23,8 +30,11 @@
           type="text"
           formControlName="lastName"
         />
-        <mat-error *ngIf="lastName.invalid">
-          required
+        <mat-error
+          class="form__error-description"
+          *ngIf="(lastName.touched || submitted) && lastName.errors?.required"
+        >
+          Last Name Is Required
         </mat-error>
       </mat-form-field>
 
@@ -35,15 +45,31 @@
           type="email"
           formControlName="email"
         />
+        <mat-error
+          class="form__error-description"
+          *ngIf="(email.touched || submitted) && email.errors?.required"
+        >
+          Email Is Required
+        </mat-error>
+        <mat-error
+          class="form__error-description"
+          *ngIf="
+            (email.touched || submitted) &&
+            !email.errors.required &&
+            email.errors.invalid_format
+          "
+        >
+          Ivalid Mail Format
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="form__input">
-        <input
-          matInput
-          placeholder="roleID"
-          type="text"
-          formControlName="roleID"
-        />
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="roleID">
+          <mat-option *ngFor="let role of adminRoles$ | async" [value]="role.id">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <div class="form-actions">

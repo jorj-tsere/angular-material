@@ -24,6 +24,14 @@ export const selectAdminRoles = createSelector(
   (state: State): AdminRole[] => state.adminRoles
 );
 
+export const isAdminRolesExists = createSelector(
+  selectLookupState,
+  (state: State): boolean => {
+    return state.adminRoles && state.adminRoles.length ? true : false;
+  }
+);
+
+
 
 export const getCount = createSelector(
   selectLookupState,

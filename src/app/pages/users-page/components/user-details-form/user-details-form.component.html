@@ -12,6 +12,12 @@
       type="text"
       formControlName="firstName"
     />
+    <mat-error
+      class="form__error-description"
+      *ngIf="(firstName.touched || submitted) && firstName.errors?.required"
+    >
+      First Name Is Required
+    </mat-error>
   </mat-form-field>
   <mat-form-field class="form__input">
     <input
@@ -20,6 +26,12 @@
       type="text"
       formControlName="lastName"
     />
+    <mat-error
+      class="form__error-description"
+      *ngIf="(lastName.touched || submitted) && lastName.errors?.required"
+    >
+      Last Name Is Required
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="form__input">
@@ -45,6 +57,12 @@
         >{{ userStatusObject.title }}</mat-option
       >
     </mat-select>
+    <mat-error
+      class="form__error-description"
+      *ngIf="(isActive.touched || submitted) && isActive.errors?.required"
+    >
+      Required
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="form__input">
@@ -54,6 +72,12 @@
         role.name
       }}</mat-option>
     </mat-select>
+    <mat-error
+      class="form__error-description"
+      *ngIf="(roleID.touched || submitted) && roleID.errors?.required"
+    >
+      Required
+    </mat-error>
   </mat-form-field>
 
   <!-- <mat-form-field class="form__input">

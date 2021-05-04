@@ -12,6 +12,7 @@ import * as fromAuth from './reducers/auth.reducer';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromLookup from './reducers/lookup.reducer';
 import * as fromUsersPage from '../pages/users-page/state/reducers/users-page.reducer';
+import * as fromCompany from '../pages/companies/state/company.reducer';
 
 export interface AppState {
   [fromCustomerSupport.customerSupportFeatureKey]: fromCustomerSupport.State;
@@ -20,6 +21,8 @@ export interface AppState {
   [fromShared.sharedFeatureKey]: fromShared.State;
   [fromLookup.lookupFeatureKey]: fromLookup.State;
   [fromUsersPage.usersPagesFeatureKey]: fromUsersPage.State;
+  [fromCompany.companiesFeatureKey]: fromCompany.State;
+
 
 }
 
@@ -30,6 +33,7 @@ export const reducers: ActionReducerMap<AppState> = {
   [fromShared.sharedFeatureKey]: fromShared.reducer,
   [fromLookup.lookupFeatureKey]: fromLookup.reducer,
   [fromUsersPage.usersPagesFeatureKey]: fromUsersPage.reducer,
+  [fromCompany.companiesFeatureKey]: fromCompany.reducer,
 };
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production

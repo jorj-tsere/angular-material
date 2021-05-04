@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
 import { loadAdminRoles } from '@store/actions/lookup.actions';
 import {
+  isAdminRolesExists,
   selectAdminRoles,
   selectLookupViewModel,
 } from '@store/selectors/lookup.selectors';
@@ -35,6 +36,7 @@ export class UserDetailsComponent implements OnInit {
   userId: string;
   isUserInStore$: Observable<boolean>;
   adminRoles$: Observable<any[]>;
+  isAdminRolesExists$: Observable<boolean>;
 
   constructor(
     private location: Location,
@@ -55,8 +57,15 @@ export class UserDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadAdminRoles());
-    this.adminRoles$ = this.store.pipe(select(selectAdminRoles));
+    this.isAdminRolesExists$ = this.store.pipe(select(isAdminRolesExists));
+    this.adminRoles$ = this.isAdminRolesExists$.pipe(
+      mergeMap((isListInSotre) => {
+        if (!isListInSotre) {
+          this.store.dispatch(loadAdminRoles());
+        }
+        return this.store.pipe(select(selectAdminRoles));
+      })
+    );
 
     this.userId = this.route.snapshot.paramMap.get('id');
 

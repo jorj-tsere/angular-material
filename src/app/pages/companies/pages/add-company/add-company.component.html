@@ -1,0 +1,179 @@
+<mat-toolbar class="page-header" role="heading">
+  <button mat-raised-button (click)="navigate_back()">
+    <mat-icon>arrow_back</mat-icon> back
+  </button>
+  <h1>Create New User</h1>
+</mat-toolbar>
+
+<mat-card class="admin-user--register-form-card">
+  <mat-card-content>
+    <form class="form" [formGroup]="form" (ngSubmit)="register()">
+      <mat-form-field class="form__input">
+        <input
+          matInput
+          placeholder="Company Name"
+          type="text"
+          formControlName="name"
+        />
+
+        <mat-error
+          class="form__error-description"
+          *ngIf="(name.touched || submitted) && name.errors?.required"
+        >
+          Company Name Is Required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form__input">
+        <input matInput placeholder="user" type="text" formControlName="user" />
+        <mat-error
+          class="form__error-description"
+          *ngIf="(user.touched || submitted) && user.errors?.required"
+        >
+          Last Name Is Required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+
+      <mat-list>
+        <mat-list-item> <mat-icon>business</mat-icon> Branches </mat-list-item>
+      </mat-list>
+
+      <button mat-raised-button type="button" (click)="addNewBranch()">
+        <mat-icon>add</mat-icon> add branch
+      </button>
+
+      <div formArrayName="branches">
+        <div *ngFor="let branch of companyBranches.controls; let i = index">
+          <button mat-raised-button (click)="deleteBranch(i)">
+            Delete Branch {{ i + 1 }}
+          </button>
+          <div [formGroupName]="i">
+            <mat-form-field class="form__input">
+              <input
+                matInput
+                placeholder="Branch Name"
+                type="text"
+                formControlName="branchName"
+              />
+              <!-- <mat-error
+              class="form__error-description"
+              *ngIf="
+                (branch.branchName.touched || submitted) &&
+                branch.branchName.errors?.required
+              "
+            >
+              branchName Is Required
+            </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class="form__input">
+              <mat-label>Country</mat-label>
+              <mat-select formControlName="countryID">
+                <!-- <mat-option *ngFor="let role of adminRoles$ | async" [value]="role.id">
+                {{ role.name }}
+              </mat-option> -->
+                <mat-option value="1">Option 1</mat-option>
+                <mat-option value="2">Option 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__input">
+              <mat-label>State</mat-label>
+              <mat-select formControlName="stateID">
+                <!-- <mat-option *ngFor="let role of adminRoles$ | async" [value]="role.id">
+                {{ role.name }}
+              </mat-option> -->
+                <mat-option value="1">Option 1</mat-option>
+                <mat-option value="2">Option 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__input">
+              <mat-label>city</mat-label>
+              <mat-select formControlName="cityID">
+                <!-- <mat-option *ngFor="let role of adminRoles$ | async" [value]="role.id">
+                {{ role.name }}
+              </mat-option> -->
+                <mat-option value="1">Option 1</mat-option>
+                <mat-option value="2">Option 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="form__input">
+              <input
+                matInput
+                placeholder="Address Line 1"
+                type="text"
+                formControlName="addressLine"
+              />
+              <!-- <mat-error
+                class="form__error-description"
+                *ngIf="(user.touched || submitted) && user.errors?.required"
+              >
+                Last Name Is Required
+              </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class="form__input">
+              <input
+                matInput
+                placeholder="Address Line 2"
+                type="text"
+                formControlName="addressLineTwo"
+              />
+              <!-- <mat-error
+                class="form__error-description"
+                *ngIf="(user.touched || submitted) && user.errors?.required"
+              >
+                Last Name Is Required
+              </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class="form__input">
+              <input
+                matInput
+                placeholder="Zip Code"
+                type="text"
+                formControlName="zipCode"
+              />
+              <!-- <mat-error
+                class="form__error-description"
+                *ngIf="(user.touched || submitted) && user.errors?.required"
+              >
+                Last Name Is Required
+              </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class="form__input">
+              <mat-label>Phone Index</mat-label>
+              <mat-select formControlName="phoneIndex">
+                <!-- <mat-option *ngFor="let role of adminRoles$ | async" [value]="role.id">
+                {{ role.name }}
+              </mat-option> -->
+                <mat-option value="1">Option 1</mat-option>
+                <mat-option value="2">Option 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__input">
+              <mat-label>Phone Number</mat-label>
+              <mat-select formControlName="phoneNumber">
+                <!-- <mat-option *ngFor="let role of adminRoles$ | async" [value]="role.id">
+                {{ role.name }}
+              </mat-option> -->
+                <mat-option value="1">Option 1</mat-option>
+                <mat-option value="2">Option 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button
+          class="form-actions__create"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Create company account
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
