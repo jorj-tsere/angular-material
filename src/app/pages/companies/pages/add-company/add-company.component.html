@@ -43,11 +43,11 @@
       <button mat-raised-button type="button" (click)="addNewBranch()">
         <mat-icon>add</mat-icon> add branch
       </button>
-
-      <div formArrayName="branches">
-        <div *ngFor="let branch of companyBranches.controls; let i = index">
-          <button mat-raised-button (click)="deleteBranch(i)">
-            Delete Branch {{ i + 1 }}
+      <br/><br/><br/>
+      <div formArrayName="branches" class="form__branches">
+        <div *ngFor="let branch of companyBranches.controls; let i = index" class="form__branch-item">
+          <button mat-fab  color="warn"  (click)="deleteBranch(i)" aria-label="delete branch">
+            <mat-icon>delete_outline</mat-icon>
           </button>
           <div [formGroupName]="i">
             <mat-form-field class="form__input">
@@ -161,6 +161,7 @@
               </mat-select>
             </mat-form-field>
           </div>
+          <mat-divider *ngIf="(i+1) < companyBranches.controls.length"></mat-divider>
         </div>
       </div>
 

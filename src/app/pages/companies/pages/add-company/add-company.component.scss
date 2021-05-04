@@ -1,7 +1,7 @@
 @import 'colors';
 @import 'fonts';
 .admin-user--register-form-card {
-  width: 500px;
+  width: 600px;
 }
 
 .form {
@@ -15,6 +15,15 @@
   &__error-description {
     line-height: 1.4;
     font-size: $fs-small - 1;
+  }
+  &__branches {
+    padding-left: 15px;
+  }
+  &__divider {
+    padding: 10px 0;
+  }
+  &__branch-item {
+    margin: 15px 0;
   }
 }
 

@@ -6,7 +6,7 @@
   Add Company <mat-icon>add</mat-icon>
 </button>
 
-<p>{{ vm$ | async | json }}</p>
+<!-- <p>{{ vm$ | async | json }}</p> -->
 
 <div *ngIf="vm$ | async as companyList">
   <app-company-list-table [companies]="companyList"></app-company-list-table>

@@ -11,8 +11,6 @@ import {
   IRegisterRequest,
 } from '../pages/users-page/models';
 
-const userApiEndPint = '/api/user';
-
 @Injectable({
   providedIn: 'root',
 })
