@@ -1,6 +1,11 @@
 import { AbstractControl } from '@angular/forms';
 import { HttpResponseMessage } from '@shared/models/http-response-message';
 
+/**
+ *
+ * @param {AbstractControl} control
+ * @returns {object || null} returns invalid object key or null if valid
+ */
 export function mailValidator(
   control: AbstractControl
 ): { [key: string]: any } | null {
