@@ -2,12 +2,15 @@
   <h1>Companies</h1>
 </mat-toolbar>
 
-
 <button mat-raised-button [routerLink]="['../register/']">
-  Add Company  <mat-icon>add</mat-icon>
+  Add Company <mat-icon>add</mat-icon>
 </button>
 
-<!-- <p>{{  vm$ | async | json  }}</p> -->
+<p>{{ vm$ | async | json }}</p>
+
+<div *ngIf="vm$ | async as companyList">
+  <app-company-list-table [companies]="companyList"></app-company-list-table>
+</div>
 <!--
 <div class="tables-wrapper" *ngIf="vm$ | async as users">
   <br />
@@ -16,4 +19,4 @@
   </button>
   <br />
 </div> -->
-  <!-- <app-employee-table [employeeTableData]="users"></app-employee-table> -->
+<!-- <app-employee-table [employeeTableData]="users"></app-employee-table> -->

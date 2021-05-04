@@ -58,11 +58,8 @@ export const reducer = createReducer(
       error: action.error,
     };
   }),
-  on(UsersPageActions.UpdateUserSuccess, (state, action: any) =>
-    adapter.updateOne(
-      { id: action.payload.id, changes: action.payload.changes },
-      state
-    )
+  on(UsersPageActions.UpdateUserSuccess, (state, { update }: any) =>
+    adapter.updateOne(update, state)
   )
 
   // on(UsersPageActions.,

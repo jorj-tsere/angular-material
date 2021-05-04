@@ -6,50 +6,61 @@ import * as CompanyActions from './company.actions';
 export const companiesFeatureKey = 'companies';
 
 export interface State extends EntityState<Company> {
-  // additional entities state properties
+  loading: boolean;
+  error: any;
+  selectedCompanyID: number;
 }
 
 export const adapter: EntityAdapter<Company> = createEntityAdapter<Company>();
 
 export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
+  loading: null,
+  error: null,
+  selectedCompanyID: null,
 });
-
 
 export const reducer = createReducer(
   initialState,
-  on(CompanyActions.addCompany,
-    (state, action) => adapter.addOne(action.company, state)
+  on(CompanyActions.loadCompaniesSuccess, (state, action) =>
+    adapter.setAll(action.companies, state)
   ),
-  on(CompanyActions.upsertCompany,
-    (state, action) => adapter.upsertOne(action.company, state)
-  ),
-  on(CompanyActions.addCompanys,
-    (state, action) => adapter.addMany(action.companys, state)
-  ),
-  on(CompanyActions.upsertCompanys,
-    (state, action) => adapter.upsertMany(action.companys, state)
-  ),
-  on(CompanyActions.updateCompany,
-    (state, action) => adapter.updateOne(action.company, state)
-  ),
-  on(CompanyActions.updateCompanys,
-    (state, action) => adapter.updateMany(action.companys, state)
-  ),
-  on(CompanyActions.deleteCompany,
-    (state, action) => adapter.removeOne(action.id, state)
-  ),
-  on(CompanyActions.deleteCompanys,
-    (state, action) => adapter.removeMany(action.ids, state)
-  ),
-  on(CompanyActions.loadCompanys,
-    (state, action) => adapter.setAll(action.companys, state)
-  ),
-  on(CompanyActions.clearCompanys,
-    state => adapter.removeAll(state)
-  ),
+  on(CompanyActions.loadCompaniesFailure, (state, action) => {
+    return {
+      ...state,
+      error: action.error,
+      loading: false,
+    };
+  }),
+  on(CompanyActions.loadCompanies, (state, action) => {
+    return {
+      ...state,
+      loading: true,
+    };
+  })
 );
+//   on(CompanyActions.upsertCompany, (state, action) =>
+//     adapter.upsertOne(action.company, state)
+//   ),
 
+//   on(CompanyActions.upsertCompanys, (state, action) =>
+//     adapter.upsertMany(action.companys, state)
+//   ),
+//   on(CompanyActions.updateCompany, (state, action) =>
+//     adapter.updateOne(action.company, state)
+//   ),
+//   on(CompanyActions.updateCompanys, (state, action) =>
+//     adapter.updateMany(action.companys, state)
+//   ),
+//   on(CompanyActions.deleteCompany, (state, action) =>
+//     adapter.removeOne(action.id, state)
+//   ),
+//   on(CompanyActions.deleteCompanys, (state, action) =>
+//     adapter.removeMany(action.ids, state)
+//   ),
+//   on(CompanyActions.loadCompanys, (state, action) =>
+//     adapter.setAll(action.companys, state)
+//   ),
+//   on(CompanyActions.clearCompanys, (state) => adapter.removeAll(state))
 
 export const {
   selectIds,

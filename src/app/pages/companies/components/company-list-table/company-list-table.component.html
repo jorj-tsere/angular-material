@@ -1,0 +1,175 @@
+<mat-card class="companies-table">
+  <mat-card-title class="companies-table__header">
+    <!-- <p *ngIf="!isShowFilterInput" class="companies-table__title">
+      Employee List
+    </p> -->
+    <div *ngIf="isShowFilterInput" class="companies-table__search">
+      <div class="companies-table__icon-wrapper">
+        <mat-icon class="companies-table__icon">search</mat-icon>
+      </div>
+      <input
+        matInput
+        class="companies-table__search-input"
+        (keyup)="applyFilter($event)"
+      />
+      <button
+        class="companies-table__button"
+        mat-mini-fab
+        (click)="showFilterInput()"
+      >
+        <mat-icon class="companies-table__icon">close</mat-icon>
+      </button>
+    </div>
+    <button
+      class="companies-table__button"
+      mat-mini-fab
+      (click)="showFilterInput()"
+    >
+      <mat-icon class="companies-table__icon">search</mat-icon>
+    </button>
+  </mat-card-title>
+    <mat-card-content class="companies-table__content">
+      <table class="companies-table__table" mat-table [dataSource]="dataSource">
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th
+            class="companies-table__table-checkbox"
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            <mat-checkbox
+              color="primary"
+              (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected"
+              [indeterminate]="selection.hasValue() && !isAllSelected"
+              [aria-label]="checkboxLabel()"
+            >
+            </mat-checkbox>
+          </th>
+          <td
+            class="companies-table__table-checkbox"
+            mat-cell
+            *matCellDef="let row"
+          >
+            <mat-checkbox
+              color="primary"
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+              [aria-label]="checkboxLabel(row)"
+            >
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- name Column -->
+        <ng-container matColumnDef="name">
+          <th
+            class="companies-table__table-header"
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            company Name
+          </th>
+          <td
+            class="companies-table__table-body"
+            mat-cell
+            *matCellDef="let element"
+          >
+            {{ element.name }}
+          </td>
+        </ng-container>
+
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+          <th
+            class="companies-table__table-header"
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            status
+          </th>
+          <td
+            class="companies-table__table-body"
+            mat-cell
+            *matCellDef="let element"
+          >
+            {{ element.status }}
+          </td>
+        </ng-container>
+
+        <!-- country Column -->
+        <ng-container matColumnDef="country">
+          <th
+            class="companies-table__table-header"
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            country
+          </th>
+          <td
+            class="companies-table__table-body"
+            mat-cell
+            *matCellDef="let element"
+          >
+            {{ element.country }}
+          </td>
+        </ng-container>
+        <!-- registration date Column -->
+        <ng-container matColumnDef="registrationDate">
+          <th
+            class="companies-table__table-header"
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            registration date
+          </th>
+          <td
+            class="companies-table__table-body"
+            mat-cell
+            *matCellDef="let element"
+          >
+            {{ element.registration_date | date }}
+          </td>
+        </ng-container>
+
+        <!-- registration date Column -->
+        <ng-container matColumnDef="actions">
+          <th
+            class="companies-table__table-header"
+            mat-header-cell
+            *matHeaderCellDef
+          >
+            actions
+          </th>
+          <td
+            class="companies-table__table-body"
+            mat-cell
+            *matCellDef="let element"
+          >
+            <a
+              mat-icon-button
+              color="primary"
+              aria-label="edit employee"
+              [routerLink]="['../edit/', element.id]"
+            >
+              <mat-icon>edit</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card-content>
+  <div class="pagination">
+    <mat-paginator
+      [pageSizeOptions]="[10, 15, 100]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</mat-card>
+<!--
+<div>
+  selection = {{ selection |  json }}
+</div> -->

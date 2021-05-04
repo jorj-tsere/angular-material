@@ -7,7 +7,11 @@ import { UpdateAdminUserRequest } from '@pages/users-page/models/update-admin-us
 import { UsersService } from 'app/services';
 import { of } from 'rxjs';
 import { map, catchError, mergeMap } from 'rxjs/operators';
-import { registerFailure, registerPage, registerSuccess } from '../actions/register.actions';
+import {
+  registerFailure,
+  registerPage,
+  registerSuccess,
+} from '../actions/register.actions';
 import * as fromUsersPage from '../actions/users-page.actions';
 
 @Injectable()
@@ -55,11 +59,11 @@ export class UsersPageEffects {
           })
           .pipe(
             map((response) => {
-              const payload: Update<UpdateAdminUserRequest> = {
+              const update: Update<UpdateAdminUserRequest> = {
                 id: +action.user.id,
                 changes: action.user.changes,
               };
-              return fromUsersPage.UpdateUserSuccess({ payload });
+              return fromUsersPage.UpdateUserSuccess({ update });
             }),
             catchError((error: any) =>
               of(fromUsersPage.UpdateUserFailure({ error }))
@@ -69,23 +73,17 @@ export class UsersPageEffects {
     );
   });
 
-
   registerUSer$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(registerPage),
       mergeMap((action) =>
         this.userService.createAdminUser(action.registerRequestPayload).pipe(
-          map((response) =>
-          registerSuccess({ registerResponse: response })
-          ),
-          catchError((error: Error) =>
-            of(registerFailure({ error }))
-          )
+          map((response) => registerSuccess({ registerResponse: response })),
+          catchError((error: Error) => of(registerFailure({ error })))
         )
       )
     );
   });
-
 
   constructor(private actions$: Actions, private userService: UsersService) {}
 }

@@ -45,7 +45,7 @@ export const UpdateUser = createAction(
 
 export const UpdateUserSuccess = createAction(
   '[User-Details-Page || Effect] Update User Details Success',
-  props<{ payload: Update<UpdateAdminUserRequest> }>()
+  props<{ update: Update<UpdateAdminUserRequest> }>()
 );
 
 export const UpdateUserFailure = createAction(
