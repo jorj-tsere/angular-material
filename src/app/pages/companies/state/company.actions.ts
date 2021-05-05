@@ -2,7 +2,12 @@ import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
 import { Company } from './company.model';
-
+import { AddCompanyRequest } from '../models';
+/**
+ * *************************************************************
+ * LOAD COMPANIES ACTIONS
+ * *************************************************************
+ */
 export const loadCompanies = createAction(
   '[Company list component] Load Companies',
   props<{ url: string }>()
@@ -15,6 +20,27 @@ export const loadCompaniesSuccess = createAction(
 
 export const loadCompaniesFailure = createAction(
   '[Company effect] load Companies Failure',
+  props<{ error: any }>()
+);
+
+/**
+ * *************************************************************
+ * CREATE NEW COMPANY ACTIONS
+ * *************************************************************
+ */
+
+ export const addCompany = createAction(
+  '[Company add component] Add Company',
+  props<{ payload: AddCompanyRequest }>()
+);
+
+export const addCompanySuccess = createAction(
+  '[Company add Effect] Add Company Success',
+  props<{ data: any }>()
+);
+
+export const addCompanyFailure = createAction(
+  '[Company add Effect] Add Company Failure',
   props<{ error: any }>()
 );
 

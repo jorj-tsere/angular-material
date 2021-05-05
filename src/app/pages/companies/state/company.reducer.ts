@@ -22,7 +22,10 @@ export const initialState: State = adapter.getInitialState({
 export const reducer = createReducer(
   initialState,
   on(CompanyActions.loadCompaniesSuccess, (state, action) =>
-    adapter.setAll(action.companies, state)
+    adapter.setAll(action.companies, {
+      ...state,
+      loading: false
+    })
   ),
   on(CompanyActions.loadCompaniesFailure, (state, action) => {
     return {
@@ -36,6 +39,26 @@ export const reducer = createReducer(
       ...state,
       loading: true,
     };
+  }),
+
+  on(CompanyActions.addCompany, (state, action: any) => {
+    return {
+      ...state,
+      loading: true,
+    }
+  }),
+  on(CompanyActions.addCompanySuccess, (state, action: any) => {
+    return adapter.addOne(action.payload.branch, {
+      ...state,
+      loading: true
+    });
+  }),
+  on(CompanyActions.addCompanyFailure, (state, action: any) => {
+    return {
+      ...state,
+      error: action.error,
+      loading: true
+    }
   })
 );
 //   on(CompanyActions.upsertCompany, (state, action) =>

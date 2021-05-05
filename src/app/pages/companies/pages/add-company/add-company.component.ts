@@ -4,13 +4,15 @@ import {
   AbstractControl,
   FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { noWhitespaceValidator, mailValidator } from '@shared/helpers';
 import { AppState } from '@store-barrel';
-
+import { addCompany } from '@pages/companies/state/company.actions';
+import { AddCompanyRequest } from '@pages/companies/models';
 @Component({
   selector: 'app-add-company',
   templateUrl: './add-company.component.html',
@@ -28,7 +30,7 @@ export class AddCompanyComponent implements OnInit {
     this.initializeForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   initializeForm(): void {
     this.form = this.fb.group({
@@ -45,7 +47,7 @@ export class AddCompanyComponent implements OnInit {
 
   addNewBranch() {
     const newBranch = this.fb.group({
-      branchName: [null, [Validators.required, noWhitespaceValidator]],
+      name: [null, [Validators.required, noWhitespaceValidator]],
       countryID: [null, [Validators.required]],
       stateID: [null, [Validators.required]],
       cityID: [null, [Validators.required]],
@@ -77,11 +79,9 @@ export class AddCompanyComponent implements OnInit {
   register(): void {
     this.submitted = true;
     console.log(this.form.getRawValue());
-    // if (this.form.valid) {
-    //   const registerRequestPayload = this.form.getRawValue();
-    //   this.store.dispatch(
-    //     fromRegisterActions.registerPage({ registerRequestPayload })
-    //   );
-    // }
+    if (this.form.valid) {
+      const payload: AddCompanyRequest = this.form.getRawValue();
+      this.store.dispatch(addCompany({ payload }))
+    }
   }
 }
