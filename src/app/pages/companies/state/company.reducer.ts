@@ -5,7 +5,7 @@ import * as CompanyActions from './company.actions';
 
 export const companiesFeatureKey = 'companies';
 
-export interface State extends EntityState<Company> {
+export interface CompanyState extends EntityState<Company> {
   loading: boolean;
   error: any;
   selectedCompanyID: number;
@@ -13,7 +13,7 @@ export interface State extends EntityState<Company> {
 
 export const adapter: EntityAdapter<Company> = createEntityAdapter<Company>();
 
-export const initialState: State = adapter.getInitialState({
+export const initialState: CompanyState = adapter.getInitialState({
   loading: null,
   error: null,
   selectedCompanyID: null,

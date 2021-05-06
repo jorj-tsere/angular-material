@@ -3,12 +3,12 @@ import { sharedUpdateSettings } from '@store/actions/shared.actions';
 
 export const sharedFeatureKey = 'shared';
 
-export interface State {
+export interface SharedState {
   title: string;
   isShowSidebar: boolean;
 }
 
-export const initialState: State = {
+export const initialState: SharedState = {
   title: null,
   isShowSidebar: null
 };

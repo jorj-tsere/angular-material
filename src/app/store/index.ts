@@ -18,10 +18,10 @@ export interface AppState {
   [fromCustomerSupport.customerSupportFeatureKey]: fromCustomerSupport.State;
   [fromAuth.authFeatureKey]: fromAuth.State;
   router: fromRouter.RouterReducerState;
-  [fromShared.sharedFeatureKey]: fromShared.State;
-  [fromLookup.lookupFeatureKey]: fromLookup.State;
-  [fromUsersPage.usersPagesFeatureKey]: fromUsersPage.State;
-  [fromCompany.companiesFeatureKey]: fromCompany.State;
+  [fromShared.sharedFeatureKey]: fromShared.SharedState;
+  [fromLookup.lookupFeatureKey]: fromLookup.LookupState;
+  [fromUsersPage.usersPagesFeatureKey]: fromUsersPage.UsersState;
+  [fromCompany.companiesFeatureKey]: fromCompany.CompanyState;
 
 
 }

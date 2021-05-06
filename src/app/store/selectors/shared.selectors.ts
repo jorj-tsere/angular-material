@@ -1,13 +1,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { sharedFeatureKey, State } from '@store/reducers/shared.reducers';
+import * as SharedReducer  from '@store/reducers/shared.reducers';
 
 
-export const selectSharedFeature = createFeatureSelector<State>(
-  sharedFeatureKey
+export const selectSharedFeature = createFeatureSelector<SharedReducer.SharedState>(
+  SharedReducer.sharedFeatureKey
 );
 
 // Return title from feature
 export const selectTitle = createSelector(
   selectSharedFeature,
-  (state: State) => state.title
+  (state: SharedReducer.SharedState) => state.title
 );

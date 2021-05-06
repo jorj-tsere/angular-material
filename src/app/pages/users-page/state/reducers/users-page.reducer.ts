@@ -12,7 +12,7 @@ import { UpdateAdminUserRequest } from '@pages/users-page/models/update-admin-us
 
 export const usersPagesFeatureKey = 'usersPages';
 
-export interface State extends EntityState<AdminUser> {
+export interface UsersState extends EntityState<AdminUser> {
   selectedUserId: number;
   loading: boolean;
   error: any;
@@ -29,7 +29,7 @@ export interface State extends EntityState<AdminUser> {
 
 export const adapter: EntityAdapter<AdminUser> = createEntityAdapter<AdminUser>();
 
-export const initialState: State = adapter.getInitialState({
+export const initialState: UsersState = adapter.getInitialState({
   selectedUserId: null,
   loading: null,
   error: null,

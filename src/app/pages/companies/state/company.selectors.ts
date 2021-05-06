@@ -5,7 +5,7 @@ import * as fromCompany from '@pages/companies/state/company.reducer';
 import { AdminUser } from '@pages/users-page/models';
 import { Company } from './company.model';
 
-export const selectCompaniesState = createFeatureSelector<fromCompany.State>(
+export const selectCompaniesState = createFeatureSelector<fromCompany.CompanyState>(
   fromCompany.companiesFeatureKey
 );
 

@@ -3,11 +3,11 @@ import * as LookupActions from '../actions/lookup.actions';
 
 export const lookupFeatureKey = 'lookup';
 
-export interface State {
+export interface LookupState {
   adminRoles: any[]
 }
 
-export const initialState: State = {
+export const initialState: LookupState = {
   adminRoles: null
 };
 

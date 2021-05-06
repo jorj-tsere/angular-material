@@ -3,7 +3,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AdminUser } from '@pages/users-page/models';
 import * as fromUsersPage from '@pages/users-page/state/reducers/users-page.reducer';
 
-export const selectUsersPageState = createFeatureSelector<fromUsersPage.State>(
+export const selectUsersPageState = createFeatureSelector<fromUsersPage.UsersState>(
   fromUsersPage.usersPagesFeatureKey
 );
 
