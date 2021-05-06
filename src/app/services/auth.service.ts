@@ -25,7 +25,7 @@ export class AuthService {
   login(credentials: IAuthRequest): Observable<ICredentials> {
     // return this.getUser();
 
-    console.log('credentials', credentials);
+    // console.log('credentials', credentials);
     return this.http.post<ICredentials>(
       environment.baseUrl + '/api/auth/getAccessToken',
       credentials
@@ -45,9 +45,9 @@ export class AuthService {
 
   validateAcceessToken(): Observable<IValidateAccessTokenResponse> {
     const mlToken = this.localStorageService.getObject('ml_token') as any;
-    console.log('accessToken', mlToken)
+    // console.log('accessToken', mlToken)
     const queryString = buildQueryString({ accessToken: mlToken.accessToken });
-    console.log('queryString', queryString)
+    // console.log('queryString', queryString)
     return this.http.get<IValidateAccessTokenResponse>(
       `${environment.baseUrl}/api/auth/validateAccessToken?${queryString}}`
     );

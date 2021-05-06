@@ -28,7 +28,7 @@ export class AppEffects {
     () =>
       this.actions$.pipe(
         ofType(loginSuccess),
-        tap((action) => {
+        tap((action: any) => {
           try {
             this.localStorageService.setObjectItem('ml_token', action.response);
             const authorizedUser = this.localStorageService.readToken();

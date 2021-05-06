@@ -1,8 +1,11 @@
 export interface IUser {
-  id: number;
-  username: string;
-  email: string;
-  is_admin: boolean;
+  exp: number
+  firstName: string
+  iat: number
+  jti: number
+  lastName: string
+  roleID: string
+  userID: string
 }
 
 

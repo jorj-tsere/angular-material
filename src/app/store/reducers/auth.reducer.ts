@@ -8,56 +8,38 @@ export const authFeatureKey = 'auth';
 export interface State {
   user: IUser;
   error: any;
+  loading: boolean;
 }
 
 export const initialState: State = {
-  user: {
-    id: null,
-    username: null,
-    email: null,
-    is_admin: null,
-  },
+  user: null,
   error: null,
+  loading: null,
 };
 
 export const reducer = createReducer(
   initialState,
 
   on(loginSuccess, browserReload, (state, action) => {
-    const userTest = {
-      id: 45,
-      username: 'jorj',
-      email: 'jorj.tsere@gmail.com',
-      is_admin: true,
-    };
-
     return {
       ...state,
-      user: userTest,
+      user: action.loggedUser,
       error: null,
+      loading: false
     };
   }),
   on(loginFailure, (state, action) => {
     return {
       ...state,
-      user: {
-        id: null,
-        username: null,
-        email: null,
-        is_admin: null,
-      },
+      user: null,
       error: action.error,
     };
   }),
   on(logoutSuccess, (state, action) => {
     return {
       ...state,
-      user: {
-        id: null,
-        username: null,
-        email: null,
-        is_admin: null,
-      },
+      user: null,
+      loading: false,
       error: null,
     };
   })

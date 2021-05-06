@@ -9,7 +9,7 @@ export const loginPage = createAction(
 
 export const loginSuccess = createAction(
   '[Auth Effect] Login User Success',
-  props<{ response: any }>()
+  props<{ loggedUser: IUser }>()
 );
 
 export const loginFailure = createAction(
@@ -31,5 +31,5 @@ export const logoutFailure = createAction(
 
 export const browserReload = createAction(
   '[Core Component] Browser Reload',
-  props<{ user: IUser }>()
+  props<{ loggedUser: IUser }>()
 );

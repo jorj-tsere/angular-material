@@ -6,17 +6,18 @@ export const selectAuthState = createFeatureSelector<fromAuth.State>(
   fromAuth.authFeatureKey
 );
 
-export const selectIsLoggedIn = createSelector(
+export const isLogged = createSelector(
   selectAuthState,
-  (state: fromAuth.State): boolean => state.user.id != null
+  (state: fromAuth.State): boolean => state.user != null
 );
+
 
 export const selectAuthLinksViewModel = createSelector(
   selectAuthState,
-  selectIsLoggedIn,
+  isLogged,
   (state: fromAuth.State, isLoggedIn: boolean): IAuthLinksViewModel => {
     return {
-      isAdmin: state.user.is_admin,
+      isAdmin: +state.user.roleID === 1,
       isLoggedin: isLoggedIn,
     };
   }
@@ -24,13 +25,6 @@ export const selectAuthLinksViewModel = createSelector(
 
 export const selectLoggedUser = createSelector(
   selectAuthState,
-  selectIsLoggedIn,
-  (state: fromAuth.State, isLoggedIn: boolean): IUser => {
-    return {
-      id: state.user.id,
-      username: state.user.username,
-      email: state.user.email,
-      is_admin: state.user.is_admin,
-    };
-  }
+  isLogged,
+  (state: fromAuth.State, isLoggedIn: boolean): IUser => state.user
 );

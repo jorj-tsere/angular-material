@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const user: IUser = this.localStorageService.readToken();
     if (user) {
-      this.store.dispatch(browserReload({ user }));
+      this.store.dispatch(browserReload({ loggedUser: user }));
     }
   }
   constructor(

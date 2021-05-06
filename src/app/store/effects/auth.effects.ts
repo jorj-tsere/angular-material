@@ -4,7 +4,7 @@ import { catchError, map, concatMap, throttleTime } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
-import { ICredentials } from '@pages/auth/models';
+import { ICredentials, IUser } from '@pages/auth/models';
 import {
   loginPage,
   loginSuccess,
@@ -13,6 +13,7 @@ import {
   logoutSuccess,
   logoutFailure,
 } from '@store/actions/auth.actions';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthEffects {
@@ -22,7 +23,8 @@ export class AuthEffects {
       concatMap((action) =>
         this.authService.login(action.credentials).pipe(
           map((response: ICredentials) => {
-            return loginSuccess({ response });
+            const loggedUser: IUser = this.jwtHelper.decodeToken(response.accessToken);
+            return loginSuccess({ loggedUser });
           }),
           catchError((error: any) => {
             return of(loginFailure({ error }));
@@ -48,5 +50,5 @@ export class AuthEffects {
     );
   });
 
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(private actions$: Actions, public jwtHelper: JwtHelperService, private authService: AuthService) {}
 }
