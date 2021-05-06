@@ -4,7 +4,7 @@
   </button>
   <h1>Create New User</h1>
 </mat-toolbar>
-
+<!-- {{ ids$ | async | json }} -->
 <mat-card class="admin-user--register-form-card">
   <mat-card-content>
     <form class="form" [formGroup]="form" (ngSubmit)="register()">
@@ -16,9 +16,8 @@
       </mat-form-field>
       <mat-form-field class="form__input">
         <mat-label>user</mat-label>
-        <mat-select formControlName="user">
-          <mat-option value="1">Option 1</mat-option>
-          <mat-option value="2">Option 2</mat-option>
+        <mat-select formControlName="user"  [value]="user.value">
+          <mat-option *ngFor="let temporaryItem of temporaryList" [value]="temporaryItem.id">{{ temporaryItem.name }}</mat-option>
         </mat-select>
         <mat-error class="form__error-description" *ngIf="(user.touched || submitted) && user.errors?.required">
           User Is Required
@@ -37,8 +36,9 @@
 
       <div formArrayName="branches" class="form__branches">
         <div *ngFor="let branch of companyBranches.controls; let i = index" class="form__branch-item">
-          <button mat-fab color="warn" (click)="deleteBranch(i)" [matTooltip]="'delete branch ' + (companyBranches.controls[i].get('name').value || '') " matTooltipPosition="right"
-            aria-label="delete branch">
+          <button mat-fab color="warn" (click)="deleteBranch(i)"
+            [matTooltip]="'delete branch ' + (companyBranches.controls[i].get('name').value || '') "
+            matTooltipPosition="right" aria-label="delete branch">
             <mat-icon>delete_outline</mat-icon>
           </button>
           <div [formGroupName]="i">
@@ -52,8 +52,7 @@
             <mat-form-field class="form__input">
               <mat-label>Country</mat-label>
               <mat-select formControlName="countryID">
-                <mat-option value="1">Option 1</mat-option>
-                <mat-option value="2">Option 2</mat-option>
+                <mat-option *ngFor="let temporaryItem of temporaryList" [value]="temporaryItem.id">{{ temporaryItem.name }}</mat-option>
               </mat-select>
               <mat-error class="form__error-description"
                 *ngIf="(companyBranches.controls[i].get('countryID').touched || submitted) && companyBranches.controls[i].get('countryID').errors?.required">
@@ -63,11 +62,7 @@
             <mat-form-field class="form__input">
               <mat-label>State</mat-label>
               <mat-select formControlName="stateID">
-                <!-- <mat-option *ngFor="let role of adminRoles$ | async" [value]="role.id">
-                {{ role.name }}
-              </mat-option> -->
-                <mat-option value="1">Option 1</mat-option>
-                <mat-option value="2">Option 2</mat-option>
+                <mat-option *ngFor="let temporaryItem of temporaryList" [value]="temporaryItem.id">{{ temporaryItem.name }}</mat-option>
               </mat-select>
               <mat-error class="form__error-description"
                 *ngIf="(companyBranches.controls[i].get('stateID').touched || submitted) && companyBranches.controls[i].get('stateID').errors?.required">
@@ -77,8 +72,7 @@
             <mat-form-field class="form__input">
               <mat-label>city</mat-label>
               <mat-select formControlName="cityID">
-                <mat-option value="1">Option 1</mat-option>
-                <mat-option value="2">Option 2</mat-option>
+                <mat-option *ngFor="let temporaryItem of temporaryList" [value]="temporaryItem.id">{{ temporaryItem.name }}</mat-option>
               </mat-select>
               <mat-error class="form__error-description"
                 *ngIf="(companyBranches.controls[i].get('cityID').touched || submitted) && companyBranches.controls[i].get('cityID').errors?.required">
@@ -110,8 +104,7 @@
             <mat-form-field class="form__input">
               <mat-label>Phone Index</mat-label>
               <mat-select formControlName="phoneIndex">
-                <mat-option value="1">Option 1</mat-option>
-                <mat-option value="2">Option 2</mat-option>
+                <mat-option *ngFor="let temporaryItem of temporaryList" [value]="temporaryItem.id">{{ temporaryItem.name }}</mat-option>
               </mat-select>
               <mat-error class="form__error-description"
                 *ngIf="(companyBranches.controls[i].get('phoneIndex').touched || submitted) && companyBranches.controls[i].get('phoneIndex').errors?.required">
@@ -119,11 +112,7 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="form__input">
-              <mat-label>Phone Number</mat-label>
-              <mat-select formControlName="phoneNumber">
-                <mat-option value="1">Option 1</mat-option>
-                <mat-option value="2">Option 2</mat-option>
-              </mat-select>
+              <input matInput placeholder="Phone Number" type="text" formControlName="phoneNumber" />
               <mat-error class="form__error-description"
                 *ngIf="(companyBranches.controls[i].get('phoneNumber').touched || submitted) && companyBranches.controls[i].get('phoneNumber').errors?.required">
                 Phone Number Is Required
@@ -142,6 +131,7 @@
         <button class="form-actions__create" mat-raised-button color="primary" type="submit">
           Create company account
         </button>
+        <mat-spinner diameter='30' *ngIf="isLoading$ | async"></mat-spinner>
       </div>
     </form>
   </mat-card-content>

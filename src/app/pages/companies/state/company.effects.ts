@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CompanyService } from 'app/services/company.service';
 import { EMPTY, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, delay, map, mergeMap } from 'rxjs/operators';
 import { AddCompanyRequest } from '../models';
 import * as fromCompany from './company.actions';
 
@@ -13,6 +13,7 @@ export class CompanyEffects {
       ofType(fromCompany.loadCompanies),
       mergeMap((action) => {
         return this.companyService.getCompanyList().pipe(
+          delay(2000),
           map((response) => {
             return fromCompany.loadCompaniesSuccess({ companies: response });
           }),
@@ -29,8 +30,9 @@ export class CompanyEffects {
       ofType(fromCompany.addCompany),
       mergeMap((action) => {
         return this.companyService.addCompany(action.payload).pipe(
+          delay(1000),
           map((response) => {
-            return fromCompany.addCompanySuccess({ data: response });
+            return fromCompany.addCompanySuccess({ payload: response.payload });
           }),
           catchError((error: Error) =>
             of(fromCompany.addCompanyFailure({ error }))

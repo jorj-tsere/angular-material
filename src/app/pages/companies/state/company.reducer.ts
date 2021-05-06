@@ -50,14 +50,14 @@ export const reducer = createReducer(
   on(CompanyActions.addCompanySuccess, (state, action: any) => {
     return adapter.addOne(action.payload.branch, {
       ...state,
-      loading: true
+      loading: false
     });
   }),
   on(CompanyActions.addCompanyFailure, (state, action: any) => {
     return {
       ...state,
       error: action.error,
-      loading: true
+      loading: false
     }
   })
 );

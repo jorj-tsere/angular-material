@@ -16,7 +16,7 @@ export class CompanyListComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.vm$ = this.store.pipe(select(fromCompanySelectors.selectAllCompanies));
+    this.vm$ = this.store.pipe(select(fromCompanySelectors.selectAllCompaniesViewModel));
     this.store.dispatch(fromCompanyActions.loadCompanies({ url: '' }));
   }
 }

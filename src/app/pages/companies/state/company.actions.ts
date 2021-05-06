@@ -36,7 +36,7 @@ export const loadCompaniesFailure = createAction(
 
 export const addCompanySuccess = createAction(
   '[Company add Effect] Add Company Success',
-  props<{ data: any }>()
+  props<{ payload: any }>()
 );
 
 export const addCompanyFailure = createAction(

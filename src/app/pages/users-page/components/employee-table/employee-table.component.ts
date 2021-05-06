@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
@@ -33,6 +34,7 @@ export interface Lookups {
   selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
   styleUrls: ['./employee-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeTableComponent implements OnInit, OnChanges {
   constructor(private store: Store<AppState>) {}

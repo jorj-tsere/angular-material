@@ -1,22 +1,17 @@
-<mat-toolbar class="page-header" role="heading">
-  <h1>Companies</h1>
-</mat-toolbar>
+<!-- {{ vm$ | async | json }} -->
 
-<button mat-raised-button [routerLink]="['../register/']">
-  Add Company <mat-icon>add</mat-icon>
-</button>
 
-<!-- <p>{{ vm$ | async | json }}</p> -->
+<ng-container *ngIf="vm$ | async as viewModel">
+  <mat-toolbar *ngIf="!viewModel.loading && !viewModel.error" class="page-header" role="heading">
+    <h1>Companies</h1>
+  </mat-toolbar>
 
-<div *ngIf="vm$ | async as companyList">
-  <app-company-list-table [companies]="companyList"></app-company-list-table>
-</div>
-<!--
-<div class="tables-wrapper" *ngIf="vm$ | async as users">
-  <br />
-  <button mat-raised-button [routerLink]="['../register/']">
-    create user  <mat-icon> person_add</mat-icon>
-  </button>
-  <br />
-</div> -->
-<!-- <app-employee-table [employeeTableData]="users"></app-employee-table> -->
+  <mat-progress-bar *ngIf="viewModel.loading" color='accent' mode="indeterminate"></mat-progress-bar>
+  <div *ngIf="!viewModel.loading && !viewModel.error">
+    <button mat-raised-button [routerLink]="['../register/']">
+      Add Company <mat-icon>add</mat-icon>
+    </button>
+    <app-company-list-table [companies]="viewModel.companies"></app-company-list-table>
+  </div>
+  <div *ngIf="viewModel.error">{{ viewModel.error | json }}</div>
+</ng-container>

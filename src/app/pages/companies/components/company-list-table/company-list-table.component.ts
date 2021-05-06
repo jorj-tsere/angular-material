@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import {
+  ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
@@ -19,6 +20,7 @@ import { Observable } from 'rxjs';
   selector: 'app-company-list-table',
   templateUrl: './company-list-table.component.html',
   styleUrls: ['./company-list-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompanyListTableComponent implements OnInit, OnChanges {
   constructor(private store: Store<AppState>) {}

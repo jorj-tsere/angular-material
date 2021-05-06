@@ -8,11 +8,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { noWhitespaceValidator, mailValidator } from '@shared/helpers';
 import { AppState } from '@store-barrel';
 import { addCompany } from '@pages/companies/state/company.actions';
 import { AddCompanyRequest } from '@pages/companies/models';
+import { Observable } from 'rxjs';
+import { selectAllIDs, selectLoadingStatus } from '@pages/companies/state/company.selectors';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-add-company',
   templateUrl: './add-company.component.html',
@@ -21,6 +24,22 @@ import { AddCompanyRequest } from '@pages/companies/models';
 export class AddCompanyComponent implements OnInit {
   public form: FormGroup;
   public submitted = false;
+  public newCompanyID: number;
+  public isLoading$: Observable<boolean>;
+  public temporaryList = [
+    {
+      id: 1, name: 'value 1'
+    },
+    {
+      id: 2, name: 'value 2'
+    },
+    {
+      id: 3, name: 'value 3'
+    },
+    {
+      id: 4, name: 'value 4'
+    },
+  ]
 
   constructor(
     private fb: FormBuilder,
@@ -30,12 +49,14 @@ export class AddCompanyComponent implements OnInit {
     this.initializeForm();
   }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+    this.isLoading$ = this.store.pipe(select(selectLoadingStatus));
+  }
 
   initializeForm(): void {
     this.form = this.fb.group({
-      name: [null, [Validators.required, noWhitespaceValidator]],
-      user: [null, [Validators.required, noWhitespaceValidator]],
+      name: ['company name temp', [Validators.required, noWhitespaceValidator]],
+      user: [1, [Validators.required]],
       branches: this.fb.array([]),
     });
     this.addNewBranch();
@@ -47,15 +68,15 @@ export class AddCompanyComponent implements OnInit {
 
   addNewBranch() {
     const newBranch = this.fb.group({
-      name: [null, [Validators.required, noWhitespaceValidator]],
-      countryID: [null, [Validators.required]],
-      stateID: [null, [Validators.required]],
-      cityID: [null, [Validators.required]],
-      addressLine: [null, [Validators.required]],
-      addressLineTwo: [null],
-      zipCode: [null, [Validators.required]],
-      phoneIndex: [null, [Validators.required]],
-      phoneNumber: [null, [Validators.required]],
+      name: ['new branch', [Validators.required, noWhitespaceValidator]],
+      countryID: [1, [Validators.required]],
+      stateID: [1, [Validators.required]],
+      cityID: [1, [Validators.required]],
+      addressLine: ['addressLine', [Validators.required]],
+      addressLineTwo: ['addressLine 2'],
+      zipCode: ['152145', [Validators.required]],
+      phoneIndex: [1, [Validators.required]],
+      phoneNumber: ['551473729', [Validators.required]],
     });
     this.companyBranches.push(newBranch);
   }

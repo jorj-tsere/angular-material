@@ -28,7 +28,7 @@ export class CompanyService {
   public getCompanyList(): Observable<any> {
     return of([
       {
-        id: uuidv4(),
+        id: 1,
         name: 'company 1',
         status: 'active',
         statusID: 1,
@@ -37,7 +37,7 @@ export class CompanyService {
         countryID: 1,
       },
       {
-        id: uuidv4(),
+        id: 2,
         name: 'company 2',
         status: 'active',
         registration_date: this.randomDate(new Date(2012, 0, 1), new Date()),
@@ -45,7 +45,7 @@ export class CompanyService {
         countryID: 1,
       },
       {
-        id: uuidv4(),
+        id: 3,
         name: 'company 3',
         status: 'block',
         statusID: 0,
@@ -54,7 +54,7 @@ export class CompanyService {
         countryID: 1,
       },
       {
-        id: uuidv4(),
+        id: 4,
         name: 'company 4',
         status: 'block',
         statusID: 0,
@@ -63,7 +63,7 @@ export class CompanyService {
         countryID: 1,
       },
       {
-        id: uuidv4(),
+        id: 5,
         name: 'company 5',
         status: 'active',
         statusID: 1,
@@ -77,9 +77,10 @@ export class CompanyService {
 
   public addCompany(payload: AddCompanyRequest) {
     return of({
-      response: 'ok', payload: {
+      status: 'ok',
+      payload: {
         branch: {
-          id: uuidv4(),
+          id: 7,
           name: 'company 6',
           status: 'active',
           statusID: 1,
@@ -90,9 +91,9 @@ export class CompanyService {
       }
     });
 
-    return this.http.post<any>(
-      `${environment.baseUrl}/api/copmany/create`,
-      payload
-    );
+    // return this.http.post<any>(
+    //   `${environment.baseUrl}/api/copmany/create`,
+    //   payload
+    // );
   }
 }
